@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #00b900;
+        --secondary-color: #e6ffe6;
+        --text-color: #333;
+        --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.05);
+        --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.1);
+      }
+      body {
+        font-family: "Poppins", Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* บนมือถือให้อยู่ด้านบน */
+        min-height: 100vh;
+      }
+      .container {
+        width: 100%;
+        max-width: 450px;
+        background: #ffffff;
+        padding: 20px; /* ลด padding ลงสำหรับมือถือ */
+        border-radius: 0; /* บนมือถือไม่ใส่ขอบมนเพื่อใช้พื้นที่เต็ม */
+        box-shadow: none; /* บนมือถือไม่ใส่เงา */
+        margin: 0;
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: var(--text-color);
+        font-weight: 600;
+        font-size: 1.5rem; /* ปรับขนาดให้เหมาะสมกับมือถือ */
+        border-bottom: 3px solid var(--primary-color);
+        padding-bottom: 10px;
+      }
+      label {
+        display: block;
+        margin-top: 15px;
+        font-weight: 400;
+        color: var(--text-color);
+        font-size: 0.95rem;
+      }
+      input[type="text"],
+      input[type="tel"],
+      input[type="email"] {
+        width: 100%;
+        padding: 12px; /* เพิ่ม padding ให้ใหญ่ขึ้น ง่ายต่อการแตะ */
+        margin-top: 5px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-sizing: border-box;
+        transition: border-color 0.3s;
+        font-size: 1rem;
+      }
+      input[type="text"]:focus,
+      input[type="tel"]:focus,
+      input[type="email"]:focus {
+        border-color: var(--primary-color);
+        outline: none;
+        box-shadow: var(--shadow-light);
+      }
+      .checkbox-group {
+        margin-top: 20px;
+        margin-bottom: 25px;
+        padding: 15px;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        background-color: var(--secondary-color);
+        display: flex;
+        flex-direction: column; /* เปลี่ยนเป็นแนวตั้งสำหรับมือถือ */
+        gap: 10px; /* ลดระยะห่าง */
+      }
+      .radio-option {
+        display: flex;
+        align-items: center;
+      }
+      .radio-option label {
+        margin: 0 0 0 8px;
+        cursor: pointer;
+        font-weight: 400;
+      }
+
+      button {
+        width: 100%;
+        padding: 15px; /* เพิ่ม padding ให้ใหญ่ขึ้น ง่ายต่อการแตะ */
+        margin-top: 30px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.1s ease;
+        box-shadow: 0 4px 10px rgba(0, 185, 0, 0.4);
+      }
+      button:hover {
+        background-color: #009900;
+        box-shadow: 0 6px 15px rgba(0, 185, 0, 0.5);
+      }
+      p {
+        text-align: center;
+        margin-top: 20px;
+        color: #777;
+        font-size: 0.85rem;
+      }
+
+      /* --- Media Query สำหรับหน้าจอใหญ่ (Tablet / Desktop) --- */
+      @media (min-width: 600px) {
+        body {
+          align-items: center; /* บนหน้าจอใหญ่ ให้ฟอร์มอยู่ตรงกลาง */
+        }
+        .container {
+          padding: 30px 40px; /* padding กลับเป็นขนาดปกติ */
+          border-radius: 16px; /* ใส่ขอบมน */
+          box-shadow: var(--shadow-medium); /* ใส่เงา */
+          margin: 40px auto;
+        }
+        h2 {
+          font-size: 1.8rem;
+        }
+        .checkbox-group {
+          flex-direction: row; /* บนหน้าจอใหญ่ ให้กลับเป็นแนวนอน */
+          justify-content: space-around;
+          gap: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>ลงทะเบียน เพื่อใช้งานระบบไลน์</h2>
+
+      <form
+        action="/register"
+        method="post"
+        onsubmit="return showSuccessPopup(event)"
+      >
+        <h3>กรุณาเลือกประเภทผู้ใช้งาน:</h3>
+        <div class="checkbox-group">
+          <div class="radio-option">
+            <input
+              type="radio"
+              id="user_general"
+              name="user_type"
+              value="general"
+              onclick="toggleFields()"
+            />
+            <label for="user_general">บุคคลทั่วไป</label>
+          </div>
+
+          <div class="radio-option">
+            <input
+              type="radio"
+              id="user_company"
+              name="user_type"
+              value="company"
+              onclick="toggleFields()"
+            />
+            <label for="user_company">นิติบุคคล</label>
+          </div>
+        </div>
+
+        <div id="general_fields" style="display: none">
+          <label for="name_general">ชื่อ-นามสกุล:</label>
+          <input
+            type="text"
+            id="name_general"
+            name="name_general"
+            placeholder="กรอกชื่อของคุณที่นี่"
+          />
+
+          <label for="idcard_general">เลขบัตรประชาชน:</label>
+          <input
+            type="text"
+            id="idcard_general"
+            name="idcard_general"
+            placeholder="กรอกเลขบัตรประชาชนของคุณที่นี่"
+          />
+
+          <label for="phone_gen">เบอร์โทรศัพท์:</label>
+          <input
+            type="tel"
+            id="phone_gen"
+            name="phone"
+            placeholder="กรอกเบอร์โทรศัพท์ของคุณที่นี่"
+          />
+
+          <label for="email_gen">อีเมล:</label>
+          <input
+            type="email"
+            id="email_gen"
+            name="email"
+            placeholder="กรอกอีเมลของคุณที่นี่"
+          />
+
+          <label for="address_gen">ที่อยู่:</label>
+          <input
+            type="text"
+            id="address_gen"
+            name="address"
+            placeholder="กรอกที่อยู่ของคุณที่นี่"
+          />
+
+          <label for="address2_gen">ที่อยู่ส่งจดหมาย:</label>
+          <input
+            type="text"
+            id="address2_gen"
+            name="address2"
+            placeholder="กรอกที่อยู่ส่งจดหมายของคุณที่นี่"
+          />
+        </div>
+
+        <div id="company_fields" style="display: none">
+          <label for="company_name">บริษัท:</label>
+          <input
+            type="text"
+            id="company_name"
+            name="company_name"
+            placeholder="กรอกชื่อบริษัทของคุณที่นี่"
+          />
+
+          <label for="company_id">เลขทะเบียนนิติบุคคล:</label>
+          <input
+            type="text"
+            id="company_id"
+            name="company_id"
+            placeholder="กรอกเลขทะเบียนนิติบุคคลของคุณที่นี่"
+          />
+
+          <label for="phone_com">เบอร์โทรศัพท์:</label>
+          <input
+            type="tel"
+            id="phone_com"
+            name="phone"
+            placeholder="กรอกเบอร์โทรศัพท์ของคุณที่นี่"
+          />
+
+          <label for="email_com">อีเมล:</label>
+          <input
+            type="email"
+            id="email_com"
+            name="email"
+            placeholder="กรอกอีเมลของคุณที่นี่"
+          />
+
+          <label for="address_com">ที่อยู่:</label>
+          <input
+            type="text"
+            id="address_com"
+            name="address"
+            placeholder="กรอกที่อยู่ของคุณที่นี่"
+          />
+
+          <label for="address2_com">ที่อยู่ส่งจดหมาย:</label>
+          <input
+            type="text"
+            id="address2_com"
+            name="address2"
+            placeholder="กรอกที่อยู่ส่งจดหมายของคุณที่นี่"
+          />
+        </div>
+        <input type="hidden" id="line_uid" name="line_uid" value="" />
+        <input type="hidden" id="line_name" name="line_name" value="" />
+        <button type="submit">ลงทะเบียน</button>
+      </form>
+
+      <p>ข้อมูลของคุณจะถูกเก็บเป็นความลับ</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script>
+      async function initLIFF() {
+        await liff.init({ liffId: "2007339616-NYn6w71y" });
+
+        if (!liff.isLoggedIn()) {
+          liff.login();
+          return;
+        }
+
+        const profile = await liff.getProfile();
+        document.getElementById("line_uid").value = profile.userId;
+        document.getElementById("line_name").value = profile.displayName;
+
+        // ตรวจสอบก่อน
+        google.script.run
+          .withSuccessHandler((isRegistered) => {
+            if (isRegistered) {
+              Swal.fire({
+                title: "คุณลงทะเบียนแล้ว",
+                text: "คุณไม่ต้องลงทะเบียนซ้ำ",
+                icon: "info",
+                confirmButtonText: "ตกลง",
+              }).then(() => {
+                liff.closeWindow(); // ปิด LIFF หรือ redirect
+              });
+            } else {
+              document.querySelector("form").style.display = "block"; // แสดงฟอร์ม
+            }
+          })
+          .checkRegistered(profile.userId);
+      }
+
+      initLIFF();
+
+      function toggleFields() {
+        const isGeneral = document.getElementById("user_general").checked;
+        const isCompany = document.getElementById("user_company").checked;
+
+        const generalFieldsDiv = document.getElementById("general_fields");
+        const companyFieldsDiv = document.getElementById("company_fields");
+
+        // แสดง/ซ่อนส่วน
+        generalFieldsDiv.style.display = isGeneral ? "block" : "none";
+        companyFieldsDiv.style.display = isCompany ? "block" : "none";
+
+        // กำหนดความจำเป็นของฟิลด์สำหรับบุคคลทั่วไป
+        document.getElementById("name_general").required = isGeneral;
+        document.getElementById("idcard_general").required = isGeneral;
+        document.getElementById("phone_gen").required = isGeneral;
+        document.getElementById("email_gen").required = isGeneral;
+        document.getElementById("address_gen").required = isGeneral;
+        document.getElementById("address2_gen").required = isGeneral;
+
+        // กำหนดความจำเป็นของฟิลด์สำหรับนิติบุคคล
+        document.getElementById("company_name").required = isCompany;
+        document.getElementById("company_id").required = isCompany;
+        document.getElementById("phone_com").required = isCompany;
+        document.getElementById("email_com").required = isCompany;
+        document.getElementById("address_com").required = isCompany;
+        document.getElementById("address2_com").required = isCompany;
+
+        // ล้างค่าและยกเลิก required ของฟิลด์ที่ถูกซ่อน
+        if (!isGeneral) {
+          clearAndUnrequire(generalFieldsDiv);
+        }
+        if (!isCompany) {
+          clearAndUnrequire(companyFieldsDiv);
+        }
+      }
+
+      function clearAndUnrequire(divElement) {
+        const inputs = divElement.querySelectorAll(
+          'input[type="text"], input[type="tel"], input[type="email"]'
+        );
+        inputs.forEach((input) => {
+          input.value = ""; // ล้างค่า
+          input.required = false; // ยกเลิก required
+        });
+      }
+
+      function showSuccessPopup(e) {
+        e.preventDefault(); // กันไม่ให้ฟอร์ม submit ทันที
+
+        Swal.fire({
+          title: "ลงทะเบียนสำเร็จ!",
+          text: "ท่านได้ลงทะเบียนสำเร็จแล้ว กรุณารอการตอบกลับผ่านไลน์ โดยใช้เวลา 3-7 วัน",
+          icon: "success",
+          confirmButtonText: "ตกลง",
+        }).then(() => {
+          e.target.submit(); // ส่งฟอร์มจริงหลังจากผู้ใช้กดตกลง
+        });
+
+        return false;
+      }
+    </script>
+  </body>
+</html>
