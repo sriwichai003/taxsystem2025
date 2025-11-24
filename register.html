@@ -87,6 +87,7 @@
         align-items: center;
         justify-content: center;
         z-index: 9999;
+        pointer-events: all;
       "
     >
       <div class="dots-container">
@@ -117,7 +118,7 @@
             let userId = profile.userId;
             let displayName = profile.displayName;
             let pictureUrl = profile.pictureUrl;
-            let url = "https://script.google.com/macros/s/AKfycbwnu_NQnsQo2N79NFFKaqPj3wUgpJZ0XlL23TbuZrdcTWTxRFaJy0WFTh_aiHkz--2_oA/exec?userId=" + userId + "&displayName=" + displayName + "&pictureUrl=" + pictureUrl;
+            let url = "https://script.google.com/macros/s/AKfycbwfzPQWpt59iBYy25dbaFrvTTB8oGXjaujFLkekgFqX7rRIQrfN8CnTyxD6eYIW4C_vEQ/exec?userId=" + userId + "&displayName=" + displayName + "&pictureUrl=" + pictureUrl;
             document.getElementById("formframe").src = url;
         }).catch(err => console.error(err));
     }
