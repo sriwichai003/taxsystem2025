@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ระบบข่าวสาร งานจัดเก็บรายได้ศรีวิชัย - เทศบาลนครเชียงใหม่</title>
+    <title>ระบบข่าวสาร งานจัดเก็บรายได้</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap"
       rel="stylesheet"
@@ -13,60 +13,59 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <style>
-      /* --- ธีมสี (น้ำเงิน/เขียว) --- */
-      :root {
-        --primary-blue: #3879a6; /* น้ำเงินเข้ม */
-        --accent-green: #4caf50; /* เขียวสด */
-        --light-blue: #e0e6f0; /* น้ำเงินอ่อนสำหรับพื้นหลังเมนู Active */
-        --background-color: #f7f9fb;
-        --text-color: #333;
-        --muted-color: #777;
-        --border-color: #eee;
-      }
-
+      /* CSS ที่ปรับปรุงใหม่ - เน้นสีน้ำเงินและเขียว */
       /* --- การตั้งค่าพื้นฐาน --- */
       body {
         font-family: "Sarabun", sans-serif;
         margin: 0;
         padding: 0;
-        background-color: var(--background-color);
-        color: var(--text-color);
+        background-color: #f4f7f9;
+        color: #333;
       }
 
       .container {
         padding: 10px;
       }
 
-      /* --- Header / Alert Bar --- */
+      h1,
+      h2 {
+        margin-top: 0;
+      }
+
+      /* --- Header และ Navigation --- */
       .header {
         background-color: #fff;
         padding: 10px;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid #eee;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
       }
+
       .logo-area {
         display: flex;
         align-items: center;
         gap: 10px;
         margin-bottom: 10px;
       }
+
       .icon-house i {
         font-size: 28px;
-        color: var(--primary-blue);
+        color: #007bff; /* น้ำเงินสด */
       }
+
       .logo-area h1 {
         font-size: 16px;
         font-weight: 700;
         color: #444;
         line-height: 1.2;
       }
+
       .logo-area p {
         font-size: 12px;
-        color: var(--muted-color);
+        color: #777;
         margin: 0;
       }
 
-      /* Navigation */
+      /* Mobile Main Navigation */
       .main-nav-mobile ul {
         list-style: none;
         padding: 0;
@@ -76,9 +75,11 @@
         white-space: nowrap;
         gap: 10px;
       }
+
       .main-nav-mobile li {
         flex-shrink: 0;
       }
+
       .main-nav-mobile a {
         text-decoration: none;
         color: #666;
@@ -87,22 +88,22 @@
         border-radius: 20px;
         font-size: 14px;
         font-weight: 600;
-        background-color: #f0f0f0;
-        transition: background-color 0.2s;
-      }
-      .main-nav-mobile li.active a {
-        /* เปลี่ยนสีเมนู Active เป็นโทนน้ำเงินอ่อน-น้ำเงินหลัก */
-        background-color: var(--light-blue);
-        color: var(--primary-blue);
+        background-color: #e6e9ec;
       }
 
-      /* Alert Bar (ใช้สีเขียว/เหลืองสำหรับการแจ้งเตือน) */
+      .main-nav-mobile li.active a {
+        background-color: #d1e5ff;
+        color: #007bff;
+      }
+
+      .main-nav-mobile i {
+        margin-right: 5px;
+      }
+
+      /* --- แถบแจ้งเตือนเร่งด่วน (ปรับเป็นสีเขียว) --- */
       .alert-bar {
-        background: linear-gradient(
-          90deg,
-          #66bb6a,
-          #43a047
-        ); /* โทนเขียวสว่าง */
+        /* เปลี่ยนจากสีส้ม/เหลือง เป็นโทนสีเขียว */
+        background: linear-gradient(90deg, #1abc9c, #2ecc71); 
         color: white;
         padding: 15px;
         border-radius: 8px;
@@ -110,185 +111,148 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        box-shadow: 0 4px 6px rgba(26, 188, 156, 0.3); /* เพิ่มเงาให้โดดเด่น */
       }
+
       .alert-bar .icon-bell i {
-        font-size: 18px;
+        font-size: 20px;
+        margin-right: 5px;
       }
+
       .alert-bar p {
         margin: 5px 0 0 0;
+        font-size: 14px;
       }
       .alert-bar strong {
         font-size: 16px;
       }
-      .alert-bar .alert-text {
-        font-size: 14px;
-      }
-
-      /* --- ส่วนเนื้อหาหลัก (Mobile Default: CAROUSEL) --- */
-      .content-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-      .news-section {
-        background-color: #fff;
-        padding: 15px 0;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        position: relative;
-      }
-      .news-section h2 {
-        font-size: 18px;
-        font-weight: 700;
-        /* ใช้สีน้ำเงินหลัก */
-        color: var(--primary-blue);
-        margin-bottom: 15px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid var(--border-color);
-        padding-left: 15px;
-        padding-right: 15px;
-      }
-
-      /* CAROUSEL CONTAINER */
-      .carousel-container {
-        position: relative;
-        overflow: hidden;
-        padding: 0 15px;
-      }
-
-      .news-list {
-        display: flex;
-        transition: transform 0.3s ease-in-out;
-        gap: 15px;
-      }
-
-      .news-card {
-        flex-shrink: 0;
-        width: calc(100% - 30px);
-        max-width: 300px;
-        border: 1px solid #eee;
-        border-radius: 8px;
-        padding: 15px;
-        background-color: #fafafa;
-        transition: border-color 0.2s;
-      }
-      .news-card:hover {
-        border-color: var(--primary-blue); /* เพิ่มเอฟเฟกต์ Hover */
-      }
-
-      .news-tag {
-        display: inline-block;
-        padding: 3px 8px;
-        font-size: 12px;
-        font-weight: 600;
-        border-radius: 4px;
-        margin-bottom: 5px;
-        color: #fff;
-        /* ใช้สีเขียวรอง */
-        background-color: var(--accent-green);
-      }
-      .news-title {
-        font-size: 15px;
-        font-weight: 600;
-        margin: 0;
-        color: var(--text-color);
-      }
-      .news-date {
-        font-size: 12px;
-        color: var(--muted-color);
+      .alert-text {
+        font-weight: 400;
         margin-top: 5px;
       }
 
-      /* ปุ่มลูกศรซ้าย/ขวา (ซ่อนบนมือถือโดยค่าเริ่มต้น) */
-      .carousel-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0, 0, 0, 0.6);
-        color: white;
-        border: none;
-        cursor: pointer;
-        padding: 8px 12px;
-        z-index: 10;
-        font-size: 18px;
-        border-radius: 50%;
-        line-height: 1;
-        width: 35px;
-        height: 35px;
+      /* --- ส่วนเนื้อหาหลัก (News Section) --- */
+      .content-wrapper {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.2s;
-        /* MOBILE FIX: ซ่อนปุ่มบนมือถือ */
-        display: none;
-      }
-      .carousel-btn.right {
-        right: 25px;
-      }
-      .carousel-btn.left {
-        left: 25px;
-      }
-      .carousel-btn:hover {
-        background: var(--primary-blue);
+        flex-direction: column; /* มือถือ: ซ้อนกัน */
+        gap: 20px;
       }
 
-      /* --- Media Queries สำหรับ Desktop (768px ขึ้นไป) --- */
+      .news-section {
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      .news-section h2 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #28a745; /* สีเขียว */
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .news-section h2 i {
+        margin-right: 8px;
+      }
+
+      /* --- ปรับปรุงรายการข่าวให้กระชับขึ้น (Grid/Table Layout) --- */
+      .news-list {
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ส่วนหัวของตาราง/รายการ */
+      .news-header {
+        display: grid;
+        grid-template-columns: 1fr 100px;
+        padding: 8px 0;
+        margin-bottom: 5px;
+        font-weight: 700;
+        color: #007bff; /* น้ำเงินสด */
+        border-bottom: 2px solid #1abc9c; /* เขียวน้ำทะเล */
+        font-size: 14px;
+      }
+
+      /* รายการข่าว (แถว) */
+      .news-card {
+        display: grid;
+        grid-template-columns: 1fr 100px;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+        line-height: 1.4;
+      }
+
+      .news-card:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      /* ซ่อน News Tag และปรับ News Title/Date */
+      .news-tag {
+        display: none;
+      }
+
+      .news-title {
+        font-size: 14px;
+        font-weight: 400;
+        margin: 0;
+        color: #333;
+      }
+
+      .news-date {
+        font-size: 12px;
+        font-weight: 600;
+        color: #dc3545; /* แดง (ยังคงสีเดิมเพื่อเน้นกำหนดการ/วันสำคัญ) */
+        text-align: right;
+        margin: 0;
+      }
+
+      /* --- Media Queries สำหรับ Desktop (ยังคงไว้เพื่อการแสดงผลบนจอใหญ่) --- */
       @media (min-width: 768px) {
         .container {
           max-width: 1200px;
           margin: 0 auto;
           padding: 20px;
         }
+
         .header {
           display: flex;
           justify-content: space-between;
           align-items: center;
         }
-        .logo-area {
-          margin-bottom: 0;
+
+        .main-nav-mobile ul {
+          flex-wrap: wrap;
+          overflow-x: visible;
+          gap: 15px;
         }
+
         .content-wrapper {
           flex-direction: row;
           gap: 20px;
         }
 
-        /* Desktop: ปิดการใช้งาน Carousel และแสดงรายการทั้งหมด */
         .news-section {
           flex: 1;
-          padding: 15px;
-        }
-        .news-section h2 {
-          padding-left: 0;
-          padding-right: 0;
         }
 
-        .carousel-container {
-          overflow: visible;
-          padding: 0;
+        .alert-bar {
+          flex-direction: row;
+          align-items: center;
+        }
+        .alert-bar p {
+          margin: 0;
+          margin-left: 10px;
         }
 
-        .news-list {
-          flex-direction: column;
-          gap: 0;
-          transform: none !important;
-        }
-
-        .news-card {
-          width: auto;
-          border-radius: 0;
-          background-color: #fff;
-          border: none;
-          border-bottom: 1px solid var(--border-color);
-          padding: 10px 0;
-          max-width: none;
-        }
-        .news-card:last-child {
-          border-bottom: none;
-        }
-
-        /* Desktop Fix: ซ่อนปุ่มลูกศรในมุมมอง Desktop */
-        .carousel-btn {
-          display: none !important;
+        /* ปรับตารางบน Desktop ให้ดูกว้างขึ้น */
+        .news-card,
+        .news-header {
+          grid-template-columns: 1fr 150px;
         }
       }
     </style>
@@ -316,189 +280,112 @@
         <span class="icon-bell"><i class="fas fa-bell"></i></span>
         <p><strong>แจ้งเตือน</strong></p>
         <p class="alert-text">
-          ประกาศ: ภาษีป้ายสามารถยื่นแบบและชำระภาษีได้ตั้งแต่วันที่ 1 มกราคม 2569
-          ถึง 31 มีนาคม 2569
+          ประกาศ: ภาษีป้ายสามารถยื่นแบบและชำระภาษีได้ตั้งแต่ วันที่ 1 มกราคม
+          2569 ถึง 31 มีนาคม 2569
         </p>
       </section>
 
       <div class="content-wrapper">
-        <section class="news-section" id="tax-sign">
+        <section class="news-section latest-news">
           <h2>
             <i class="fas fa-clipboard-list"></i>
-            ข่าวสารเกี่ยวกับภาษีป้าย
+            กำหนดการภาษีป้าย ประจำปี พ.ศ. 2569
           </h2>
-          <div class="carousel-container">
-            <div class="news-list">
-              <article class="news-card">
-                <span class="news-tag">กำหนดการ</span>
-                <p class="news-title">
-                  ประกาศแจ้งให้มายื่นภาษีป้าย ประจำปี พ.ศ. 2569
-                </p>
-                <p class="news-date">ภายในเดือน ธันวาคม 2568</p>
-              </article>
-              <article class="news-card">
-                <span class="news-tag">กำหนดการ</span>
-                <p class="news-title">ยื่นภาษีป้าย ประจำปี พ.ศ. 2569</p>
-                <p class="news-date">ภายในเดือน มกราคม 2569 ถึง มีนาคม 2569</p>
-              </article>
-              <article class="news-card">
-                <span class="news-tag">กำหนดการ</span>
-                <p class="news-title">แจ้งประเมินภาษีป้าย ประจำปี พ.ศ. 2569</p>
-                <p class="news-date">ภายในเดือน มกราคม 2569 ถึง มีนาคม 2569</p>
-              </article>
-              <article class="news-card">
-                <span class="news-tag">กำหนดการ</span>
-                <p class="news-title">ชำระภาษีป้าย ประจำปี พ.ศ. 2569</p>
-                <p class="news-date">ภายในเดือน มกราคม 2569 ถึง มีนาคม 2569</p>
-              </article>
+          <div class="news-list">
+            <div class="news-header">
+              <p>รายการกำหนดการ</p>
+              <p style="text-align: right">ระยะเวลาภายใน</p>
             </div>
+
+            <article class="news-card type-personnel">
+              <span class="news-tag">กำหนดการ</span>
+              <p class="news-title">ประกาศแจ้งให้มายื่นภาษีป้าย</p>
+              <p class="news-date">ธ.ค. 2568</p>
+            </article>
+
+            <article class="news-card type-personnel">
+              <span class="news-tag">กำหนดการ</span>
+              <p class="news-title">ยื่นแบบภาษีป้าย(สำหรับรายเก่าและรายใหม่)</p>
+              <p class="news-date">ม.ค. - มี.ค. 2569</p>
+            </article>
+
+            <article class="news-card type-personnel">
+              <span class="news-tag">กำหนดการ</span>
+              <p class="news-title">
+                แจ้งประเมินภาษีป้าย(สำหรับรายเก่าและรายใหม่)
+              </p>
+              <p class="news-date">ม.ค. - มี.ค. 2569</p>
+            </article>
+
+            <article class="news-card type-personnel">
+              <span class="news-tag">กำหนดการ</span>
+              <p class="news-title">ชำระภาษีป้าย(สำหรับรายเก่าและรายใหม่)</p>
+              <p class="news-date">ม.ค. - มี.ค. 2569</p>
+            </article>
           </div>
-          <button
-            class="carousel-btn left"
-            onclick="scrollCarousel('tax-sign', -1)"
-          >
-            <i class="fas fa-chevron-left"></i>
-          </button>
-          <button
-            class="carousel-btn right"
-            onclick="scrollCarousel('tax-sign', 1)"
-          >
-            <i class="fas fa-chevron-right"></i>
-          </button>
         </section>
 
-        <section class="news-section" id="land-tax">
+        <section class="news-section latest-news">
           <h2>
             <i class="fas fa-clipboard-list"></i>
-            ข่าวสารเกี่ยวกับภาษีที่ดินและสิ่งปลูกสร้าง
+            กำหนดการภาษีที่ดินฯ ประจำปี พ.ศ. 2569
           </h2>
-          <div class="carousel-container">
-            <div class="news-list">
-              <article class="news-card">
-                <span class="news-tag">กำหนดการ</span>
-                <p class="news-title">
-                  ประกาศแจ้งรายการที่ดิน ประจำปี พ.ศ. 2569
-                </p>
-                <p class="news-date">ภายในเดือน มกราคม 2569</p>
-              </article>
-              <article class="news-card">
-                <span class="news-tag">กำหนดการ</span>
-                <p class="news-title">
-                  ประกาศราคาประเมินทุนทรัพย์ ประจำปี พ.ศ. 2569
-                </p>
-                <p class="news-date">ภายในเดือน มีนาคม 2569</p>
-              </article>
-              <article class="news-card">
-                <span class="news-tag">กำหนดการ</span>
-                <p class="news-title">แจ้งประเมินภาษี ประจำปี พ.ศ. 2569</p>
-                <p class="news-date">ภายในเดือน เมษายน 2569</p>
-              </article>
-              <article class="news-card">
-                <span class="news-tag">กำหนดการ</span>
-                <p class="news-title">ชำระภาษี ประจำปี พ.ศ. 2569</p>
-                <p class="news-date">ภายในเดือน มิถุนายน 2569</p>
-              </article>
-              <article class="news-card">
-                <span class="news-tag">กำหนดการ</span>
-                <p class="news-title">ผ่อนชำระภาษี ประจำปี พ.ศ. 2569</p>
-                <p class="news-date">
-                  ภายในเดือน มิถุนายน 2569 ถึง สิงหาคม 2569
-                </p>
-              </article>
-              <article class="news-card">
-                <span class="news-tag">กำหนดการ</span>
-                <p class="news-title">
-                  แจ้งเตือนภาษีค้างชำระ ประจำปี พ.ศ. 2569
-                </p>
-                <p class="news-date">ภายในเดือน กรกฎาคม 2569</p>
-              </article>
-              <article class="news-card">
-                <span class="news-tag">กำหนดการ</span>
-                <p class="news-title">
-                  แจ้งชื่อผู้ค้างชำระภาษีให้ ทด. ประจำปี พ.ศ. 2569
-                </p>
-                <p class="news-date">ภายในเดือน สิงหาคม 2569</p>
-              </article>
-              <article class="news-card">
-                <span class="news-tag">กำหนดการ</span>
-                <p class="news-title">
-                  รายงานข้อมูลจัดเก็บภาษี ประจำปี พ.ศ. 2569
-                </p>
-                <p class="news-date">ภายในเดือน มกราคม 2570</p>
-              </article>
+          <div class="news-list">
+            <div class="news-header">
+              <p>รายการกำหนดการ</p>
+              <p style="text-align: right">ระยะเวลาภายใน</p>
             </div>
+
+            <article class="news-card type-personnel">
+              <span class="news-tag">กำหนดการ</span>
+              <p class="news-title">ประกาศแจ้งรายการที่ดิน</p>
+              <p class="news-date">ม.ค. 2569</p>
+            </article>
+
+            <article class="news-card type-personnel">
+              <span class="news-tag">กำหนดการ</span>
+              <p class="news-title">ประกาศราคาประเมินทุนทรัพย์</p>
+              <p class="news-date">มี.ค. 2569</p>
+            </article>
+
+            <article class="news-card type-personnel">
+              <span class="news-tag">กำหนดการ</span>
+              <p class="news-title">แจ้งประเมินภาษี</p>
+              <p class="news-date">เม.ย. 2569</p>
+            </article>
+
+            <article class="news-card type-personnel">
+              <span class="news-tag">กำหนดการ</span>
+              <p class="news-title">ชำระภาษี</p>
+              <p class="news-date">มิ.ย. 2569</p>
+            </article>
+
+            <article class="news-card type-personnel">
+              <span class="news-tag">กำหนดการ</span>
+              <p class="news-title">ผ่อนชำระภาษี</p>
+              <p class="news-date">มิ.ย. - ส.ค. 2569</p>
+            </article>
+
+            <article class="news-card type-personnel">
+              <span class="news-tag">กำหนดการ</span>
+              <p class="news-title">แจ้งเตือนภาษีค้างชำระ</p>
+              <p class="news-date">ก.ค. 2569</p>
+            </article>
+
+            <article class="news-card type-personnel">
+              <span class="news-tag">กำหนดการ</span>
+              <p class="news-title">แจ้งชื่อผู้ค้างชำระภาษีให้ ทด.</p>
+              <p class="news-date">ส.ค. 2569</p>
+            </article>
+
+            <article class="news-card type-personnel">
+              <span class="news-tag">กำหนดการ</span>
+              <p class="news-title">รายงานข้อมูลจัดเก็บภาษี</p>
+              <p class="news-date">ม.ค. 2570</p>
+            </article>
           </div>
-          <button
-            class="carousel-btn left"
-            onclick="scrollCarousel('land-tax', -1)"
-          >
-            <i class="fas fa-chevron-left"></i>
-          </button>
-          <button
-            class="carousel-btn right"
-            onclick="scrollCarousel('land-tax', 1)"
-          >
-            <i class="fas fa-chevron-right"></i>
-          </button>
         </section>
       </div>
     </main>
-
-    <script>
-      // ฟังก์ชัน Carousel (ถูกเก็บไว้สำหรับ Mobile Swipe หากมีการเพิ่มเข้ามาในอนาคต)
-      function scrollCarousel(sectionId, direction) {
-        const section = document.getElementById(sectionId);
-        const newsList = section.querySelector(".news-list");
-        const cards = newsList.querySelectorAll(".news-card");
-
-        // ตรวจสอบว่ามี Card
-        if (cards.length === 0) return;
-
-        // ตรวจสอบขนาดหน้าจอ: ถ้าเป็น Desktop (กว้างกว่า 768px) จะไม่ทำงาน
-        if (window.innerWidth >= 768) return;
-
-        const cardRect = cards[0].getBoundingClientRect();
-        const cardWidth = cardRect.width;
-        const gap = 15;
-        const scrollDistance = cardWidth + gap;
-
-        let currentTransform = newsList.style.transform;
-        let currentX = 0;
-
-        if (currentTransform.startsWith("translateX(")) {
-          currentX = parseFloat(currentTransform.match(/-?[\d\.]+/)[0]);
-        }
-
-        let newX = currentX + direction * -scrollDistance;
-
-        const listWidth = newsList.scrollWidth;
-        const containerWidth = newsList.parentElement.offsetWidth; // แก้ไขการคำนวณ Container
-        // เนื่องจาก .carousel-container มี padding 0 15px ดังนั้น offsetWidth คือรวม padding แล้ว
-        // แต่ถ้าจะคิดจาก newsList.scrollWidth ต้องหักส่วนที่ไม่ต้องการ Scroll ออกไป
-
-        // ปรับการคำนวณ maxScroll ให้ถูกต้อง (สำหรับ Carousel ที่ซ่อนอยู่)
-        const totalContentWidth = listWidth + (cards.length - 1) * gap;
-        const viewportWidth = newsList.parentElement.offsetWidth;
-        const maxScroll = totalContentWidth - viewportWidth;
-
-        if (direction === 1) {
-          // เลื่อนไปทางซ้าย (ค่า X เป็นลบมากขึ้น)
-          if (Math.abs(newX) >= maxScroll) {
-            newX = -maxScroll;
-          }
-        } else {
-          // เลื่อนไปทางขวา (ค่า X เข้าใกล้ 0)
-          if (newX > 0) {
-            newX = 0;
-          }
-        }
-
-        if (maxScroll <= 0) {
-          newX = 0;
-        }
-
-        newsList.style.transform = `translateX(${newX}px)`;
-      }
-    </script>
   </body>
 </html>
