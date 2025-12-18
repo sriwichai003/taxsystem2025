@@ -348,6 +348,59 @@
           flex: 1;
         }
       }
+      /* --- Footer Style --- */
+      footer {
+        background-color: #ffffff;
+        border-top: 1px solid #eaeaea;
+        padding: 30px 20px;
+        margin-top: 50px;
+        text-align: center;
+        color: #6c757d;
+      }
+
+      .footer-content {
+        max-width: 1140px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .visitor-stats {
+        background: #f1f3f5;
+        padding: 10px 20px;
+        border-radius: 50px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: #495057;
+        border: 1px solid #e9ecef;
+      }
+
+      .visitor-stats i {
+        color: #0d6efd;
+      }
+
+      .visitor-count {
+        font-family: "Courier New", Courier, monospace; /* ให้ฟีลตัวเลขดิจิทัล */
+        font-weight: 700;
+        color: #212529;
+        letter-spacing: 1px;
+      }
+
+      .copyright {
+        font-size: 13px;
+        opacity: 0.8;
+      }
+
+      @media (min-width: 768px) {
+        .footer-content {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      }
     </style>
   </head>
   <body>
@@ -524,5 +577,69 @@
         </section>
       </div>
     </main>
+    <footer>
+      <div class="footer-content">
+        <div class="copyright">
+          © 2025 งานจัดเก็บรายได้ แขวงศรีวิชัย เทศบาลนครเชียงใหม่
+        </div>
+
+        <div class="visitor-stats">
+          <i class="fas fa-users"></i>
+          <span>จำนวนผู้เข้าชมเว็บไซต์วันนี้:</span>
+          <span class="visitor-count" id="visitorCount"></span>
+          <span>คน</span>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module">
+      // 1. Import Firebase SDKs ที่จำเป็น
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        runTransaction,
+        onValue,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+      // 2. Firebase Configuration (ใช้ค่าที่คุณได้มา)
+      const firebaseConfig = {
+        apiKey: "AIzaSyA5EjwEF3MQxYRO4NWK70OEaPKC3KrQgsU",
+        authDomain: "swaa01-c5632.firebaseapp.com",
+        databaseURL:
+          "https://swaa01-c5632-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "swaa01-c5632",
+        storageBucket: "swaa01-c5632.firebasestorage.app",
+        messagingSenderId: "64740739912",
+        appId: "1:64740739912:web:c246c32c5309f7170a417d",
+        measurementId: "G-4JNP6SXQWJ",
+      };
+
+      // 3. Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+      const visitorRef = ref(db, "visitCount");
+
+      // 4. ฟังก์ชันสำหรับนับยอดผู้เข้าชม (ทำงานเมื่อโหลดหน้าเว็บ)
+      function incrementVisitors() {
+        runTransaction(visitorRef, (currentValue) => {
+          // ถ้ายอดในฐานข้อมูลยังไม่มี ให้เริ่มที่ 23456 (หรือตามที่คุณต้องการ)
+          // ถ้ามีแล้ว ให้บวกเพิ่ม 1
+          return (currentValue || 23456) + 1;
+        });
+      }
+
+      // 5. ฟังก์ชันสำหรับดึงค่ามาแสดงผลแบบ Real-time
+      onValue(visitorRef, (snapshot) => {
+        const data = snapshot.val();
+        const countElement = document.getElementById("visitorCount");
+        if (countElement && data) {
+          countElement.innerText = data.toLocaleString();
+        }
+      });
+
+      // เรียกใช้ฟังก์ชันนับยอด
+      incrementVisitors();
+    </script>
   </body>
 </html>
