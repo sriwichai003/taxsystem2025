@@ -593,53 +593,43 @@
     </footer>
 
     <script type="module">
-      // 1. Import Firebase SDKs ที่จำเป็น
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-      import {
-        getDatabase,
-        ref,
-        runTransaction,
-        onValue,
-      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getDatabase, ref, runTransaction, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-      // 2. Firebase Configuration (ใช้ค่าที่คุณได้มา)
-      const firebaseConfig = {
-        apiKey: "AIzaSyA5EjwEF3MQxYRO4NWK70OEaPKC3KrQgsU",
-        authDomain: "swaa01-c5632.firebaseapp.com",
-        databaseURL:
-          "https://swaa01-c5632-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "swaa01-c5632",
-        storageBucket: "swaa01-c5632.firebasestorage.app",
-        messagingSenderId: "64740739912",
-        appId: "1:64740739912:web:c246c32c5309f7170a417d",
-        measurementId: "G-4JNP6SXQWJ",
-      };
+  const firebaseConfig = {
+    // ... ค่า config เดิมของคุณ ...
+    apiKey: "AIzaSyA5EjwEF3MQxYRO4NWK70OEaPKC3KrQgsU",
+    authDomain: "swaa01-c5632.firebaseapp.com",
+    databaseURL: "https://swaa01-c5632-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "swaa01-c5632",
+    storageBucket: "swaa01-c5632.firebasestorage.app",
+    messagingSenderId: "64740739912",
+    appId: "1:64740739912:web:c246c32c5309f7170a417d",
+    measurementId: "G-4JNP6SXQWJ",
+  };
 
-      // 3. Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const db = getDatabase(app);
-      const visitorRef = ref(db, "visitCount");
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
 
-      // 4. ฟังก์ชันสำหรับนับยอดผู้เข้าชม (ทำงานเมื่อโหลดหน้าเว็บ)
-      function incrementVisitors() {
-        runTransaction(visitorRef, (currentValue) => {
-          // ถ้ายอดในฐานข้อมูลยังไม่มี ให้เริ่มที่ 23456 (หรือตามที่คุณต้องการ)
-          // ถ้ามีแล้ว ให้บวกเพิ่ม 1
-          return (currentValue || 0) + 1;
-        });
-      }
+  // ดึงวันที่ปัจจุบันในรูปแบบ YYYY-MM-DD เพื่อใช้เป็นชื่อตำแหน่งในฐานข้อมูล
+  const today = new Date().toISOString().slice(0, 10); 
+  const dailyVisitorRef = ref(db, "dailyVisits/" + today);
 
-      // 5. ฟังก์ชันสำหรับดึงค่ามาแสดงผลแบบ Real-time
-      onValue(visitorRef, (snapshot) => {
-        const data = snapshot.val();
-        const countElement = document.getElementById("visitorCount");
-        if (countElement && data) {
-          countElement.innerText = data.toLocaleString();
-        }
-      });
+  function incrementDailyVisitors() {
+    runTransaction(dailyVisitorRef, (currentValue) => {
+      return (currentValue || 0) + 1;
+    });
+  }
 
-      // เรียกใช้ฟังก์ชันนับยอด
-      incrementVisitors();
-    </script>
+  onValue(dailyVisitorRef, (snapshot) => {
+    const data = snapshot.val();
+    const countElement = document.getElementById("visitorCount");
+    if (countElement) {
+      countElement.innerText = (data || 0).toLocaleString();
+    }
+  });
+
+  incrementDailyVisitors();
+</script>
   </body>
 </html>
