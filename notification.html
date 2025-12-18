@@ -625,7 +625,7 @@
         runTransaction(visitorRef, (currentValue) => {
           // ถ้ายอดในฐานข้อมูลยังไม่มี ให้เริ่มที่ 23456 (หรือตามที่คุณต้องการ)
           // ถ้ามีแล้ว ให้บวกเพิ่ม 1
-          return (currentValue || 23456) + 1;
+          return (currentValue || 0) + 1;
         });
       }
 
