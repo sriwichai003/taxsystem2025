@@ -1,0 +1,431 @@
+ /* --- Global Settings --- */
+ body {
+     font-family: "Sarabun", sans-serif;
+     margin: 0;
+     padding: 0;
+     background-color: #f8f9fa;
+     /* สีพื้นหลังสว่างและนุ่มขึ้น */
+     color: #333;
+     line-height: 1.6;
+ }
+
+ .container {
+     padding: 15px;
+ }
+
+ h1,
+ h2,
+ h3 {
+     margin-top: 0;
+ }
+
+ /* --- Header --- */
+ .header {
+     background-color: #fff;
+     padding: 15px 20px;
+     border-bottom: 1px solid #eaeaea;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+     /* เงานุ่มขึ้น */
+     position: sticky;
+     /* ตรึงเมนูไว้ด้านบน */
+     top: 0;
+     z-index: 1000;
+ }
+
+ .logo-area {
+     display: flex;
+     align-items: center;
+     gap: 12px;
+ }
+
+ .icon-house i {
+     font-size: 32px;
+     color: #0d6efd;
+     /* Blue Bootstrap shade */
+     background: #e7f1ff;
+     padding: 8px;
+     border-radius: 12px;
+ }
+
+ .logo-area h1 {
+     font-size: 18px;
+     font-weight: 700;
+     color: #2c3e50;
+     margin: 0;
+ }
+
+ .logo-area p {
+     font-size: 13px;
+     color: #6c757d;
+     margin: 0;
+ }
+
+ /* Mobile Nav Pills */
+ .main-nav-mobile ul {
+     list-style: none;
+     padding: 0;
+     margin: 15px 0 0 0;
+     display: flex;
+     gap: 10px;
+     overflow-x: auto;
+ }
+
+ .main-nav-mobile a {
+     text-decoration: none;
+     color: #555;
+     padding: 8px 16px;
+     display: block;
+     border-radius: 50px;
+     /* ทรงแคปซูล */
+     font-size: 14px;
+     font-weight: 600;
+     background-color: #f1f3f5;
+     transition: all 0.3s ease;
+ }
+
+ .main-nav-mobile li.active a {
+     background-color: #0d6efd;
+     color: #fff;
+     box-shadow: 0 4px 6px rgba(13, 110, 253, 0.2);
+ }
+
+ .main-nav-mobile a:hover {
+     background-color: #e9ecef;
+ }
+
+ /* --- Alert Bar (Green) --- */
+ .alert-bar {
+     background: linear-gradient(135deg, #20c997, #198754);
+     color: white;
+     padding: 15px 20px;
+     border-radius: 12px;
+     margin-bottom: 25px;
+     display: flex;
+     flex-direction: column;
+     box-shadow: 0 8px 16px rgba(32, 201, 151, 0.2);
+     position: relative;
+     overflow: hidden;
+ }
+
+ /* ลวดลายจางๆ ใน Alert Bar */
+ .alert-bar::after {
+     content: "\f0f3";
+     font-family: "Font Awesome 5 Free";
+     font-weight: 900;
+     position: absolute;
+     right: -10px;
+     bottom: -20px;
+     font-size: 100px;
+     color: rgba(255, 255, 255, 0.1);
+     transform: rotate(-20deg);
+     pointer-events: none;
+ }
+
+ .alert-bar-content {
+     position: relative;
+     z-index: 1;
+ }
+
+ .alert-bar strong {
+     font-size: 16px;
+     display: block;
+     margin-bottom: 4px;
+ }
+
+ .alert-text {
+     font-size: 14px;
+     margin: 0;
+     opacity: 0.95;
+ }
+
+ /* --- Featured Announcement (LINE) --- */
+ .featured-announcement {
+     background: linear-gradient(135deg,
+             #0061f2,
+             #00c6ff);
+     /* ไล่สีฟ้าให้ดู Modern */
+     color: white;
+     padding: 25px;
+     border-radius: 16px;
+     margin-bottom: 25px;
+     box-shadow: 0 10px 25px rgba(0, 97, 242, 0.3);
+ }
+
+ .featured-announcement h2 {
+     font-size: 22px;
+     font-weight: 700;
+     margin-bottom: 15px;
+     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+     padding-bottom: 10px;
+ }
+
+ .line-details-grid {
+     display: flex;
+     flex-direction: column;
+     gap: 15px;
+     margin-top: 20px;
+ }
+
+ .line-details-grid div {
+     background-color: rgba(255, 255, 255, 0.15);
+     /* โปร่งใส */
+     backdrop-filter: blur(5px);
+     padding: 15px;
+     border-radius: 10px;
+     border: 1px solid rgba(255, 255, 255, 0.2);
+ }
+
+ .line-details-grid h3 {
+     font-size: 16px;
+     color: #fff;
+     margin-bottom: 8px;
+ }
+
+ .line-details-grid h3 i {
+     color: #2ecc71;
+     margin-right: 5px;
+ }
+
+ .line-details-grid ul {
+     padding-left: 20px;
+     margin: 0;
+ }
+
+ .line-details-grid li {
+     font-size: 14px;
+     margin-bottom: 4px;
+ }
+
+ .line-qa {
+     margin-top: 15px;
+ }
+
+ .line-qa p {
+     background-color: rgba(0, 0, 0, 0.2);
+     padding: 10px;
+     border-radius: 8px;
+     font-size: 13px;
+     border-left: 4px solid #f1c40f;
+     /* แถบสีเหลืองด้านหน้า */
+ }
+
+ /* --- News Section --- */
+ .content-wrapper {
+     display: flex;
+     flex-direction: column;
+     gap: 25px;
+ }
+
+ .news-section {
+     background-color: #fff;
+     padding: 20px;
+     border-radius: 16px;
+     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+     border: 1px solid #f0f0f0;
+ }
+
+ .news-section h2 {
+     font-size: 18px;
+     color: #2c3e50;
+     margin-bottom: 20px;
+     display: flex;
+     align-items: center;
+     gap: 10px;
+ }
+
+ .news-section h2 i {
+     color: #0d6efd;
+ }
+
+ .news-list {
+     display: flex;
+     flex-direction: column;
+ }
+
+ .news-header {
+     display: grid;
+     grid-template-columns: 1fr 120px;
+     padding: 10px 15px;
+     background-color: #f8f9fa;
+     border-radius: 8px;
+     color: #6c757d;
+     font-size: 13px;
+     font-weight: 600;
+     margin-bottom: 10px;
+ }
+
+ .news-card {
+     display: grid;
+     grid-template-columns: 1fr 120px;
+     align-items: center;
+     padding: 15px;
+     border-bottom: 1px solid #f1f1f1;
+     transition: background-color 0.2s;
+     border-radius: 8px;
+     /* มนเล็กน้อยเมื่อ Hover */
+ }
+
+ .news-card:hover {
+     background-color: #f1f8ff;
+     /* สีฟ้าจางๆ เมื่อเอาเมาส์ชี้ */
+     cursor: default;
+ }
+
+ .news-card:last-child {
+     border-bottom: none;
+ }
+
+ .news-title {
+     font-size: 15px;
+     color: #333;
+     font-weight: 500;
+     padding-right: 10px;
+ }
+
+ /* ปรับ Date เป็น Badge Style */
+ .news-date-badge {
+     font-size: 12px;
+     font-weight: 600;
+     color: #d63384;
+     /* สีชมพูเข้ม/แดง */
+     background-color: #fce4ec;
+     /* พื้นหลังจางๆ */
+     padding: 4px 10px;
+     border-radius: 20px;
+     text-align: center;
+     white-space: nowrap;
+     display: inline-block;
+ }
+
+ /* ถ้าเป็นภาษีที่ดินใช้สีส้ม */
+ .latest-news:last-child .news-date-badge {
+     color: #fd7e14;
+     background-color: #ffe8cc;
+ }
+
+ .news-tag {
+     display: none;
+ }
+
+ /* --- Desktop Media Queries --- */
+ @media (min-width: 768px) {
+     .container {
+         max-width: 1140px;
+         margin: 0 auto;
+         padding: 30px;
+     }
+
+     .header {
+         display: flex;
+         justify-content: space-between;
+         padding: 15px 40px;
+     }
+
+     .main-nav-mobile ul {
+         margin: 0;
+     }
+
+     .content-wrapper {
+         flex-direction: row;
+         align-items: flex-start;
+     }
+
+     .news-section {
+         flex: 1;
+     }
+
+     .alert-bar {
+         flex-direction: row;
+         align-items: center;
+     }
+
+     .line-details-grid {
+         flex-direction: row;
+     }
+
+     .line-details-grid div {
+         flex: 1;
+     }
+ }
+
+ /* --- Footer Style --- */
+ footer {
+     background-color: #ffffff;
+     border-top: 1px solid #eaeaea;
+     padding: 30px 20px;
+     /* margin-top: 50px; */
+     text-align: center;
+     color: #6c757d;
+ }
+
+ .footer-content {
+     max-width: 1140px;
+     margin: 0 auto;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 15px;
+ }
+
+ .visitor-stats {
+     background: #f1f3f5;
+     padding: 10px 20px;
+     border-radius: 50px;
+     display: inline-flex;
+     align-items: center;
+     gap: 10px;
+     font-size: 14px;
+     color: #495057;
+     border: 1px solid #e9ecef;
+ }
+
+ .visitor-stats i {
+     color: #0d6efd;
+ }
+
+ .visitor-count {
+     font-family: "Courier New", Courier, monospace;
+     /* ให้ฟีลตัวเลขดิจิทัล */
+     font-weight: 700;
+     color: #212529;
+     letter-spacing: 1px;
+ }
+
+ .copyright {
+     font-size: 13px;
+     opacity: 0.8;
+ }
+
+ @media (min-width: 768px) {
+     .footer-content {
+         flex-direction: row;
+         justify-content: space-between;
+     }
+ }
+
+ /* --- ส่วนสำคัญ: ใช้สำหรับซ่อน/แสดงหน้า --- */
+
+ /* 1. สั่งให้ทุกหน้าซ่อนไปก่อน */
+ .page-section {
+     display: none;
+ }
+
+ /* 2. หน้าไหนที่มีคลาส active (ที่ถูกใส่โดย Javascript) ให้แสดงออกมา */
+ .page-section.active {
+     display: block;
+     animation: fadeIn 0.3s ease-in-out;
+     /* เพิ่มลูกเล่นตอนเปลี่ยนหน้าให้ดูนุ่มนวล */
+ }
+
+ /* แถม: เอฟเฟกต์ค่อยๆ ปรากฏ */
+ @keyframes fadeIn {
+     from {
+         opacity: 0;
+         transform: translateY(10px);
+     }
+
+     to {
+         opacity: 1;
+         transform: translateY(0);
+     }
+ }

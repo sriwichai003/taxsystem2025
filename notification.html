@@ -12,417 +12,35 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <style>
-      /* --- Global Settings --- */
-      body {
-        font-family: "Sarabun", sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f8f9fa; /* สีพื้นหลังสว่างและนุ่มขึ้น */
-        color: #333;
-        line-height: 1.6;
-      }
-
-      .container {
-        padding: 15px;
-      }
-
-      h1,
-      h2,
-      h3 {
-        margin-top: 0;
-      }
-
-      /* --- Header --- */
-      .header {
-        background-color: #fff;
-        padding: 15px 20px;
-        border-bottom: 1px solid #eaeaea;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); /* เงานุ่มขึ้น */
-        position: sticky; /* ตรึงเมนูไว้ด้านบน */
-        top: 0;
-        z-index: 1000;
-      }
-
-      .logo-area {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .icon-house i {
-        font-size: 32px;
-        color: #0d6efd; /* Blue Bootstrap shade */
-        background: #e7f1ff;
-        padding: 8px;
-        border-radius: 12px;
-      }
-
-      .logo-area h1 {
-        font-size: 18px;
-        font-weight: 700;
-        color: #2c3e50;
-        margin: 0;
-      }
-
-      .logo-area p {
-        font-size: 13px;
-        color: #6c757d;
-        margin: 0;
-      }
-
-      /* Mobile Nav Pills */
-      .main-nav-mobile ul {
-        list-style: none;
-        padding: 0;
-        margin: 15px 0 0 0;
-        display: flex;
-        gap: 10px;
-        overflow-x: auto;
-      }
-
-      .main-nav-mobile a {
-        text-decoration: none;
-        color: #555;
-        padding: 8px 16px;
-        display: block;
-        border-radius: 50px; /* ทรงแคปซูล */
-        font-size: 14px;
-        font-weight: 600;
-        background-color: #f1f3f5;
-        transition: all 0.3s ease;
-      }
-
-      .main-nav-mobile li.active a {
-        background-color: #0d6efd;
-        color: #fff;
-        box-shadow: 0 4px 6px rgba(13, 110, 253, 0.2);
-      }
-
-      .main-nav-mobile a:hover {
-        background-color: #e9ecef;
-      }
-
-      /* --- Alert Bar (Green) --- */
-      .alert-bar {
-        background: linear-gradient(135deg, #20c997, #198754);
-        color: white;
-        padding: 15px 20px;
-        border-radius: 12px;
-        margin-bottom: 25px;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 8px 16px rgba(32, 201, 151, 0.2);
-        position: relative;
-        overflow: hidden;
-      }
-
-      /* ลวดลายจางๆ ใน Alert Bar */
-      .alert-bar::after {
-        content: "\f0f3";
-        font-family: "Font Awesome 5 Free";
-        font-weight: 900;
-        position: absolute;
-        right: -10px;
-        bottom: -20px;
-        font-size: 100px;
-        color: rgba(255, 255, 255, 0.1);
-        transform: rotate(-20deg);
-        pointer-events: none;
-      }
-
-      .alert-bar-content {
-        position: relative;
-        z-index: 1;
-      }
-
-      .alert-bar strong {
-        font-size: 16px;
-        display: block;
-        margin-bottom: 4px;
-      }
-      .alert-text {
-        font-size: 14px;
-        margin: 0;
-        opacity: 0.95;
-      }
-
-      /* --- Featured Announcement (LINE) --- */
-      .featured-announcement {
-        background: linear-gradient(
-          135deg,
-          #0061f2,
-          #00c6ff
-        ); /* ไล่สีฟ้าให้ดู Modern */
-        color: white;
-        padding: 25px;
-        border-radius: 16px;
-        margin-bottom: 25px;
-        box-shadow: 0 10px 25px rgba(0, 97, 242, 0.3);
-      }
-
-      .featured-announcement h2 {
-        font-size: 22px;
-        font-weight: 700;
-        margin-bottom: 15px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        padding-bottom: 10px;
-      }
-
-      .line-details-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        margin-top: 20px;
-      }
-
-      .line-details-grid div {
-        background-color: rgba(255, 255, 255, 0.15); /* โปร่งใส */
-        backdrop-filter: blur(5px);
-        padding: 15px;
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-
-      .line-details-grid h3 {
-        font-size: 16px;
-        color: #fff;
-        margin-bottom: 8px;
-      }
-
-      .line-details-grid h3 i {
-        color: #2ecc71;
-        margin-right: 5px;
-      }
-
-      .line-details-grid ul {
-        padding-left: 20px;
-        margin: 0;
-      }
-      .line-details-grid li {
-        font-size: 14px;
-        margin-bottom: 4px;
-      }
-
-      .line-qa {
-        margin-top: 15px;
-      }
-      .line-qa p {
-        background-color: rgba(0, 0, 0, 0.2);
-        padding: 10px;
-        border-radius: 8px;
-        font-size: 13px;
-        border-left: 4px solid #f1c40f; /* แถบสีเหลืองด้านหน้า */
-      }
-
-      /* --- News Section --- */
-      .content-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-      }
-
-      .news-section {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 16px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-        border: 1px solid #f0f0f0;
-      }
-
-      .news-section h2 {
-        font-size: 18px;
-        color: #2c3e50;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .news-section h2 i {
-        color: #0d6efd;
-      }
-
-      .news-list {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .news-header {
-        display: grid;
-        grid-template-columns: 1fr 120px;
-        padding: 10px 15px;
-        background-color: #f8f9fa;
-        border-radius: 8px;
-        color: #6c757d;
-        font-size: 13px;
-        font-weight: 600;
-        margin-bottom: 10px;
-      }
-
-      .news-card {
-        display: grid;
-        grid-template-columns: 1fr 120px;
-        align-items: center;
-        padding: 15px;
-        border-bottom: 1px solid #f1f1f1;
-        transition: background-color 0.2s;
-        border-radius: 8px; /* มนเล็กน้อยเมื่อ Hover */
-      }
-
-      .news-card:hover {
-        background-color: #f1f8ff; /* สีฟ้าจางๆ เมื่อเอาเมาส์ชี้ */
-        cursor: default;
-      }
-
-      .news-card:last-child {
-        border-bottom: none;
-      }
-
-      .news-title {
-        font-size: 15px;
-        color: #333;
-        font-weight: 500;
-        padding-right: 10px;
-      }
-
-      /* ปรับ Date เป็น Badge Style */
-      .news-date-badge {
-        font-size: 12px;
-        font-weight: 600;
-        color: #d63384; /* สีชมพูเข้ม/แดง */
-        background-color: #fce4ec; /* พื้นหลังจางๆ */
-        padding: 4px 10px;
-        border-radius: 20px;
-        text-align: center;
-        white-space: nowrap;
-        display: inline-block;
-      }
-
-      /* ถ้าเป็นภาษีที่ดินใช้สีส้ม */
-      .latest-news:last-child .news-date-badge {
-        color: #fd7e14;
-        background-color: #ffe8cc;
-      }
-
-      .news-tag {
-        display: none;
-      }
-
-      /* --- Desktop Media Queries --- */
-      @media (min-width: 768px) {
-        .container {
-          max-width: 1140px;
-          margin: 0 auto;
-          padding: 30px;
-        }
-
-        .header {
-          display: flex;
-          justify-content: space-between;
-          padding: 15px 40px;
-        }
-
-        .main-nav-mobile ul {
-          margin: 0;
-        }
-
-        .content-wrapper {
-          flex-direction: row;
-          align-items: flex-start;
-        }
-
-        .news-section {
-          flex: 1;
-        }
-
-        .alert-bar {
-          flex-direction: row;
-          align-items: center;
-        }
-
-        .line-details-grid {
-          flex-direction: row;
-        }
-        .line-details-grid div {
-          flex: 1;
-        }
-      }
-      /* --- Footer Style --- */
-      footer {
-        background-color: #ffffff;
-        border-top: 1px solid #eaeaea;
-        padding: 30px 20px;
-        margin-top: 50px;
-        text-align: center;
-        color: #6c757d;
-      }
-
-      .footer-content {
-        max-width: 1140px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-      }
-
-      .visitor-stats {
-        background: #f1f3f5;
-        padding: 10px 20px;
-        border-radius: 50px;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 14px;
-        color: #495057;
-        border: 1px solid #e9ecef;
-      }
-
-      .visitor-stats i {
-        color: #0d6efd;
-      }
-
-      .visitor-count {
-        font-family: "Courier New", Courier, monospace; /* ให้ฟีลตัวเลขดิจิทัล */
-        font-weight: 700;
-        color: #212529;
-        letter-spacing: 1px;
-      }
-
-      .copyright {
-        font-size: 13px;
-        opacity: 0.8;
-      }
-
-      @media (min-width: 768px) {
-        .footer-content {
-          flex-direction: row;
-          justify-content: space-between;
-        }
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
     <header class="header">
       <div class="logo-area">
-        <span class="icon-house"><i class="fas fa-landmark"></i></span>
+        <span style="background: #e7f1ff; padding: 8px; border-radius: 12px"
+          ><i
+            class="fas fa-landmark"
+            style="color: #0d6efd; font-size: 24px"
+          ></i
+        ></span>
         <div>
           <h1>ระบบข่าวสาร งานจัดเก็บรายได้ศรีวิชัย</h1>
-          <p>เทศบาลนครเชียงใหม่</p>
+          <p style="margin: 0; font-size: 13px; color: #6c757d">
+            เทศบาลนครเชียงใหม่
+          </p>
         </div>
       </div>
       <nav class="main-nav-mobile">
-        <ul>
-          <li class="active">
-            <a
-              href="https://sriwichai003.github.io/taxsystem2025/notification.html"
-              ><i class="fas fa-newspaper"></i> ข่าวและประกาศ</a
-            >
+        <ul id="menuList">
+          <li class="nav-item active">
+            <a href="#home"><i class="fas fa-newspaper"></i> หน้าแรก</a>
           </li>
-          <li class="active">
-            <a href="https://tongtin.local-smart.com/signboard/index.php"
-              ><i class="fas fa-sign"></i> ระบบคำนวณภาษีป้าย (เว็บนอก)</a
+          <li class="nav-item">
+            <a href="#signTax"><i class="fas fa-sign"></i> ภาษีป้าย</a>
+          </li>
+          <li class="nav-item">
+            <a href="#landTax"
+              ><i class="fas fa-map-marked-alt"></i> ภาษีที่ดิน</a
             >
           </li>
         </ul>
@@ -430,186 +48,9 @@
     </header>
 
     <main class="container">
-      <section class="alert-bar">
-        <div class="alert-bar-content">
-          <p>
-            <strong><i class="fas fa-bullhorn"></i> แจ้งเตือน:</strong>
-          </p>
-          <p class="alert-text">
-            ภาษีป้ายสามารถยื่นแบบและชำระได้ตั้งแต่
-            <u>1 มกราคม - 31 มีนาคม 2569</u> อ่านรายละเอียดเพิ่มเติม ได้ที่
-            <a
-              href="https://drive.google.com/file/d/1ecVNYXbsT0TgIrxN5LvlENHARIHEj-HE/view?usp=sharing"
-              style="color: #fff; text-decoration: underline; font-weight: 600"
-              >ประกาศเทศบาลนครเชียงใหม่</a
-            >
-          </p>
-        </div>
-      </section>
-      <section class="alert-bar" style="background: linear-gradient(135deg, #ff6b6b, #f06595)">
-        <div class="alert-bar-content">
-          <p>
-            <strong><i class="fas fa-exclamation-triangle"></i> หมายเหตุ:</strong>
-          </p>
-          <p class="alert-text
-">
-            งานจัดเก็บรายได้ศรีวิชัย
-            ขอแจ้งให้ทราบว่า
-            ระบบคำนวณภาษีป้ายออนไลน์
-            (<a
-              href="https://tongtin.local-smart.com/signboard/index.php"
-              style="color: #fff; text-decoration: underline; font-weight: 600"
-              >ลิงก์นี้</a
-            >)
-            เป็นระบบที่พัฒนาและดูแลโดยบริษัทภายนอก
-            ซึ่งไม่ได้อยู่ภายใต้การควบคุมหรือรับผิดชอบโดยตรงของเทศบาลนครเชียงใหม่
-            ดังนั้น
-            ข้อมูลที่ได้จากระบบดังกล่าว
-            อาจมีความคลาดเคลื่อนหรือไม่สอดคล้องกับข้อมูลทางการของเทศบาลนครเชียงใหม่
-            กรุณาตรวจสอบข้อมูลกับงานจัดเก็บรายได้ศรีวิชัย
-            เทศบาลนครเชียงใหม่
-            เพื่อความถูกต้องและเป็นทางการก่อนดำเนินการใดๆ
-          </p>
-        </div>
-      </section>
-
-      <!-- <section class="featured-announcement">
-        <h2>
-          <i class="fab fa-line"></i>
-          บริการใหม่! ตรวจสอบภาษีผ่าน LINE 24 ชม.
-        </h2>
-        <p style="font-size: 16px; line-height: 1.7">
-          ยกระดับงานบริการภาษีสู่ยุคดิจิทัล! งานจัดเก็บรายได้ศรีวิชัย
-          เทศบาลนครเชียงใหม่
-          ชวนคุณสัมผัสประสบการณ์ใหม่ในการจัดการเรื่องภาษีที่ง่ายกว่าเดิม!
-        </p>
-        <ul>
-          <li>
-            📱 สะดวก 24 ชั่วโมง: ลงทะเบียนผ่าน LINE เดิมของคุณ
-            เพื่อเข้าถึงระบบตรวจสอบข้อมูลภาษีและสถานะการชำระเงินได้ด้วยตนเอง
-            ตลอด 24 ชั่วโมง ไม่ต้องรอคิว ไม่ต้องเดินทาง
-          </li>
-          <li>
-            📑 ครบถ้วนทุกประเภทภาษี: ครอบคลุมทั้ง ภาษีป้าย และ
-            ภาษีที่ดินและสิ่งปลูกสร้าง (ภาษีที่ดินฯ)
-          </li>
-          <li>
-            ✅ รวดเร็ว ทันใจ: ตรวจสอบข้อมูลภาษีของคุณได้อย่างแม่นยำ ทุกที่
-            ทุกเวลา เพิ่มความคล่องตัวในการติดต่อและชำระภาษี
-          </li>
-        </ul>
-
-        <div class="line-details-grid">
-          <div>
-            <h3><i class="fas fa-calendar-check"></i> กำหนดการ</h3>
-            <ul>
-              <li>เริ่มลงทะเบียน : 1 ธ.ค. 2568</li>
-              <li>
-                <strong style="color: #ffd000; font-size: 1.1em"
-                  >เริ่มใช้งานระบบ : 5 ม.ค. 2569</strong
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3><i class="fas fa-gift"></i> สิทธิประโยชน์</h3>
-            <ul>
-              <li>เช็คยอดประเมินภาษี (ป้าย/ที่ดินฯ)</li>
-              <li>เช็คสถานะ (ชำระแล้ว/ค้างชำระ)</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="line-qa">
-          <p>
-            <i class="fas fa-info-circle" style="color: #ffd000"></i>
-            <strong>หมายเหตุ:</strong> ต้องลงทะเบียนด้วยตนเอง 1 ไลน์ ต่อ 1
-            สิทธิ์ เพื่อความปลอดภัยของข้อมูลส่วนบุคคล
-          </p>
-        </div>
-      </section> -->
-      <div class="featured-announcement">
-        <h2>
-          <i class="fas fa-info-circle"></i>
-          ขั้นตอนและวิธีการยื่นภาษีป้ายและชำระภาษีป้าย
-        </h2>
-        <input type="image" src="https://sriwichai003.github.io/taxsystem2025/images/unnamed.png" alt="ข่าวสารและประกาศล่าสุด" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);" />
-      </div>
-
-      <div class="content-wrapper">
-        <section class="news-section latest-news">
-          <h2><i class="fas fa-sign"></i> ปฏิทินภาษีป้าย (ปี 2569)</h2>
-          <div class="news-list">
-            <div class="news-header">
-              <span>รายการ</span>
-              <span style="text-align: center">ช่วงเวลา</span>
-            </div>
-
-            <article class="news-card">
-              <span class="news-title">ประกาศแจ้งให้มายื่นภาษีป้าย</span>
-              <span class="news-date-badge">ธ.ค. 68</span>
-            </article>
-
-            <article class="news-card">
-              <span class="news-title">ยื่นแบบภาษีป้าย (รายเก่า/ใหม่)</span>
-              <span class="news-date-badge">ม.ค. - มี.ค. 69</span>
-            </article>
-
-            <article class="news-card">
-              <span class="news-title">แจ้งประเมินภาษีป้าย</span>
-              <span class="news-date-badge">ม.ค. - มี.ค. 69</span>
-            </article>
-
-            <article class="news-card">
-              <span class="news-title">ชำระภาษีป้าย</span>
-              <span class="news-date-badge">ม.ค. - มี.ค. 69</span>
-            </article>
-          </div>
-        </section>
-
-        <section class="news-section latest-news">
-          <h2>
-            <i class="fas fa-map-marked-alt"></i> ปฏิทินภาษีที่ดินฯ (ปี 2569)
-          </h2>
-          <div class="news-list">
-            <div class="news-header">
-              <span>รายการ</span>
-              <span style="text-align: center">ช่วงเวลา</span>
-            </div>
-
-            <article class="news-card">
-              <span class="news-title">ประกาศแจ้งรายการที่ดิน</span>
-              <span class="news-date-badge">ม.ค. 69</span>
-            </article>
-
-            <article class="news-card">
-              <span class="news-title">ประกาศราคาประเมินทุนทรัพย์</span>
-              <span class="news-date-badge">มี.ค. 69</span>
-            </article>
-
-            <article class="news-card">
-              <span class="news-title">แจ้งการประเมินภาษี</span>
-              <span class="news-date-badge">เม.ย. 69</span>
-            </article>
-
-            <article class="news-card">
-              <span class="news-title">ชำระภาษี</span>
-              <span class="news-date-badge">มิ.ย. 69</span>
-            </article>
-
-            <article class="news-card">
-              <span class="news-title">แจ้งเตือนภาษีค้างชำระ</span>
-              <span class="news-date-badge">ก.ค. 69</span>
-            </article>
-
-            <article class="news-card">
-              <span class="news-title">รายงานข้อมูลจัดเก็บภาษี</span>
-              <span class="news-date-badge">ม.ค. 70</span>
-            </article>
-          </div>
-        </section>
-      </div>
+      <div id="content-area" class="news-section">กำลังโหลดข้อมูล...</div>
     </main>
+
     <footer>
       <div class="footer-content">
         <div class="copyright">
@@ -625,6 +66,46 @@
       </div>
     </footer>
 
+    <script>
+      function resizeIframe(obj) {
+        // ปรับความสูงของ iframe ให้เท่ากับเนื้อหาข้างใน
+        obj.style.height =
+          obj.contentWindow.document.documentElement.scrollHeight + "px";
+      }
+
+      async function router() {
+        const hash = window.location.hash || "#home";
+        const contentArea = document.getElementById("content-area");
+
+        // แปลง Hash เป็นชื่อไฟล์ (เช่น #signTax -> signTax.html)
+        let fileName = hash.replace("#", "") + ".html";
+        if (hash === "#home") fileName = "home.html";
+
+        try {
+          const response = await fetch(fileName);
+          if (!response.ok) throw new Error("ไม่พบไฟล์เนื้อหา");
+
+          const html = await response.text();
+          contentArea.innerHTML = html; // นำเนื้อหามาใส่ในหน้าหลัก
+        } catch (error) {
+          contentArea.innerHTML =
+            "<p style='padding:20px; color:red;'>ขออภัย ไม่สามารถโหลดเนื้อหาได้</p>";
+        }
+
+        // ปรับสถานะเมนู (สีปุ่ม)
+        document.querySelectorAll(".nav-item").forEach((item) => {
+          item.classList.remove("active");
+          if (item.querySelector("a").getAttribute("href") === hash) {
+            item.classList.add("active");
+          }
+        });
+
+        window.scrollTo(0, 0);
+      }
+
+      window.addEventListener("hashchange", router);
+      window.addEventListener("load", router);
+    </script>
     <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getDatabase, ref, runTransaction, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
