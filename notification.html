@@ -88,13 +88,13 @@
           const html = await response.text();
           contentArea.innerHTML = html; // นำเนื้อหามาใส่ในหน้าหลัก
           
-  const scripts = contentArea.querySelectorAll("script");
-  scripts.forEach(oldScript => {
-    const newScript = document.createElement("script");
-    Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
-    newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-    oldScript.parentNode.replaceChild(newScript, oldScript);
-  });
+          const scripts = contentArea.querySelectorAll("script");
+          scripts.forEach(oldScript => {
+            const newScript = document.createElement("script");
+            Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+            newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+          });
 
         } catch (error) {
           contentArea.innerHTML =
@@ -114,7 +114,8 @@
 
       window.addEventListener("hashchange", router);
       window.addEventListener("load", router);
-    </script>
+    </script>-->
+
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
       import {
@@ -159,7 +160,7 @@
       });
 
       incrementDailyVisitors();
-    </script> -->
+    </script>
     <script>
       // --- 1. ย้ายตัวแปรและฟังก์ชันปฏิทินมาไว้ที่นี่ ---
       var currentMonth = 0; // ใช้ var เพื่อป้องกันปัญหา redeclare
