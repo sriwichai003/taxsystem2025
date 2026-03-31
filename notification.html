@@ -66,56 +66,6 @@
       </div>
     </footer>
 
-    <!-- <script>
-      function resizeIframe(obj) {
-        // ปรับความสูงของ iframe ให้เท่ากับเนื้อหาข้างใน
-        obj.style.height =
-          obj.contentWindow.document.documentElement.scrollHeight + "px";
-      }
-
-      async function router() {
-        const hash = window.location.hash || "#home";
-        const contentArea = document.getElementById("content-area");
-
-        // แปลง Hash เป็นชื่อไฟล์ (เช่น #signTax -> signTax.html)
-        let fileName = hash.replace("#", "") + ".html";
-        if (hash === "#home") fileName = "home.html";
-
-        try {
-          const response = await fetch(fileName);
-          if (!response.ok) throw new Error("ไม่พบไฟล์เนื้อหา");
-
-          const html = await response.text();
-          contentArea.innerHTML = html; // นำเนื้อหามาใส่ในหน้าหลัก
-          
-          const scripts = contentArea.querySelectorAll("script");
-          scripts.forEach(oldScript => {
-            const newScript = document.createElement("script");
-            Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
-            newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-            oldScript.parentNode.replaceChild(newScript, oldScript);
-          });
-
-        } catch (error) {
-          contentArea.innerHTML =
-            "<p style='padding:20px; color:red;'>ขออภัย ไม่สามารถโหลดเนื้อหาได้</p>";
-        } 
-
-        // ปรับสถานะเมนู (สีปุ่ม)
-        document.querySelectorAll(".nav-item").forEach((item) => {
-          item.classList.remove("active");
-          if (item.querySelector("a").getAttribute("href") === hash) {
-            item.classList.add("active");
-          }
-        });
-
-        window.scrollTo(0, 0);
-      }
-
-      window.addEventListener("hashchange", router);
-      window.addEventListener("load", router);
-    </script>-->
-
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
       import {
