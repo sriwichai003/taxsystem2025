@@ -203,6 +203,32 @@
         renderCalendar(currentMonth);
       }
 
+      function updateLandTaxAlert() {
+        const alertEl = document.getElementById("land-tax-dynamic-alert");
+        if (!alertEl) return;
+        
+        const now = new Date();
+        const m = now.getMonth(); 
+
+        let message = "";
+        
+        if (m === 0 || m === 1) { 
+          message = "ภาษีที่ดินและสิ่งปลูกสร้างอยู่ในช่วง<b>การแจ้งรายการที่ดิน</b><br/><u>1 มกราคม - 28 กุมภาพันธ์ 2569</u>";
+        } else if (m === 2) { 
+          message = "ภาษีที่ดินและสิ่งปลูกสร้างอยู่ในช่วง<b>ประกาศราคาประเมินทุนทรัพย์</b><br/><u>1 มีนาคม - 31 มีนาคม 2569</u>";
+        } else if (m === 3) { 
+          message = "ภาษีที่ดินและสิ่งปลูกสร้างอยู่ในช่วง<b>การแจ้งการประเมินภาษี</b> <u>1 เมษายน - 30 เมษายน 2569</u><br/>และอยู่ในกำหนด<b>ชำระภาษี</b> <u>1 เมษายน - 30 มิถุนายน 2569</u>";
+        } else if (m === 4 || m === 5) { 
+          message = "ภาษีที่ดินและสิ่งปลูกสร้างอยู่ในช่วงกำหนด<b>ชำระภาษี</b><br/><u>1 เมษายน - 30 มิถุนายน 2569</u>";
+        } else if (m === 6) {
+          message = "ภาษีที่ดินและสิ่งปลูกสร้างอยู่ในช่วง<b>แจ้งเตือนผู้ค้างชำระภาษี</b><br/><u>เริ่มตั้งแต่ กรกฎาคม 2569</u>";
+        } else {
+          message = "ขณะนี้สิ้นสุดระยะเวลาชำระภาษีที่ดินและสิ่งปลูกสร้างตามปกติ (ประจำปี 2569) แล้ว <br/>หากมีภาษีค้างชำระ โปรดติดต่อเจ้าหน้าที่เพื่อหลีกเลี่ยงเบี้ยปรับและเงินเพิ่ม";
+        }
+        
+        alertEl.innerHTML = message;
+      }
+
       // --- 2. ปรับปรุง Router ---
       async function router() {
         const hash = window.location.hash || "#home";
@@ -228,6 +254,8 @@
           // สั่งวาดปฏิทินใหม่ทันทีถ้าเป็นหน้า home
           if (hash === "#home" || hash === "") {
             renderCalendar(currentMonth);
+          } else if (hash === "#landTax") {
+            updateLandTaxAlert();
           }
         } catch (error) {
           contentArea.innerHTML = "<p style='text-align:center; color:#e53e3e;'>ไม่สามารถโหลดเนื้อหาได้</p>";
