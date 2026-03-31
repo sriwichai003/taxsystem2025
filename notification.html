@@ -113,7 +113,7 @@
     </script>
     <script>
       // --- 1. ย้ายตัวแปรและฟังก์ชันปฏิทินมาไว้ที่นี่ ---
-      var currentMonth = 0; // ใช้ var เพื่อป้องกันปัญหา redeclare
+      var currentMonth = new Date().getMonth(); // ใช้ var เพื่อป้องกันปัญหา redeclare และดึงเดือนปัจจุบันอัตโนมัติ
       const year = 2026;
       const holidays2569 = {
         "0-1": "วันขึ้นปีใหม่",
