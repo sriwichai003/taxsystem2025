@@ -48,7 +48,7 @@
     </header>
 
     <main class="container">
-      <div id="content-area" class="news-section">กำลังโหลดข้อมูล...</div>
+      <div id="content-area">กำลังโหลดข้อมูล...</div>
     </main>
 
     <footer>
@@ -263,14 +263,24 @@
           const response = await fetch(fileName);
           if (!response.ok) throw new Error();
           const html = await response.text();
-          contentArea.innerHTML = html;
+          
+          // ใช้ DOMParser เพื่อแกะเฉพาะเนื้อหาหลัก ไม่เอาแท็ก <html> <head> มาซ้อนกัน
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, "text/html");
+          const mainContent = doc.querySelector("main.container");
+          
+          if (mainContent) {
+            contentArea.innerHTML = mainContent.innerHTML;
+          } else {
+            contentArea.innerHTML = doc.body.innerHTML;
+          }
 
           // สั่งวาดปฏิทินใหม่ทันทีถ้าเป็นหน้า home
           if (hash === "#home" || hash === "") {
             renderCalendar(currentMonth);
           }
         } catch (error) {
-          contentArea.innerHTML = "<p>ไม่สามารถโหลดเนื้อหาได้</p>";
+          contentArea.innerHTML = "<p style='text-align:center; color:#e53e3e;'>ไม่สามารถโหลดเนื้อหาได้</p>";
         }
 
         // อัปเดตเมนู Active
