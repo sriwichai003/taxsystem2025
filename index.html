@@ -254,6 +254,7 @@
           // สั่งวาดปฏิทินใหม่ทันทีถ้าเป็นหน้า home
           if (hash === "#home" || hash === "") {
             renderCalendar(currentMonth);
+            updateLandTaxAlert(); // เรียกใช้ในหน้าแรกด้วย
           } else if (hash === "#landTax") {
             updateLandTaxAlert();
           }
