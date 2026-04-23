@@ -1,117 +1,249 @@
 <main class="container">
-  <div class="content-wrapper">
-    <section class="news-section" style="width: 100%;">
-      <h2>
-        <i class="fas fa-calculator"></i> วิธีคิดภาษีที่ดินและสิ่งปลูกสร้าง
-      </h2>
+  <style>
+    /* Premium Header */
+    .c-header {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: white;
+      padding: 30px;
+      border-radius: 16px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.3);
+      text-align: center;
+    }
+    .c-header h2 { margin: 0; font-size: 24px; color: #ffffff !important; display: flex; align-items: center; justify-content: center; gap: 12px; }
+    
+    /* Formula Box */
+    .formula-box {
+      background: #f0f9ff;
+      border: 2px dashed #38bdf8;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    }
+    .formula-text {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0369a1;
+      margin: 14px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .formula-text span.badge {
+      background: #0ea5e9;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 18px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .formula-text span.operator { color: #94a3b8; font-size: 24px; }
+    
+    /* Category Grid */
+    .c-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 30px; }
+    
+    /* Category Card */
+    .cat-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .cat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 20px -3px rgba(0,0,0,0.08);
+    }
+    
+    .cat-card.green { border-top: 4px solid #10b981; }
+    .cat-card.blue { border-top: 4px solid #3b82f6; }
+    .cat-card.orange { border-top: 4px solid #f59e0b; }
+    .cat-card.red { border-top: 4px solid #ef4444; }
+
+    .cat-bg-icon {
+      position: absolute;
+      right: -15px;
+      bottom: -15px;
+      font-size: 100px;
+      opacity: 0.04;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .cat-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .green .cat-title { color: #059669; }
+    .blue .cat-title { color: #2563eb; }
+    .orange .cat-title { color: #d97706; }
+    .red .cat-title { color: #dc2626; }
+    
+    /* Rate Table inside Card */
+    .rate-table {
+      width: 100%;
+      border-collapse: collapse;
+      position: relative;
+      z-index: 1;
+      margin-bottom: auto; /* Push note to bottom */
+    }
+    .rate-table td {
+      padding: 8px 0;
+      border-bottom: 1px dashed #e2e8f0;
+      font-size: 14.5px;
+      color: #334155;
+    }
+    .rate-table tr:last-child td { border-bottom: none; }
+    .rate-table td:last-child { text-align: right; font-weight: 700; }
+    
+    .green .rate-table td:last-child { color: #059669; }
+    .blue .rate-table td:last-child { color: #2563eb; }
+    .orange .rate-table td:last-child { color: #d97706; }
+    
+    .cat-note {
+      margin-top: 20px;
+      font-size: 13.5px;
+      color: #64748b;
+      background: #f8fafc;
+      padding: 12px;
+      border-radius: 8px;
+      position: relative;
+      z-index: 1;
+      line-height: 1.5;
+    }
+    
+    .c-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: white;
+        color: #475569;
+        padding: 14px 28px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.2s ease;
+        border: 1px solid #cbd5e1;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      }
+      .c-back-btn:hover {
+        background: #f1f5f9;
+        color: #0f172a;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 10px rgba(0,0,0,0.08);
+      }
+  </style>
+
+  <div class="content-wrapper" style="display: block; width: 100%; padding: 0; box-shadow: none; border: none; background: transparent;">
+    <!-- Header -->
+    <div class="c-header">
+      <h2><i class="fas fa-calculator"></i> วิธีคิดภาษีที่ดินและสิ่งปลูกสร้าง</h2>
+      <p style="margin: 8px 0 0 0; opacity: 0.9; font-size: 15px;">เรียนรู้วิธีการคำนวณและตรวจสอบอัตราภาษีเบื้องต้นด้วยตนเอง</p>
+    </div>
+
+    <!-- Formula Box -->
+    <div class="formula-box">
+      <div style="font-size: 15px; color: #475569; font-weight: 600; margin-bottom: 12px;"><i class="fas fa-superscript"></i> สูตรการคำนวณภาษี</div>
+      <div class="formula-text">
+        <span class="badge" style="background: #0f172a;">มูลค่าฐานภาษี</span>
+        <span class="operator">×</span>
+        <span class="badge" style="background: #3b82f6;">อัตราภาษี</span>
+        <span class="operator">=</span>
+        <span class="badge" style="background: #10b981;"><i class="fas fa-coins"></i> ภาษีที่ต้องจ่าย</span>
+      </div>
+      <div style="font-size: 13.5px; color: #64748b; margin-top: 16px;">
+        * มูลค่าฐานภาษี คิดจากราคาประเมินทุนทรัพย์ของที่ดิน สิ่งปลูกสร้าง หรือห้องชุด (หักมูลค่ายกเว้นแล้ว)
+      </div>
+    </div>
+
+    <!-- Rate Cards -->
+    <h3 style="color: #1e293b; font-size: 19px; margin-bottom: 20px; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+      <i class="fas fa-tags" style="color: #3b82f6;"></i> อัตราภาษีตามประเภทการใช้ประโยชน์
+    </h3>
+    
+    <div class="c-grid">
       
-      <div style="padding: 15px; line-height: 1.8; color: #495057;">
-        <p style="font-size: 15px; background-color: #e7f1ff; padding: 15px; border-radius: 8px; border-left: 4px solid #0d6efd;">
-          การคำนวณภาษีที่ดินและสิ่งปลูกสร้าง จะคำนวณจากสูตร:<br>
-          <strong style="font-size: 18px; color: #0d6efd;">มูลค่าฐานภาษี × อัตราภาษี = ภาษีที่ต้องจ่าย</strong><br>
-          <span style="font-size: 13px;">* มูลค่าฐานภาษี คิดจากราคาประเมินทุนทรัพย์ของที่ดิน สิ่งปลูกสร้าง หรือห้องชุด</span>
-        </p>
-        
-        <h3 style="margin-top: 25px; color: #0d6efd; font-size: 16px; border-bottom: 1px solid #e9ecef; padding-bottom: 8px;"><i class="fas fa-tags"></i> อัตราภาษีตามประเภทการใช้ประโยชน์</h3>
-        
-        <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
-          <!-- เกษตรกรรม -->
-          <div style="background-color: #f8f9fa; border-left: 4px solid #28a745; padding: 15px; border-radius: 8px; position: relative; overflow: hidden;">
-            <i class="fas fa-leaf" style="position: absolute; right: -10px; bottom: -10px; font-size: 80px; color: rgba(40, 167, 69, 0.05);"></i>
-            <strong style="font-size: 16px; color: #28a745;">1. เกษตรกรรม</strong>
-            <div style="margin-top: 8px; display: grid; grid-template-columns: 1fr; gap: 5px;">
-              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #dee2e6; padding-bottom: 5px;">
-                <span>มูลค่าไม่เกิน 75 ล้านบาท</span>
-                <strong>0.01%</strong>
-              </div>
-              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #dee2e6; padding-bottom: 5px;">
-                <span>75 - 100 ล้านบาท</span>
-                <strong>0.03%</strong>
-              </div>
-              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #dee2e6; padding-bottom: 5px;">
-                <span>100 - 500 ล้านบาท</span>
-                <strong>0.05%</strong>
-              </div>
-              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #dee2e6; padding-bottom: 5px;">
-                <span>500 - 1,000 ล้านบาท</span>
-                <strong>0.07%</strong>
-              </div>
-              <div style="display: flex; justify-content: space-between; padding-bottom: 5px;">
-                <span>1,000 ล้านบาทขึ้นไป</span>
-                <strong>0.1%</strong>
-              </div>
-            </div>
-            <p style="margin: 10px 0 0 0; font-size: 13px; color: #d63384;"><em>* บุคคลธรรมดาทำเกษตรกรรม ได้รับยกเว้นมูลค่าฐานภาษีไม่เกิน 50 ล้านบาทแรก</em></p>
-          </div>
-
-          <!-- ที่อยู่อาศัย -->
-          <div style="background-color: #f8f9fa; border-left: 4px solid #0d6efd; padding: 15px; border-radius: 8px; position: relative; overflow: hidden;">
-            <i class="fas fa-home" style="position: absolute; right: -10px; bottom: -10px; font-size: 80px; color: rgba(13, 110, 253, 0.05);"></i>
-            <strong style="font-size: 16px; color: #0d6efd;">2. ที่อยู่อาศัย</strong>
-            <div style="margin-top: 8px; display: grid; grid-template-columns: 1fr; gap: 5px;">
-              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #dee2e6; padding-bottom: 5px;">
-                <span>มูลค่าไม่เกิน 50 ล้านบาท</span>
-                <strong>0.02%</strong>
-              </div>
-              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #dee2e6; padding-bottom: 5px;">
-                <span>50 - 75 ล้านบาท</span>
-                <strong>0.03%</strong>
-              </div>
-              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #dee2e6; padding-bottom: 5px;">
-                <span>75 - 100 ล้านบาท</span>
-                <strong>0.05%</strong>
-              </div>
-              <div style="display: flex; justify-content: space-between; padding-bottom: 5px;">
-                <span>100 ล้านบาทขึ้นไป</span>
-                <strong>0.1%</strong>
-              </div>
-            </div>
-            <p style="margin: 10px 0 0 0; font-size: 13px; color: #d63384;"><em>* บ้านหลังหลัก (บุคคลธรรมดาเป็นเจ้าของที่ดินและบ้าน + มีชื่อในทะเบียนบ้าน) ยกเว้น 50 ล้านบาทแรก</em></p>
-          </div>
-
-          <!-- พาณิชยกรรม / อุตสาหกรรม -->
-          <div style="background-color: #f8f9fa; border-left: 4px solid #fd7e14; padding: 15px; border-radius: 8px; position: relative; overflow: hidden;">
-            <i class="fas fa-store" style="position: absolute; right: -10px; bottom: -10px; font-size: 80px; color: rgba(253, 126, 20, 0.05);"></i>
-            <strong style="font-size: 16px; color: #fd7e14;">3. อื่นๆ (พาณิชยกรรม, อุตสาหกรรม)</strong>
-            <div style="margin-top: 8px; display: grid; grid-template-columns: 1fr; gap: 5px;">
-              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #dee2e6; padding-bottom: 5px;">
-                <span>มูลค่าไม่เกิน 50 ล้านบาท</span>
-                <strong>0.3%</strong>
-              </div>
-              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #dee2e6; padding-bottom: 5px;">
-                <span>50 - 200 ล้านบาท</span>
-                <strong>0.4%</strong>
-              </div>
-              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #dee2e6; padding-bottom: 5px;">
-                <span>200 - 1,000 ล้านบาท</span>
-                <strong>0.5%</strong>
-              </div>
-              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #dee2e6; padding-bottom: 5px;">
-                <span>1,000 - 5,000 ล้านบาท</span>
-                <strong>0.6%</strong>
-              </div>
-              <div style="display: flex; justify-content: space-between; padding-bottom: 5px;">
-                <span>5,000 ล้านบาทขึ้นไป</span>
-                <strong>0.7%</strong>
-              </div>
-            </div>
-          </div>
-
-          <!-- รกร้างว่างเปล่า -->
-          <div style="background-color: #f8f9fa; border-left: 4px solid #dc3545; padding: 15px; border-radius: 8px; position: relative; overflow: hidden;">
-            <i class="fas fa-tree" style="position: absolute; right: -10px; bottom: -10px; font-size: 80px; color: rgba(220, 53, 69, 0.05);"></i>
-            <strong style="font-size: 16px; color: #dc3545;">4. ที่ดินรกร้างว่างเปล่า</strong>
-            <p style="margin: 8px 0 0 0; font-size: 14px;">ใช้อัตราภาษีเริ่มต้นที่ <strong>0.3% - 0.7%</strong> (อัตราเดียวกันกับพาณิชยกรรม)</p>
-            <p style="margin: 10px 0 0 0; font-size: 13px; color: #dc3545;"><em><i class="fas fa-exclamation-triangle"></i> หากปล่อยทิ้งร้างติดต่อกัน 3 ปี จะเพิ่มอัตราภาษีอีก 0.3% ในปีที่ 4 (สูงสุดไม่เกิน 3%)</em></p>
-          </div>
-        </div>
-
-        <div style="margin-top: 30px; text-align: center;">
-          <a href="#landTax" style="display: inline-flex; align-items: center; gap: 8px; background-color: #6c757d; color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 14px; transition: background-color 0.2s;">
-            <i class="fas fa-arrow-left"></i> ย้อนกลับไปหน้าภาษีที่ดิน
-          </a>
+      <!-- เกษตรกรรม -->
+      <div class="cat-card green">
+        <i class="fas fa-leaf cat-bg-icon"></i>
+        <div class="cat-title"><i class="fas fa-tractor"></i> 1. เกษตรกรรม</div>
+        <table class="rate-table">
+          <tr><td>ไม่เกิน 75 ล้านบาท</td><td>0.01%</td></tr>
+          <tr><td>75 - 100 ล้านบาท</td><td>0.03%</td></tr>
+          <tr><td>100 - 500 ล้านบาท</td><td>0.05%</td></tr>
+          <tr><td>500 - 1,000 ล้านบาท</td><td>0.07%</td></tr>
+          <tr><td>1,000 ล้านบาทขึ้นไป</td><td>0.1%</td></tr>
+        </table>
+        <div class="cat-note">
+          <i class="fas fa-info-circle" style="color: #d946ef;"></i> <strong>ยกเว้น!</strong> บุคคลธรรมดาทำเกษตรกรรม ได้รับยกเว้นมูลค่าฐานภาษีไม่เกิน 50 ล้านบาทแรก
         </div>
       </div>
-    </section>
+
+      <!-- ที่อยู่อาศัย -->
+      <div class="cat-card blue">
+        <i class="fas fa-home cat-bg-icon"></i>
+        <div class="cat-title"><i class="fas fa-house-user"></i> 2. ที่อยู่อาศัย</div>
+        <table class="rate-table">
+          <tr><td>ไม่เกิน 50 ล้านบาท</td><td>0.02%</td></tr>
+          <tr><td>50 - 75 ล้านบาท</td><td>0.03%</td></tr>
+          <tr><td>75 - 100 ล้านบาท</td><td>0.05%</td></tr>
+          <tr><td>100 ล้านบาทขึ้นไป</td><td>0.1%</td></tr>
+        </table>
+        <div class="cat-note">
+          <i class="fas fa-info-circle" style="color: #d946ef;"></i> <strong>ยกเว้น!</strong> บ้านหลังหลัก (บุคคลธรรมดาเป็นเจ้าของ+มีชื่อในทะเบียนบ้าน) ยกเว้น 50 ล้านบาทแรก
+        </div>
+      </div>
+
+      <!-- พาณิชยกรรม / อุตสาหกรรม -->
+      <div class="cat-card orange">
+        <i class="fas fa-store cat-bg-icon"></i>
+        <div class="cat-title"><i class="fas fa-building"></i> 3. อื่นๆ (พาณิชย์/อุตสาหกรรม)</div>
+        <table class="rate-table">
+          <tr><td>ไม่เกิน 50 ล้านบาท</td><td>0.3%</td></tr>
+          <tr><td>50 - 200 ล้านบาท</td><td>0.4%</td></tr>
+          <tr><td>200 - 1,000 ล้านบาท</td><td>0.5%</td></tr>
+          <tr><td>1,000 - 5,000 ล้านบาท</td><td>0.6%</td></tr>
+          <tr><td>5,000 ล้านบาทขึ้นไป</td><td>0.7%</td></tr>
+        </table>
+      </div>
+
+      <!-- รกร้างว่างเปล่า -->
+      <div class="cat-card red">
+        <i class="fas fa-tree cat-bg-icon"></i>
+        <div class="cat-title"><i class="fas fa-map"></i> 4. รกร้างว่างเปล่า</div>
+        <p style="position: relative; z-index: 1; color: #334155; font-size: 15px; margin: 0 0 16px 0; line-height: 1.6;">
+          ใช้อัตราภาษีเริ่มต้นที่ <strong>0.3% - 0.7%</strong> <br>
+          <span style="color: #64748b; font-size: 13.5px;">(อัตราเดียวกับพาณิชยกรรม)</span>
+        </p>
+        <div class="cat-note" style="background: #fef2f2; color: #b91c1c;">
+          <i class="fas fa-exclamation-triangle"></i> หากปล่อยทิ้งร้างติดต่อกัน 3 ปี จะเพิ่มอัตราภาษีอีก <strong>0.3%</strong> ในปีที่ 4 (รวมสูงสุดไม่เกิน 3%)
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Back button -->
+    <div style="text-align: center; margin-top: 10px; margin-bottom: 40px;">
+      <a href="#landTax" class="c-back-btn">
+        <i class="fas fa-arrow-left"></i> ย้อนกลับไปหน้าภาษีที่ดิน
+      </a>
+    </div>
+
   </div>
 </main>

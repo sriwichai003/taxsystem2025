@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>ความรู้ภาษีป้าย</title>
+</head>
+<body>
+  <main class="container">
+    <style>
+      .k-header {
+        background: linear-gradient(135deg, #059669, #047857);
+        color: white;
+        padding: 30px;
+        border-radius: 16px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.3);
+        text-align: center;
+      }
+      .k-header h2 { margin: 0; font-size: 24px; color: #ffffff !important; display: flex; align-items: center; justify-content: center; gap: 12px; }
+      
+      .k-grid { display: flex; flex-direction: column; gap: 24px; margin-bottom: 24px; }
+      
+      .k-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        border: 1px solid #e2e8f0;
+      }
+      .k-card-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px dashed #cbd5e1;
+        padding-bottom: 12px;
+      }
+      .k-card-title i { color: #10b981; }
+
+      .k-list { margin: 0; padding-left: 20px; color: #475569; line-height: 1.8; font-size: 15px; }
+      .k-list li { margin-bottom: 8px; }
+
+      /* Property Types Interactive Grid */
+      .k-prop-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin-top: 10px;
+      }
+      .k-prop-item {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px 10px;
+        text-align: center;
+        transition: all 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+      }
+      .k-prop-item:hover {
+        background: #ecfdf5;
+        border-color: #10b981;
+        transform: translateY(-2px);
+      }
+      .k-prop-item.active {
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.4);
+        border-color: #10b981;
+        transform: scale(1.02);
+      }
+      .k-prop-item i { font-size: 32px; }
+      .k-prop-item .desc { font-weight: 600; font-size: 15px; color: #1e293b; }
+      .k-prop-item .sub-desc { font-size: 12.5px; color: #64748b; margin-top: -6px; }
+
+      .p-t1 i { color: #3b82f6; }
+      .p-t2 i { color: #f59e0b; }
+      .p-t3 i { color: #ef4444; }
+
+      /* Table Styles */
+      .k-tax-rate-table {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 24px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        animation: fadeIn 0.3s ease;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(5px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .k-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+      }
+      .k-table th, .k-table td {
+        padding: 12px 16px;
+        text-align: left;
+        border-bottom: 1px solid #e2e8f0;
+        font-size: 15px;
+        color: #334155;
+      }
+      .k-table th { background-color: #f8fafc; font-weight: 600; }
+      .k-table tbody tr:last-child td { border-bottom: none; }
+      .k-table tbody tr:hover { background-color: #f8fafc; }
+
+      /* Back button */
+      .k-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: white;
+        color: #475569;
+        padding: 14px 28px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.2s ease;
+        border: 1px solid #cbd5e1;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      }
+      .k-back-btn:hover {
+        background: #f1f5f9;
+        color: #0f172a;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 10px rgba(0,0,0,0.08);
+      }
+    </style>
+
+    <div class="content-wrapper">
+      <section class="news-section" style="width: 100%; padding: 0; border: none; box-shadow: none; background: transparent;">
+        
+        <!-- Header -->
+        <div class="k-header">
+          <h2><i class="fas fa-lightbulb"></i> ความรู้เรื่องภาษีป้าย</h2>
+          <p style="margin: 8px 0 0 0; opacity: 0.9; font-size: 15px;">ป้ายแบบไหนต้องเสียภาษี และมีอัตราจัดเก็บอย่างไร?</p>
+        </div>
+
+        <div class="k-grid">
+          
+          <!-- Basic Info -->
+          <div class="k-card">
+            <div class="k-card-title">
+              <i class="fas fa-info-circle"></i> ใครต้องเสียภาษีป้าย?
+            </div>
+            <ul class="k-list">
+              <li><strong>เจ้าของป้าย</strong> หรือผู้ครอบครองป้ายที่แสดงชื่อ ยี่ห้อ หรือเครื่องหมาย</li>
+              <li>ป้ายที่ใช้ในการประกอบการค้า หรือประกอบกิจการเพื่อหารายได้</li>
+              <li>ป้ายที่ติดตั้งไว้ที่หน้าอาคาร ร้านค้า หรือที่สาธารณะ</li>
+              <li><span style="color: #ef4444; font-weight: 600;">หมายเหตุ:</span> ป้ายที่ติดตั้งภายในอาคาร (ที่ไม่สามารถมองเห็นได้จากภายนอก) มักจะได้รับการยกเว้นภาษี</li>
+            </ul>
+          </div>
+
+          <!-- Interactive Rates -->
+          <div class="k-card k-card-full">
+            <div class="k-card-title">
+              <i class="fas fa-percent"></i> อัตราภาษีป้าย (คลิกเพื่อดูรายละเอียด)
+            </div>
+            <div class="k-prop-grid">
+              <div class="k-prop-item p-t1" onclick="document.querySelectorAll('.k-tax-rate-table').forEach(t=>t.style.display='none'); document.getElementById('table-t1').style.display='block'; document.querySelectorAll('.k-prop-item').forEach(e=>e.classList.remove('active')); this.classList.add('active'); setTimeout(()=>document.getElementById('tax-tables-container').scrollIntoView({behavior:'smooth', block:'nearest'}), 50);">
+                <i class="fas fa-font"></i>
+                <div class="desc">อัตราที่ 1</div>
+                <div class="sub-desc">อักษรไทยล้วน</div>
+              </div>
+              <div class="k-prop-item p-t2" onclick="document.querySelectorAll('.k-tax-rate-table').forEach(t=>t.style.display='none'); document.getElementById('table-t2').style.display='block'; document.querySelectorAll('.k-prop-item').forEach(e=>e.classList.remove('active')); this.classList.add('active'); setTimeout(()=>document.getElementById('tax-tables-container').scrollIntoView({behavior:'smooth', block:'nearest'}), 50);">
+                <i class="fas fa-language"></i>
+                <div class="desc">อัตราที่ 2</div>
+                <div class="sub-desc">ไทยปนต่างประเทศ</div>
+              </div>
+              <div class="k-prop-item p-t3" onclick="document.querySelectorAll('.k-tax-rate-table').forEach(t=>t.style.display='none'); document.getElementById('table-t3').style.display='block'; document.querySelectorAll('.k-prop-item').forEach(e=>e.classList.remove('active')); this.classList.add('active'); setTimeout(()=>document.getElementById('tax-tables-container').scrollIntoView({behavior:'smooth', block:'nearest'}), 50);">
+                <i class="fas fa-globe"></i>
+                <div class="desc">อัตราที่ 3</div>
+                <div class="sub-desc">ไม่มีอักษรไทยเลย หรือ อักษรไทยอยู่ต่ำกว่า</div>
+              </div>
+            </div>
+
+            <!-- Tax Rate Tables Container -->
+            <div id="tax-tables-container" style="margin-top: 24px;">
+              <div id="table-t1" class="k-tax-rate-table" style="display:none;">
+                <h4 style="margin: 0 0 12px 0; color: #3b82f6; font-size: 17px;"><i class="fas fa-font"></i> อัตราที่ 1: ป้ายที่มีอักษรไทยล้วน</h4>
+                <table class="k-table">
+                  <thead><tr><th>ลักษณะป้าย</th><th>อัตราภาษี (ต่อ 500 ตร.ซม.)</th></tr></thead>
+                  <tbody>
+                    <tr><td>ป้ายที่มีอักษรไทยล้วน (ป้ายทั่วไป)</td><td><strong>5 บาท</strong></td></tr>
+                    <tr><td>ป้ายที่มีอักษรไทยล้วน (ป้ายที่เคลื่อนที่หรือเปลี่ยนหน้าได้)</td><td><strong>10 บาท</strong></td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div id="table-t2" class="k-tax-rate-table" style="display:none;">
+                <h4 style="margin: 0 0 12px 0; color: #f59e0b; font-size: 17px;"><i class="fas fa-language"></i> อัตราที่ 2: ป้ายที่มีอักษรไทยปนอักษรต่างประเทศ/ภาพ</h4>
+                <table class="k-table">
+                  <thead><tr><th>ลักษณะป้าย</th><th>อัตราภาษี (ต่อ 500 ตร.ซม.)</th></tr></thead>
+                  <tbody>
+                    <tr><td>ป้ายที่มีอักษรไทยปนต่างประเทศ/ภาพ (ป้ายทั่วไป)</td><td><strong>26 บาท</strong></td></tr>
+                    <tr><td>ป้ายที่มีอักษรไทยปนต่างประเทศ/ภาพ (ป้ายที่เคลื่อนที่หรือเปลี่ยนหน้าได้)</td><td><strong>52 บาท</strong></td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div id="table-t3" class="k-tax-rate-table" style="display:none;">
+                <h4 style="margin: 0 0 12px 0; color: #ef4444; font-size: 17px;"><i class="fas fa-globe"></i> อัตราที่ 3: ป้ายที่ไม่มีอักษรไทยเลย หรือ อักษรไทยอยู่ต่ำกว่า</h4>
+                <table class="k-table">
+                  <thead><tr><th>ลักษณะป้าย</th><th>อัตราภาษี (ต่อ 500 ตร.ซม.)</th></tr></thead>
+                  <tbody>
+                    <tr><td>ป้ายที่ไม่มีอักษรไทยเลย หรือ อักษรไทยอยู่ต่ำกว่า (ป้ายทั่วไป)</td><td><strong>50 บาท</strong></td></tr>
+                    <tr><td>ป้ายที่ไม่มีอักษรไทยเลย หรือ อักษรไทยอยู่ต่ำกว่า (ป้ายที่เคลื่อนที่หรือเปลี่ยนหน้าได้)</td><td><strong>52 บาท</strong></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <!-- Minimum Tax Warning -->
+              <div style="background-color: #fef2f2; padding: 12px 16px; border-radius: 8px; margin-top: 16px; border-left: 4px solid #ef4444;">
+                <p style="font-size: 14.5px; color: #b91c1c; margin: 0;">
+                  <strong><i class="fas fa-exclamation-triangle"></i> กฎหมายกำหนด:</strong> หากคำนวณพื้นที่ป้ายแล้ว <u>ค่าภาษีต่ำกว่า 200 บาท</u> ให้เสียภาษีป้ายขั้นต่ำที่ <strong>200 บาท</strong> เสมอ
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+          <a href="#signTax" class="k-back-btn">
+            <i class="fas fa-arrow-left"></i> ย้อนกลับไปหน้าภาษีป้าย
+          </a>
+        </div>
+        
+      </section>
+    </div>
+  </main>
+</body>
+</html>

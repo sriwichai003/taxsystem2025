@@ -15,109 +15,190 @@
       <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>   
-    <section class="alert-bar">
+<main class="container">
+    <!-- Dynamic Alert -->
+    <section class="alert-bar" style="background: linear-gradient(135deg, #059669, #047857); border-radius: 16px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
       <div class="alert-bar-content">
         <p>
-          <strong><i class="fas fa-bullhorn"></i> แจ้งเตือน:</strong>
+          <strong style="font-size: 17px;"><i class="fas fa-bullhorn" style="color: #fde047;"></i> แจ้งเตือนการยื่นแบบภาษีป้าย:</strong>
         </p>
-        <p class="alert-text">
-          ภาษีป้ายสามารถยื่นแบบและชำระได้ตั้งแต่
-          <u>1 มกราคม - 31 มีนาคม 2569</u> อ่านรายละเอียดเพิ่มเติม ได้ที่
-          <a href="https://drive.google.com/file/d/1ecVNYXbsT0TgIrxN5LvlENHARIHEj-HE/view?usp=sharing"
-            style="color: #fff; text-decoration: underline; font-weight: 600">ประกาศเทศบาลนครเชียงใหม่</a>
+        <p class="alert-text" style="margin-top: 8px; font-size: 15px; line-height: 1.5;">
+          สามารถยื่นแบบและชำระได้ตั้งแต่ <u>1 มกราคม - 31 มีนาคม 2569</u><br>
+          <a href="https://drive.google.com/file/d/1ecVNYXbsT0TgIrxN5LvlENHARIHEj-HE/view?usp=sharing" target="_blank" style="color: #fde047; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 6px;">
+            <i class="fas fa-file-pdf"></i> อ่านประกาศเทศบาลนครเชียงใหม่
+          </a>
         </p>
       </div>
     </section>
-    <div class="featured-announcement"
-      style="background: #fff; color: #333; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-      <h2 style="color: #0d6efd; border-bottom: 2px solid #e7f1ff; padding-bottom: 15px;">
-        <i class="fas fa-stream" style="color: #0d6efd;"></i>
-        ขั้นตอนและวิธีการยื่นภาษีป้าย
-      </h2>
 
-      <p style="color: #666; font-size: 14px; margin-bottom: 20px;">
+    <!-- Service Cards Grid & Styles -->
+    <style>
+      .lt-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+      .lt-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: #1e293b;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
+      }
+      .lt-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 20px -3px rgba(0,0,0,0.08);
+        border-color: #10b981;
+      }
+      .lt-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+      }
+      .c-blue { background: #eff6ff; color: #3b82f6; }
+      .c-green { background: #ecfdf5; color: #10b981; }
+      
+      .lt-card h3 { margin: 0 0 4px 0; font-size: 17px; font-weight: 700; color: #0f172a; }
+      .lt-card p { margin: 0; font-size: 14px; color: #64748b; }
+
+      /* Timeline & Box */
+      .lt-timeline-box {
+        background: #fff;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        border: 1px solid #e2e8f0;
+        margin-bottom: 24px;
+      }
+      .lt-tb-title {
+        font-size: 19px;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 16px;
+        border-bottom: 1px dashed #cbd5e1;
+      }
+      .lt-tb-title i { color: #f59e0b; }
+
+      .k-timeline { position: relative; padding-left: 20px; margin-top: 10px; }
+      .k-timeline::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 20px; width: 2px; background: #e2e8f0; }
+      .k-tl-item { position: relative; margin-bottom: 24px; }
+      .k-tl-item:last-child { margin-bottom: 0; }
+      .k-tl-dot { position: absolute; left: -25px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #10b981; border: 3px solid #fff; box-shadow: 0 0 0 1px #cbd5e1; }
+      .k-tl-content { background: #f8fafc; padding: 16px; border-radius: 12px; border: 1px solid #f1f5f9; display: flex; flex-direction: column; transition: background 0.2s; }
+      .k-tl-content:hover { background: #fff; border-color: #e2e8f0; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+      .k-tl-date { font-size: 13px; font-weight: 700; color: #10b981; margin-bottom: 6px; display: inline-block; background: #ecfdf5; padding: 4px 12px; border-radius: 20px; align-self: flex-start; }
+      .k-tl-text { font-size: 15.5px; color: #334155; font-weight: 600; }
+    </style>
+
+    <!-- Quick Service Menu -->
+    <div class="lt-grid">
+      <a href="#knowledgeSignTax" class="lt-card">
+        <div class="lt-icon c-blue"><i class="fas fa-lightbulb"></i></div>
+        <div>
+          <h3>ความรู้ภาษีป้าย</h3>
+          <p>ป้ายแบบไหนต้องเสีย? อัตราเท่าไหร่?</p>
+        </div>
+      </a>
+      <a href="https://tongtin.local-smart.com/signboard/index.php" target="_blank" class="lt-card">
+        <div class="lt-icon c-green"><i class="fas fa-calculator"></i></div>
+        <div>
+          <h3>ระบบคำนวณภาษีป้าย</h3>
+          <p>ทดลองคำนวณภาษี (ระบบภายนอก)</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Warning External Link -->
+    <section class="alert-bar" style="background: linear-gradient(135deg, #f43f5e, #be123c); border-radius: 16px; margin-bottom: 30px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+      <div class="alert-bar-content">
+        <p>
+          <strong style="font-size: 16px;"><i class="fas fa-exclamation-triangle"></i> หมายเหตุสำคัญ:</strong>
+        </p>
+        <p class="alert-text" style="font-size: 14.5px; margin-top: 8px;">
+          ระบบคำนวณภาษีป้ายออนไลน์ เป็นระบบที่พัฒนาและดูแลโดย <u>บริษัทภายนอก</u> ซึ่งไม่ได้อยู่ภายใต้การควบคุมของเทศบาลนครเชียงใหม่โดยตรง ข้อมูลที่ได้อาจมีความคลาดเคลื่อน กรุณาตรวจสอบข้อมูลกับเจ้าหน้าที่จัดเก็บรายได้ศรีวิชัย เพื่อความถูกต้องและเป็นทางการก่อนดำเนินการใดๆ
+        </p>
+      </div>
+    </section>
+
+    <!-- Image and Steps -->
+    <div class="lt-timeline-box">
+      <div class="lt-tb-title">
+        <i class="fas fa-stream" style="color: #3b82f6;"></i> ขั้นตอนและวิธีการยื่นภาษีป้าย
+      </div>
+      <p style="color: #64748b; font-size: 15px; margin-bottom: 20px;">
         เพื่อความสะดวกของท่าน กรุณาศึกษาขั้นตอนการเตรียมเอกสารและการชำระเงินตามแผนผังด้านล่างนี้
       </p>
 
-      <div style="position: relative; overflow: hidden; border-radius: 12px; background: #f8f9fa; padding: 10px;">
+      <div style="position: relative; overflow: hidden; border-radius: 12px; background: #f1f5f9; padding: 12px; border: 1px solid #e2e8f0;">
         <img src="https://sriwichai003.github.io/taxsystem2025/images/unnamed.png" alt="ขั้นตอนและวิธีการยื่นภาษีป้าย"
           style="width: 100%; height: auto; display: block; border-radius: 8px; transition: transform 0.3s ease;"
-          onmouseover="this.style.transform='scale(1.01)'" onmouseout="this.style.transform='scale(1)'" />
+          onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
       </div>
 
-      <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px;">
+      <div style="margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px;">
         <a href="https://sriwichai003.github.io/taxsystem2025/images/unnamed.png" target="_blank"
-          style="background: #0d6efd; color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
-          <i class="fas fa-search-plus"></i> ขยายรูปภาพขนาดใหญ่
-        </a>
-        <a href="https://drive.google.com/file/d/1ecVNYXbsT0TgIrxN5LvlENHARIHEj-HE/view?usp=sharing" target="_blank"
-          style="background: #e7f1ff; color: #0d6efd; text-decoration: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
-          <i class="fas fa-file-pdf"></i> ดาวน์โหลดประกาศ (PDF)
-        </a>
-        <a href="https://tongtin.local-smart.com/signboard/index.php" target="_blank"
-          style="background: #e7f1ff; color: #0d6efd; text-decoration: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
-          <i class="fa-solid fa-link"></i>  ระบบคำนวณภาษีป้าย (เว็บนอก)
+          style="background: #3b82f6; color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 50px; font-size: 14.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s;">
+          <i class="fas fa-search-plus"></i> ขยายรูปภาพ
         </a>
       </div>
     </div>
-    <section class="alert-bar" style="background: linear-gradient(135deg, #ff6b6b, #f06595)">
-        <div class="alert-bar-content">
-          <p>
-            <strong><i class="fas fa-exclamation-triangle"></i> หมายเหตุ:</strong>
-          </p>
-          <p class="alert-text
-">
-            งานจัดเก็บรายได้ศรีวิชัย
-            ขอแจ้งให้ทราบว่า
-            ระบบคำนวณภาษีป้ายออนไลน์
-            (<a
-              href="https://tongtin.local-smart.com/signboard/index.php"
-              style="color: #fff; text-decoration: underline; font-weight: 600"
-              >ลิงก์นี้</a
-            >)
-            เป็นระบบที่พัฒนาและดูแลโดยบริษัทภายนอก
-            ซึ่งไม่ได้อยู่ภายใต้การควบคุมหรือรับผิดชอบโดยตรงของเทศบาลนครเชียงใหม่
-            ดังนั้น
-            ข้อมูลที่ได้จากระบบดังกล่าว
-            อาจมีความคลาดเคลื่อนหรือไม่สอดคล้องกับข้อมูลทางการของเทศบาลนครเชียงใหม่
-            กรุณาตรวจสอบข้อมูลกับงานจัดเก็บรายได้ศรีวิชัย
-            เทศบาลนครเชียงใหม่
-            เพื่อความถูกต้องและเป็นทางการก่อนดำเนินการใดๆ
-          </p>
-        </div>
-      </section>
 
-      <div class="content-wrapper">
-        <section class="news-section latest-news">
-          <h2><i class="fas fa-sign"></i> ปฏิทินภาษีป้าย (ปี 2569)</h2>
-          <div class="news-list">
-            <div class="news-header">
-              <span>รายการ</span>
-              <span style="text-align: center">ช่วงเวลา</span>
-            </div>
-
-            <article class="news-card">
-              <span class="news-title">ประกาศแจ้งให้มายื่นภาษีป้าย</span>
-              <span class="news-date-badge">ธ.ค. 68</span>
-            </article>
-
-            <article class="news-card">
-              <span class="news-title">ยื่นแบบภาษีป้าย (รายเก่า/ใหม่)</span>
-              <span class="news-date-badge">ม.ค. - มี.ค. 69</span>
-            </article>
-
-            <article class="news-card">
-              <span class="news-title">แจ้งประเมินภาษีป้าย</span>
-              <span class="news-date-badge">ม.ค. - มี.ค. 69</span>
-            </article>
-
-            <article class="news-card">
-              <span class="news-title">ชำระภาษีป้าย</span>
-              <span class="news-date-badge">ม.ค. - มี.ค. 69</span>
-            </article>
-          </div>
-        </section>
+    <!-- Timeline -->
+    <div class="lt-timeline-box">
+      <div class="lt-tb-title">
+        <i class="fas fa-calendar-check"></i> ปฏิทินภาษีป้าย (ปี 2569)
       </div>
-    </main>     
+      
+      <div class="k-timeline">
+        <div class="k-tl-item">
+          <div class="k-tl-dot" style="background: #64748b;"></div>
+          <div class="k-tl-content">
+            <span class="k-tl-date" style="color: #475569; background: #f1f5f9;"><i class="far fa-clock"></i> ธันวาคม 2568</span>
+            <span class="k-tl-text">ประกาศแจ้งให้มายื่นแบบภาษีป้าย</span>
+          </div>
+        </div>
+        
+        <div class="k-tl-item">
+          <div class="k-tl-dot" style="background: #10b981;"></div>
+          <div class="k-tl-content">
+            <span class="k-tl-date" style="color: #059669; background: #d1fae5;"><i class="fas fa-file-signature"></i> มกราคม - มีนาคม 2569</span>
+            <span class="k-tl-text">ยื่นแบบแสดงรายการภาษีป้าย (ภ.ป. 1)</span>
+          </div>
+        </div>
+        
+        <div class="k-tl-item">
+          <div class="k-tl-dot" style="background: #f59e0b;"></div>
+          <div class="k-tl-content">
+            <span class="k-tl-date" style="color: #d97706; background: #fef3c7;"><i class="fas fa-envelope-open-text"></i> มกราคม - มีนาคม 2569</span>
+            <span class="k-tl-text">แจ้งประเมินภาษีป้าย</span>
+          </div>
+        </div>
+        
+        <div class="k-tl-item">
+          <div class="k-tl-dot" style="background: #3b82f6;"></div>
+          <div class="k-tl-content">
+            <span class="k-tl-date" style="color: #2563eb; background: #eff6ff;"><i class="fas fa-hand-holding-usd"></i> ภายใน 15 วัน หลังรับแจ้ง</span>
+            <span class="k-tl-text">ชำระภาษีป้าย</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>     
   </body>
 </html>

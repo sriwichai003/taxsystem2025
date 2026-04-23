@@ -15,79 +15,220 @@
       <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>    
-  
-    <section class="alert-bar" style="background: linear-gradient(135deg, #ff0000, #b81e1e);">
+<main class="container">
+    <!-- Dynamic Alert -->
+    <section class="alert-bar" style="background: linear-gradient(135deg, #0284c7, #0369a1); border-radius: 16px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
       <div class="alert-bar-content">
         <p>
-          <strong><i class="fas fa-bullhorn"></i> แจ้งเตือน:</strong>
+          <strong style="font-size: 17px;"><i class="fas fa-bullhorn" style="color: #fde047;"></i> สถานะการจัดเก็บภาษีที่ดินฯ ปัจจุบัน:</strong>
         </p>
-        <p class="alert-text" id="land-tax-dynamic-alert">
-          <!-- ข้อความจะถูกอัปเดตอัตโนมัติตามเดือน -->
+        <p class="alert-text" id="land-tax-dynamic-alert" style="margin-top: 8px; font-size: 15px; line-height: 1.5;">
+          กำลังโหลดข้อมูล...
         </p>
       </div>
     </section>
 
-    <div class="content-wrapper" style="margin-bottom: 25px;">
-      <nav class="main-nav-mobile" style="background-color: #fff; padding: 15px 20px; border-radius: 16px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04); border: 1px solid #f0f0f0; width: 100%; box-sizing: border-box;">
-        <div style="color: #01386b; font-weight: bold; font-size: 16px;">
-          <i class="fas fa-list"></i> เมนูบริการข้อมูลที่เกี่ยวข้อง :
+    <!-- Service Cards Grid & Styles -->
+    <style>
+      .lt-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+      .lt-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: #1e293b;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
+      }
+      .lt-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 20px -3px rgba(0,0,0,0.08);
+        border-color: #3b82f6;
+      }
+      .lt-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+      }
+      .c-blue { background: #eff6ff; color: #3b82f6; }
+      .c-green { background: #ecfdf5; color: #10b981; }
+      
+      .lt-card h3 { margin: 0 0 4px 0; font-size: 17px; font-weight: 700; color: #0f172a; }
+      .lt-card p { margin: 0; font-size: 14px; color: #64748b; }
+
+      /* Timeline */
+      .lt-timeline-box {
+        background: #fff;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        border: 1px solid #e2e8f0;
+      }
+      .lt-tb-title {
+        font-size: 19px;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 16px;
+        border-bottom: 1px dashed #cbd5e1;
+      }
+      .lt-tb-title i { color: #f59e0b; }
+      
+      .k-timeline {
+        position: relative;
+        padding-left: 20px;
+        margin-top: 10px;
+      }
+      .k-timeline::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 10px;
+        bottom: 20px;
+        width: 2px;
+        background: #e2e8f0;
+      }
+      .k-tl-item {
+        position: relative;
+        margin-bottom: 24px;
+      }
+      .k-tl-item:last-child { margin-bottom: 0; }
+      .k-tl-dot {
+        position: absolute;
+        left: -25px;
+        top: 6px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #3b82f6;
+        border: 3px solid #fff;
+        box-shadow: 0 0 0 1px #cbd5e1;
+      }
+      .k-tl-content {
+        background: #f8fafc;
+        padding: 16px;
+        border-radius: 12px;
+        border: 1px solid #f1f5f9;
+        display: flex;
+        flex-direction: column;
+        transition: background 0.2s;
+      }
+      .k-tl-content:hover {
+        background: #fff;
+        border-color: #e2e8f0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      }
+      .k-tl-date {
+        font-size: 13px;
+        font-weight: 700;
+        color: #3b82f6;
+        margin-bottom: 6px;
+        display: inline-block;
+        background: #eff6ff;
+        padding: 4px 12px;
+        border-radius: 20px;
+        align-self: flex-start;
+      }
+      .k-tl-text {
+        font-size: 15.5px;
+        color: #334155;
+        font-weight: 600;
+      }
+      .k-tl-desc {
+        font-size: 13.5px;
+        color: #64748b;
+        margin-top: 4px;
+      }
+    </style>
+
+    <!-- Quick Service Menu -->
+    <div class="lt-grid">
+      <a href="#knowledgeLandTax" class="lt-card">
+        <div class="lt-icon c-blue"><i class="fas fa-lightbulb"></i></div>
+        <div>
+          <h3>ความรู้ภาษีที่ดินฯ</h3>
+          <p>ใครต้องเสีย? อัตราภาษีเท่าไหร่?</p>
         </div>
-        <ul style="margin-top: 15px;">
-          <li class="nav-item">
-            <a href="#knowledgeLandTax" style="white-space: nowrap;"><i class="fas fa-lightbulb" style="color: #0d6efd;"></i> ความรู้ภาษีที่ดินและสิ่งปลูกสร้าง</a>
-          </li>
-          <li class="nav-item">
-            <a href="#calculateLandTax" style="white-space: nowrap;"><i class="fas fa-calculator" style="color: #0d6efd;"></i> วิธีคิดภาษีที่ดินและสิ่งปลูกสร้าง</a>
-          </li>
-        </ul>
-      </nav>
+      </a>
+      <a href="#calculateLandTax" class="lt-card">
+        <div class="lt-icon c-green"><i class="fas fa-calculator"></i></div>
+        <div>
+          <h3>วิธีคิดภาษีที่ดินฯ</h3>
+          <p>คำนวณภาษีเบื้องต้นด้วยตนเอง</p>
+        </div>
+      </a>
     </div>
 
-      <div class="content-wrapper">
-        <section class="news-section latest-news">
-          <h2>
-            <i class="fas fa-map-marked-alt"></i> ปฏิทินภาษีที่ดินฯ (ปี 2569)
-          </h2>
-          <div class="news-list">
-            <div class="news-header">
-              <span>รายการ</span>
-              <span style="text-align: center">ช่วงเวลา</span>
-            </div>
-
-            <article class="news-card">
-              <span class="news-title">ประกาศแจ้งรายการที่ดิน</span>
-              <span class="news-date-badge">ม.ค. 69</span>
-            </article>
-
-            <article class="news-card">
-              <span class="news-title">ประกาศราคาประเมินทุนทรัพย์</span>
-              <span class="news-date-badge">มี.ค. 69</span>
-            </article>
-
-            <article class="news-card">
-              <span class="news-title">แจ้งการประเมินภาษี</span>
-              <span class="news-date-badge">เม.ย. 69</span>
-            </article>
-
-            <article class="news-card">
-              <span class="news-title">ชำระภาษี</span>
-              <span class="news-date-badge">มิ.ย. 69</span>
-            </article>
-
-            <article class="news-card">
-              <span class="news-title">แจ้งเตือนภาษีค้างชำระ</span>
-              <span class="news-date-badge">ก.ค. 69</span>
-            </article>
-
-            <article class="news-card">
-              <span class="news-title">รายงานข้อมูลจัดเก็บภาษี</span>
-              <span class="news-date-badge">ม.ค. 70</span>
-            </article>
-          </div>
-        </section>
-
-
+    <!-- Tax Calendar Timeline -->
+    <div class="lt-timeline-box">
+      <div class="lt-tb-title">
+        <i class="fas fa-calendar-check"></i> ปฏิทินภาษีที่ดินและสิ่งปลูกสร้าง (ปี 2569)
       </div>
-    </main>     
+      
+      <div class="k-timeline">
+        <div class="k-tl-item">
+          <div class="k-tl-dot" style="background: #64748b;"></div>
+          <div class="k-tl-content">
+            <span class="k-tl-date" style="color: #475569; background: #f1f5f9;"><i class="far fa-clock"></i> มกราคม - กุมภาพันธ์ 2569</span>
+            <span class="k-tl-text">ประกาศแจ้งรายการที่ดินและสิ่งปลูกสร้าง</span>
+            <span class="k-tl-desc">องค์กรปกครองส่วนท้องถิ่นจัดส่งแบบแจ้งรายการประเมินให้ทราบ</span>
+          </div>
+        </div>
+        
+        <div class="k-tl-item">
+          <div class="k-tl-dot" style="background: #8b5cf6;"></div>
+          <div class="k-tl-content">
+            <span class="k-tl-date" style="color: #7c3aed; background: #f3e8ff;"><i class="far fa-clock"></i> ภายใน มีนาคม 2569</span>
+            <span class="k-tl-text">ประกาศราคาประเมินทุนทรัพย์</span>
+            <span class="k-tl-desc">ติดประกาศราคาประเมินให้ประชาชนทราบ ณ ที่ทำการ</span>
+          </div>
+        </div>
+        
+        <div class="k-tl-item">
+          <div class="k-tl-dot" style="background: #f59e0b;"></div>
+          <div class="k-tl-content">
+            <span class="k-tl-date" style="color: #d97706; background: #fef3c7;"><i class="far fa-clock"></i> ภายใน เมษายน 2569</span>
+            <span class="k-tl-text">แจ้งการประเมินภาษี</span>
+            <span class="k-tl-desc">จัดส่งหนังสือแจ้งการประเมินภาษี (ภ.ด.ส. 6) ให้ผู้เสียภาษี</span>
+          </div>
+        </div>
+        
+        <div class="k-tl-item">
+          <div class="k-tl-dot" style="background: #10b981;"></div>
+          <div class="k-tl-content">
+            <span class="k-tl-date" style="color: #059669; background: #d1fae5;"><i class="fas fa-hand-holding-usd"></i> เมษายน - มิถุนายน 2569</span>
+            <span class="k-tl-text">กำหนดระยะเวลาชำระภาษี</span>
+            <span class="k-tl-desc">ผู้เสียภาษีต้องชำระภาษีภายในวันที่ 30 มิถุนายน 2569</span>
+          </div>
+        </div>
+        
+        <div class="k-tl-item">
+          <div class="k-tl-dot" style="background: #ef4444;"></div>
+          <div class="k-tl-content">
+            <span class="k-tl-date" style="color: #dc2626; background: #fee2e2;"><i class="fas fa-exclamation-circle"></i> กรกฎาคม 2569 เป็นต้นไป</span>
+            <span class="k-tl-text">แจ้งเตือนภาษีค้างชำระ</span>
+            <span class="k-tl-desc" style="color: #ef4444;">* หากเกินกำหนดชำระ จะต้องเสียเบี้ยปรับและเงินเพิ่มตามกฎหมาย</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>     
   </body>
 </html>
