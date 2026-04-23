@@ -1,76 +1,511 @@
 <main class="container">
+<style>
+.k-container {
+    font-family: 'Inter', 'Sarabun', sans-serif;
+    color: #334155;
+    background-color: #f8fafc;
+    padding: 32px;
+    border-radius: 20px;
+    margin: 20px auto;
+}
+.k-header {
+    background: linear-gradient(135deg, #2563eb, #3b82f6, #60a5fa);
+    color: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    margin-bottom: 32px;
+    box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.k-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+    transform: rotate(30deg);
+    pointer-events: none;
+}
+.k-header h2 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: #ffffff !important;
+}
+.k-header p {
+    margin-top: 16px;
+    font-size: 17px;
+    opacity: 0.95;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+    font-weight: 300;
+    color: #ffffff !important;
+}
+.k-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+@media (max-width: 768px) {
+    .k-grid {
+        grid-template-columns: 1fr;
+    }
+    .k-container { padding: 16px; }
+    .k-header { padding: 30px 20px; }
+    .k-header h2 { font-size: 24px; }
+}
+.k-card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+}
+.k-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+}
+.k-card-full {
+    grid-column: 1 / -1;
+}
+.k-card-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 16px;
+}
+.k-card-title i {
+    color: #3b82f6;
+    background: #eff6ff;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 18px;
+}
+.k-card-title.danger i {
+    color: #ef4444;
+    background: #fef2f2;
+}
+.k-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.k-list li {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 14px;
+    line-height: 1.6;
+    font-size: 15px;
+    color: #475569;
+}
+.k-list li::before {
+    content: '\f058';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: #10b981;
+    font-size: 18px;
+}
+.k-list.danger li::before {
+    content: '\f071';
+    color: #ef4444;
+}
+.k-list.doc li::before {
+    content: '\f15c';
+    color: #8b5cf6;
+}
+
+.k-prop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 10px;
+}
+.k-prop-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    padding: 24px 16px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    background: #ffffff;
+}
+.k-prop-item:hover {
+    transform: scale(1.03);
+}
+.k-prop-item i {
+    font-size: 32px;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 4px;
+}
+.k-prop-item .desc {
+    font-weight: 600;
+    color: #334155;
+    font-size: 16px;
+}
+
+/* Specific colors for properties */
+.p-agri i { color: #10b981; background: #ecfdf5; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.15); }
+.p-agri:hover { border-color: #34d399; }
+.p-home i { color: #3b82f6; background: #eff6ff; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.15); }
+.p-home:hover { border-color: #60a5fa; }
+.p-comm i { color: #f59e0b; background: #fffbeb; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.15); }
+.p-comm:hover { border-color: #fbbf24; }
+.p-empty i { color: #ef4444; background: #fef2f2; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.15); }
+.p-empty:hover { border-color: #f87171; }
+
+/* Timeline */
+.k-timeline {
+    position: relative;
+    padding-left: 28px;
+}
+.k-timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: #e2e8f0;
+}
+.k-tl-item {
+    position: relative;
+    margin-bottom: 24px;
+}
+.k-tl-item:last-child { margin-bottom: 0; }
+.k-tl-dot {
+    position: absolute;
+    left: -26px;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #3b82f6;
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px #cbd5e1;
+    z-index: 1;
+}
+.k-tl-content strong {
+    display: block;
+    color: #1e293b;
+    margin-bottom: 6px;
+    font-size: 16px;
+}
+.k-tl-content span {
+    color: #64748b;
+    font-size: 14.5px;
+    line-height: 1.5;
+    display: block;
+}
+
+.k-danger-box {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 16px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.k-back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: white;
+    color: #475569;
+    padding: 14px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.k-back-btn:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.08);
+}
+
+.k-prop-item {
+    cursor: pointer;
+}
+.k-prop-item.active {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+    transform: scale(1.02);
+}
+.k-tax-rate-table {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.k-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+}
+.k-table th, .k-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 15px;
+    color: #334155;
+}
+.k-table th {
+    background-color: #f8fafc;
+    font-weight: 600;
+}
+.k-table tbody tr:last-child td {
+    border-bottom: none;
+}
+.k-table tbody tr:hover {
+    background-color: #f8fafc;
+}
+</style>
   <div class="content-wrapper">
-    <section class="news-section" style="width: 100%;">
-      <h2>
-        <i class="fas fa-lightbulb"></i> ความรู้ภาษีที่ดินและสิ่งปลูกสร้าง
-      </h2>
+    <section class="news-section" style="width: 100%; padding: 0;">
       
-      <div style="padding: 15px; line-height: 1.8; color: #495057;">
-        <p style="font-size: 15px;"><strong>ภาษีที่ดินและสิ่งปลูกสร้าง</strong> คือ ภาษีที่จัดเก็บเป็นรายปีตามมูลค่าที่ดินและสิ่งปลูกสร้าง (รวมถึงห้องชุด) โดยผู้ที่มีหน้าที่เสียภาษีคือ ผู้ที่เป็นเจ้าของกรรมสิทธิ์ หรือครอบครองทำประโยชน์ในที่ดินและสิ่งปลูกสร้างนั้นๆ ในวันที่ 1 มกราคม ของปีภาษีนั้น</p>
-        
-        <h3 style="margin-top: 25px; color: #0d6efd; font-size: 16px; border-bottom: 1px solid #e9ecef; padding-bottom: 8px;"><i class="fas fa-check-circle"></i> ใครบ้างที่ต้องเสียภาษี?</h3>
-        <ul style="padding-left: 20px; font-size: 15px; margin-top: 15px;">
-          <li style="margin-bottom: 8px;">เจ้าของที่ดิน หรือ สิ่งปลูกสร้าง</li>
-          <li style="margin-bottom: 8px;">เจ้าของห้องชุด (คอนโดมิเนียม)</li>
-          <li style="margin-bottom: 8px;">ผู้ครอบครองหรือทำประโยชน์ในที่ดินหรือสิ่งปลูกสร้างของรัฐ</li>
-        </ul>
-
-        <h3 style="margin-top: 25px; color: #0d6efd; font-size: 16px; border-bottom: 1px solid #e9ecef; padding-bottom: 8px;"><i class="fas fa-tasks"></i> ประเภททรัพย์สินที่ต้องเสียภาษี</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
-          <div style="background-color: #f1f8ff; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #cce5ff;">
-            <i class="fas fa-leaf" style="font-size: 24px; color: #28a745; margin-bottom: 10px;"></i>
-            <div style="font-weight: bold; color: #333;">เกษตรกรรม</div>
-          </div>
-          <div style="background-color: #f1f8ff; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #cce5ff;">
-            <i class="fas fa-home" style="font-size: 24px; color: #0d6efd; margin-bottom: 10px;"></i>
-            <div style="font-weight: bold; color: #333;">ที่อยู่อาศัย</div>
-          </div>
-          <div style="background-color: #f1f8ff; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #cce5ff;">
-            <i class="fas fa-store" style="font-size: 24px; color: #fd7e14; margin-bottom: 10px;"></i>
-            <div style="font-weight: bold; color: #333;">พาณิชยกรรม/อื่นๆ</div>
-          </div>
-          <div style="background-color: #f1f8ff; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #cce5ff;">
-            <i class="fas fa-tree" style="font-size: 24px; color: #dc3545; margin-bottom: 10px;"></i>
-            <div style="font-weight: bold; color: #333;">ที่ดินรกร้างว่างเปล่า</div>
-          </div>
+      <div class="k-container">
+        <!-- Header -->
+        <div class="k-header">
+          <h2><i class="fas fa-lightbulb"></i> ความรู้ภาษีที่ดินและสิ่งปลูกสร้าง</h2>
+          <p>ภาษีที่จัดเก็บเป็นรายปีตามมูลค่าที่ดินและสิ่งปลูกสร้าง โดยผู้ที่มีหน้าที่เสียภาษีคือ ผู้ที่เป็นเจ้าของกรรมสิทธิ์ หรือครอบครองทำประโยชน์ในที่ดินและสิ่งปลูกสร้างนั้นๆ ในวันที่ 1 มกราคม ของปีภาษีนั้น</p>
         </div>
 
-        <h3 style="margin-top: 25px; color: #0d6efd; font-size: 16px; border-bottom: 1px solid #e9ecef; padding-bottom: 8px;"><i class="fas fa-calendar-alt"></i> กำหนดการ (โดยทั่วไปดังเดิม) </h3>
-        <ul style="padding-left: 20px; font-size: 15px; margin-top: 15px;">
-          <li style="margin-bottom: 8px;"><strong>มกราคม - กุมภาพันธ์:</strong> องค์กรปกครองส่วนท้องถิ่นแจ้งรายการประเมินที่ดินและสิ่งปลูกสร้าง</li>
-          <li style="margin-bottom: 8px;"><strong>เมษายน:</strong> แจ้งการประเมินภาษีให้ผู้เสียภาษีทราบ</li>
-          <li style="margin-bottom: 8px;"><strong>มิถุนายน:</strong> กำหนดชำระภาษี (หากเกินกำหนดจะต้องเสียเบี้ยปรับและเงินเพิ่ม)</li>
-        </ul>
-        <h3 style="margin-top: 25px; color: #0d6efd; font-size: 16px; border-bottom: 1px solid #e9ecef; padding-bottom: 8px;"><i class="fas fa-shield-alt"></i> การลดหย่อนและยกเว้นภาษีที่สำคัญ</h3>
-        <ul style="padding-left: 20px; font-size: 15px; margin-top: 15px;">
-          <li style="margin-bottom: 8px;"><strong>บ้านหลังหลัก:</strong> บุคคลธรรมดาที่เป็นเจ้าของทั้งที่ดินและสิ่งปลูกสร้าง และมีชื่อในทะเบียนบ้าน จะได้รับยกเว้นมูลค่าฐานภาษี 50 ล้านบาทแรก</li>
-          <li style="margin-bottom: 8px;"><strong>บ้านหลังหลัก (เฉพาะสิ่งปลูกสร้าง):</strong> บุคคลธรรมดาที่เป็นเจ้าของเฉพาะสิ่งปลูกสร้าง (แต่ไม่ได้เป็นเจ้าของที่ดิน) และมีชื่อในทะเบียนบ้าน จะได้รับยกเว้นมูลค่าฐานภาษี 10 ล้านบาทแรก</li>
-          <li style="margin-bottom: 8px;"><strong>ที่ดินเกษตรกรรม (บุคคลธรรมดา):</strong> ได้รับยกเว้นมูลค่าฐานภาษี 50 ล้านบาทแรก ต่อ 1 องค์กรปกครองส่วนท้องถิ่น</li>
-        </ul>
+        <!-- Grid Layout -->
+        <div class="k-grid">
+          
+          <!-- Who pays -->
+          <div class="k-card">
+            <div class="k-card-title">
+              <i class="fas fa-users"></i> ใครบ้างที่ต้องเสียภาษี?
+            </div>
+            <ul class="k-list">
+              <li><strong>เจ้าของที่ดิน หรือ สิ่งปลูกสร้าง</strong></li>
+              <li><strong>เจ้าของห้องชุด</strong> (คอนโดมิเนียม)</li>
+              <li><strong>ผู้ครอบครองหรือทำประโยชน์</strong> ในที่ดินหรือสิ่งปลูกสร้างของรัฐ</li>
+            </ul>
+          </div>
 
-        <h3 style="margin-top: 25px; color: #dc3545; font-size: 16px; border-bottom: 1px solid #e9ecef; padding-bottom: 8px;"><i class="fas fa-exclamation-circle"></i> เบี้ยปรับและเงินเพิ่ม (กรณีชำระล่าช้า)</h3>
-        <div style="background-color: #fff5f5; border-left: 4px solid #dc3545; padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 15px;">
-          <p style="margin: 0 0 10px 0;">หากไม่ชำระภาษีภายในเวลาที่กำหนด จะต้องเสียเบี้ยปรับและเงินเพิ่ม ดังนี้:</p>
-          <ul style="padding-left: 20px; margin: 0;">
-            <li style="margin-bottom: 8px;"><strong>เบี้ยปรับ 10%:</strong> หากชำระก่อนได้รับหนังสือแจ้งเตือน</li>
-            <li style="margin-bottom: 8px;"><strong>เบี้ยปรับ 20%:</strong> หากชำระภายในกำหนดเวลาของหนังสือแจ้งเตือน</li>
-            <li style="margin-bottom: 8px;"><strong>เบี้ยปรับ 40%:</strong> หากชำระเกินกำหนดเวลาในหนังสือแจ้งเตือน</li>
-            <li><strong>เงินเพิ่ม 1% ต่อเดือน:</strong> ของยอดภาษีค้างชำระ (เศษของเดือนให้นับเป็น 1 เดือน)</li>
-          </ul>
+          <!-- Schedule -->
+          <div class="k-card">
+            <div class="k-card-title">
+              <i class="fas fa-calendar-alt"></i> กำหนดการ (โดยทั่วไป)
+            </div>
+            <div class="k-timeline">
+              <div class="k-tl-item">
+                <div class="k-tl-dot"></div>
+                <div class="k-tl-content">
+                  <strong>มกราคม - กุมภาพันธ์</strong>
+                  <span>อปท. แจ้งรายการประเมินที่ดินและสิ่งปลูกสร้าง</span>
+                </div>
+              </div>
+              <div class="k-tl-item">
+                <div class="k-tl-dot" style="background:#f59e0b;"></div>
+                <div class="k-tl-content">
+                  <strong>เมษายน</strong>
+                  <span>แจ้งการประเมินภาษีให้ผู้เสียภาษีทราบ</span>
+                </div>
+              </div>
+              <div class="k-tl-item">
+                <div class="k-tl-dot" style="background:#ef4444;"></div>
+                <div class="k-tl-content">
+                  <strong>มิถุนายน</strong>
+                  <span>กำหนดชำระภาษี (หากเกินกำหนดเสียเบี้ยปรับและเงินเพิ่ม)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Property Types (Full Width) -->
+          <div class="k-card k-card-full">
+            <div class="k-card-title">
+              <i class="fas fa-city"></i> ประเภททรัพย์สินที่ต้องเสียภาษี
+            </div>
+            <div class="k-prop-grid">
+              <div class="k-prop-item p-agri" onclick="document.querySelectorAll('.k-tax-rate-table').forEach(t=>t.style.display='none'); document.getElementById('table-agri').style.display='block'; document.querySelectorAll('.k-prop-item').forEach(e=>e.classList.remove('active')); this.classList.add('active'); setTimeout(()=>document.getElementById('tax-tables-container').scrollIntoView({behavior:'smooth', block:'nearest'}), 50);">
+                <i class="fas fa-leaf"></i>
+                <div class="desc">เกษตรกรรม</div>
+              </div>
+              <div class="k-prop-item p-home" onclick="document.querySelectorAll('.k-tax-rate-table').forEach(t=>t.style.display='none'); document.getElementById('table-home').style.display='block'; document.querySelectorAll('.k-prop-item').forEach(e=>e.classList.remove('active')); this.classList.add('active'); setTimeout(()=>document.getElementById('tax-tables-container').scrollIntoView({behavior:'smooth', block:'nearest'}), 50);">
+                <i class="fas fa-home"></i>
+                <div class="desc">ที่อยู่อาศัย</div>
+              </div>
+              <div class="k-prop-item p-comm" onclick="document.querySelectorAll('.k-tax-rate-table').forEach(t=>t.style.display='none'); document.getElementById('table-comm').style.display='block'; document.querySelectorAll('.k-prop-item').forEach(e=>e.classList.remove('active')); this.classList.add('active'); setTimeout(()=>document.getElementById('tax-tables-container').scrollIntoView({behavior:'smooth', block:'nearest'}), 50);">
+                <i class="fas fa-store"></i>
+                <div class="desc">พาณิชยกรรม/อื่นๆ</div>
+              </div>
+              <div class="k-prop-item p-empty" onclick="document.querySelectorAll('.k-tax-rate-table').forEach(t=>t.style.display='none'); document.getElementById('table-empty').style.display='block'; document.querySelectorAll('.k-prop-item').forEach(e=>e.classList.remove('active')); this.classList.add('active'); setTimeout(()=>document.getElementById('tax-tables-container').scrollIntoView({behavior:'smooth', block:'nearest'}), 50);">
+                <i class="fas fa-tree"></i>
+                <div class="desc">ที่ดินรกร้างว่างเปล่า</div>
+              </div>
+            </div>
+
+            <!-- Tax Rate Tables Container -->
+            <div id="tax-tables-container" style="margin-top: 24px;">
+              <div id="table-agri" class="k-tax-rate-table" style="display:none;">
+                <h4 style="margin: 0 0 12px 0; color: #10b981; font-size: 17px;"><i class="fas fa-leaf"></i> อัตราภาษีที่ดินเกษตรกรรม</h4>
+                <table class="k-table">
+                  <thead><tr><th>มูลค่าฐานภาษี</th><th>อัตราภาษี (%)</th></tr></thead>
+                  <tbody>
+                    <tr><td>ไม่เกิน 75 ล้านบาท</td><td>0.01%</td></tr>
+                    <tr><td>75 - 100 ล้านบาท</td><td>0.03%</td></tr>
+                    <tr><td>100 - 500 ล้านบาท</td><td>0.05%</td></tr>
+                    <tr><td>500 - 1,000 ล้านบาท</td><td>0.07%</td></tr>
+                    <tr><td>เกิน 1,000 ล้านบาทขึ้นไป</td><td>0.10%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div id="table-home" class="k-tax-rate-table" style="display:none;">
+                <h4 style="margin: 0 0 12px 0; color: #3b82f6; font-size: 17px;"><i class="fas fa-home"></i> อัตราภาษีที่อยู่อาศัย (สำหรับบ้านหลังหลัก)</h4>
+                <table class="k-table">
+                  <thead><tr><th>มูลค่าฐานภาษี</th><th>อัตราภาษี (%)</th></tr></thead>
+                  <tbody>
+                    <tr><td>ไม่เกิน 50 ล้านบาท</td><td>ยกเว้น</td></tr>
+                    <tr><td>50 - 75 ล้านบาท</td><td>0.03%</td></tr>
+                    <tr><td>75 - 100 ล้านบาท</td><td>0.05%</td></tr>
+                    <tr><td>เกิน 100 ล้านบาทขึ้นไป</td><td>0.10%</td></tr>
+                  </tbody>
+                </table>
+                <p style="font-size: 13.5px; color: #64748b; margin: 12px 0 0 0;">* หมายเหตุ: บ้านหลังอื่นๆ (ผู้ครอบครองไม่มีชื่อในทะเบียนบ้าน) เริ่มต้นอัตราภาษีที่ 0.02%</p>
+              </div>
+
+              <div id="table-comm" class="k-tax-rate-table" style="display:none;">
+                <h4 style="margin: 0 0 12px 0; color: #f59e0b; font-size: 17px;"><i class="fas fa-store"></i> อัตราภาษีพาณิชยกรรม/อื่นๆ</h4>
+                <table class="k-table">
+                  <thead><tr><th>มูลค่าฐานภาษี</th><th>อัตราภาษี (%)</th></tr></thead>
+                  <tbody>
+                    <tr><td>ไม่เกิน 50 ล้านบาท</td><td>0.30%</td></tr>
+                    <tr><td>50 - 200 ล้านบาท</td><td>0.40%</td></tr>
+                    <tr><td>200 - 1,000 ล้านบาท</td><td>0.50%</td></tr>
+                    <tr><td>1,000 - 5,000 ล้านบาท</td><td>0.60%</td></tr>
+                    <tr><td>เกิน 5,000 ล้านบาทขึ้นไป</td><td>0.70%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div id="table-empty" class="k-tax-rate-table" style="display:none;">
+                <h4 style="margin: 0 0 12px 0; color: #ef4444; font-size: 17px;"><i class="fas fa-tree"></i> อัตราภาษีที่ดินรกร้างว่างเปล่า</h4>
+                <table class="k-table">
+                  <thead><tr><th>มูลค่าฐานภาษี</th><th>อัตราภาษี (%)</th></tr></thead>
+                  <tbody>
+                    <tr><td>ไม่เกิน 50 ล้านบาท</td><td>0.30%</td></tr>
+                    <tr><td>50 - 200 ล้านบาท</td><td>0.40%</td></tr>
+                    <tr><td>200 - 1,000 ล้านบาท</td><td>0.50%</td></tr>
+                    <tr><td>1,000 - 5,000 ล้านบาท</td><td>0.60%</td></tr>
+                    <tr><td>เกิน 5,000 ล้านบาทขึ้นไป</td><td>0.70%</td></tr>
+                  </tbody>
+                </table>
+                <div style="background-color: #fef2f2; padding: 12px; border-radius: 8px; margin-top: 12px;">
+                  <p style="font-size: 14px; color: #b91c1c; margin: 0;"><strong>ข้อควรระวัง:</strong> อัตราภาษีจะเพิ่มขึ้น 0.3% ทุกๆ 3 ปี (เพดานสูงสุดรวมไม่เกิน 3%)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deductions -->
+          <div class="k-card">
+            <div class="k-card-title">
+              <i class="fas fa-shield-alt"></i> การลดหย่อนและยกเว้นภาษี
+            </div>
+            <ul class="k-list">
+              <li><strong>บ้านหลังหลัก:</strong> เป็นเจ้าของทั้งที่ดินและสิ่งปลูกสร้าง และมีชื่อในทะเบียนบ้าน จะได้รับยกเว้นมูลค่าฐานภาษี 50 ล้านบาทแรก</li>
+              <li><strong>บ้านหลังหลัก (เฉพาะสิ่งปลูกสร้าง):</strong> เป็นเจ้าของเฉพาะสิ่งปลูกสร้าง และมีชื่อในทะเบียนบ้าน จะได้รับยกเว้นมูลค่าฐานภาษี 10 ล้านบาทแรก</li>
+              <li><strong>ที่ดินเกษตรกรรม (บุคคลธรรมดา):</strong> ได้รับยกเว้นมูลค่าฐานภาษี 50 ล้านบาทแรก ต่อ 1 อปท.</li>
+            </ul>
+          </div>
+
+          <!-- Documents -->
+          <div class="k-card">
+            <div class="k-card-title">
+              <i class="fas fa-folder-open"></i> เอกสารที่ใช้ติดต่อชำระภาษี
+            </div>
+            <ul class="k-list doc">
+              <li><strong>บัตรประจำตัวประชาชน</strong> (พร้อมสำเนา)</li>
+              <li><strong>หนังสือแจ้งการประเมินภาษีที่ดินและสิ่งปลูกสร้าง</strong> (ภ.ด.ส. 6)</li>
+              <li><strong>โฉนดที่ดิน หรือ เอกสารสิทธิ์</strong> (กรณีตรวจสอบหรือแก้ไขข้อมูล)</li>
+            </ul>
+          </div>
+
+          <!-- Fines (Full Width) -->
+          <div class="k-card k-card-full" style="border-color: #fecaca; background-color: #fefcfc;">
+            <div class="k-card-title danger">
+              <i class="fas fa-exclamation-triangle"></i> เบี้ยปรับและเงินเพิ่ม (กรณีชำระล่าช้า)
+            </div>
+            <p style="margin-bottom: 20px; color: #475569; font-size: 15px;">หากไม่ชำระภาษีภายในเวลาที่กำหนด จะต้องเสียเบี้ยปรับและเงินเพิ่ม ดังนี้:</p>
+            <div class="k-grid" style="gap: 20px;">
+              <div class="k-danger-box">
+                <h4 style="color: #ef4444; margin: 0 0 12px 0; font-size: 17px; display: flex; align-items: center; gap: 8px;">
+                  <i class="fas fa-percentage"></i> เบี้ยปรับ
+                </h4>
+                <ul class="k-list danger">
+                  <li><strong>10%:</strong> หากชำระก่อนได้รับหนังสือแจ้งเตือน</li>
+                  <li><strong>20%:</strong> หากชำระภายในกำหนดเวลาของหนังสือแจ้งเตือน</li>
+                  <li><strong>40%:</strong> หากชำระเกินกำหนดเวลาในหนังสือแจ้งเตือน</li>
+                </ul>
+              </div>
+              <div class="k-danger-box" style="background: #fff7ed; border-color: #fed7aa;">
+                <h4 style="color: #f97316; margin: 0 0 12px 0; font-size: 17px; display: flex; align-items: center; gap: 8px;">
+                  <i class="fas fa-coins"></i> เงินเพิ่ม
+                </h4>
+                <div style="display: flex; align-items: center; gap: 16px; padding: 12px; background: rgba(255, 255, 255, 0.6); border-radius: 12px;">
+                  <div style="background: #ffedd5; padding: 12px; border-radius: 50%;">
+                    <i class="fas fa-chart-line" style="font-size: 28px; color: #f97316;"></i>
+                  </div>
+                  <div>
+                    <strong style="display:block; color: #9a3412; font-size: 18px; margin-bottom: 4px;">1% ต่อเดือน</strong>
+                    <span style="font-size: 14px; color: #c2410c; line-height: 1.4; display: block;">ของยอดภาษีค้างชำระ<br>(เศษของเดือนให้นับเป็น 1 เดือน)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        <h3 style="margin-top: 25px; color: #0d6efd; font-size: 16px; border-bottom: 1px solid #e9ecef; padding-bottom: 8px;"><i class="fas fa-file-invoice-dollar"></i> เอกสารที่ใช้ติดต่อชำระภาษี</h3>
-        <ul style="padding-left: 20px; font-size: 15px; margin-top: 15px;">
-          <li style="margin-bottom: 8px;">บัตรประจำตัวประชาชน (พร้อมสำเนา)</li>
-          <li style="margin-bottom: 8px;">หนังสือแจ้งการประเมินภาษีที่ดินและสิ่งปลูกสร้าง (ภ.ด.ส. 6)</li>
-          <li style="margin-bottom: 8px;">โฉนดที่ดิน หรือ เอกสารสิทธิ์ (กรณีตรวจสอบหรือแก้ไขข้อมูล)</li>
-        </ul>
-
-        <div style="margin-top: 30px; text-align: center;">
-          <a href="#landTax" style="display: inline-flex; align-items: center; gap: 8px; background-color: #6c757d; color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 14px; transition: background-color 0.2s;">
+        <div style="margin-top: 40px; text-align: center;">
+          <a href="#landTax" class="k-back-btn">
             <i class="fas fa-arrow-left"></i> ย้อนกลับไปหน้าภาษีที่ดิน
           </a>
         </div>
+
       </div>
     </section>
   </div>
