@@ -66,6 +66,14 @@
       </div>
     </footer>
 
+    <!-- Announcement Modal -->
+    <div id="announcementModal" class="modal-overlay">
+      <div class="modal-content">
+        <button id="closeModalBtn" class="modal-close"><i class="fas fa-times"></i></button>
+        <img src="images/image_cms_fjklmnqrstv2.jpg" alt="ประกาศแจ้งเตือน" />
+      </div>
+    </div>
+
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
       import {
@@ -273,7 +281,31 @@
       }
 
       window.addEventListener("hashchange", router);
-      window.addEventListener("load", router);
+      window.addEventListener("load", () => {
+        router();
+        
+        // Show announcement modal once per session
+        const modal = document.getElementById("announcementModal");
+        const closeBtn = document.getElementById("closeModalBtn");
+        
+        if (!sessionStorage.getItem("announcementShown")) {
+          setTimeout(() => {
+            modal.classList.add("show");
+          }, 500); // slight delay for better UX
+          sessionStorage.setItem("announcementShown", "true");
+        }
+        
+        closeBtn.addEventListener("click", () => {
+          modal.classList.remove("show");
+        });
+        
+        // Optional: click outside to close
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            modal.classList.remove("show");
+          }
+        });
+      });
     </script>
     <!-- <script src="/Js/app.js"></script> -->
   </body>
