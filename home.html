@@ -193,7 +193,45 @@
         .other-month { color: #cbd5e1 !important; }
       </style>
 
-      <!-- Section 1: Quick Links -->
+      <!-- Section 1: Alerts / Notifications -->
+      <div class="h-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <!-- Land Tax Dynamic Alert -->
+        <section class="alert-bar" style="background: linear-gradient(135deg, #0284c7, #0369a1); margin: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-radius: 16px;">
+          <div class="alert-bar-content">
+            <p><strong style="font-size: 16px;"><i class="fas fa-home"></i> ภาษีที่ดินและสิ่งปลูกสร้าง:</strong></p>
+            <!-- Inject script tag logic right here so it works even if router doesn't call it -->
+            <p class="alert-text" id="land-tax-dynamic-alert" style="margin-top: 8px;">
+              กำลังโหลดข้อมูล...
+            </p>
+          </div>
+        </section>
+
+        <!-- Sign Tax Alert -->
+        <section class="alert-bar" style="margin: 0; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; background: #fff; color: #334155;">
+          <div class="alert-bar-content">
+            <p><strong style="font-size: 16px; color:#1e293b;"><i class="fas fa-bullhorn" style="color:#f59e0b;"></i> แจ้งเตือนภาษีป้าย:</strong></p>
+            <p class="alert-text" style="color:#475569; margin-top: 8px;">
+              ยื่นแบบและชำระได้ตั้งแต่ <u>1 มกราคม - 31 มีนาคม 2569</u>
+              <br>
+              <a href="https://drive.google.com/file/d/1ecVNYXbsT0TgIrxN5LvlENHARIHEj-HE/view?usp=sharing" target="_blank" style="color: #3b82f6; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 8px;">
+                <i class="fas fa-external-link-alt"></i> ประกาศเทศบาลนครเชียงใหม่
+              </a>
+            </p>
+          </div>
+        </section>
+
+        <!-- Speaker Alert -->
+        <section class="alert-bar" style="background: linear-gradient(135deg, #e95e5e, #871919); margin: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-radius: 16px;">
+          <div class="alert-bar-content">
+            <p><strong style="font-size: 16px;"><i class="fas fa-volume-up"></i> การขออนุญาตใช้เครื่องขยายเสียง:</strong></p>
+            <p class="alert-text" style="margin-top: 8px;">
+              ต้องขออนุญาตล่วงหน้าก่อนการโฆษณาไม่น้อยกว่า <u>3 วันทำการ</u>
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- Section 2: Quick Links -->
       <div class="h-grid h-row-1">
         <!-- <a href="#resident" class="h-quick-card qc-primary">
           <div class="h-quick-icon"><i class="fas fa-search-dollar"></i></div>
@@ -225,7 +263,7 @@
         </a>
       </div>
 
-      <!-- Section 2: Main Dashboard Split -->
+      <!-- Section 3: Main Dashboard Split -->
       <div class="h-grid h-row-2">
         
         <!-- Left Col: Calendar -->
@@ -270,46 +308,10 @@
           </div>
         </div>
 
-        <!-- Right Col: Alerts & Contact -->
+        <!-- Right Col: Contact -->
         <div style="display: flex; flex-direction: column; gap: 24px;">
-          
-          <!-- Land Tax Dynamic Alert -->
-          <section class="alert-bar" style="background: linear-gradient(135deg, #0284c7, #0369a1); margin: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-radius: 16px;">
-            <div class="alert-bar-content">
-              <p><strong style="font-size: 16px;"><i class="fas fa-home"></i> ภาษีที่ดินและสิ่งปลูกสร้าง:</strong></p>
-              <!-- Inject script tag logic right here so it works even if router doesn't call it -->
-              <p class="alert-text" id="land-tax-dynamic-alert" style="margin-top: 8px;">
-                กำลังโหลดข้อมูล...
-              </p>
-            </div>
-          </section>
-
-          <!-- Sign Tax Alert -->
-          <section class="alert-bar" style="margin: 0; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; background: #fff; color: #334155;">
-            <div class="alert-bar-content">
-              <p><strong style="font-size: 16px; color:#1e293b;"><i class="fas fa-bullhorn" style="color:#f59e0b;"></i> แจ้งเตือนภาษีป้าย:</strong></p>
-              <p class="alert-text" style="color:#475569; margin-top: 8px;">
-                ยื่นแบบและชำระได้ตั้งแต่ <u>1 มกราคม - 31 มีนาคม 2569</u>
-                <br>
-                <a href="https://drive.google.com/file/d/1ecVNYXbsT0TgIrxN5LvlENHARIHEj-HE/view?usp=sharing" target="_blank" style="color: #3b82f6; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 8px;">
-                  <i class="fas fa-external-link-alt"></i> ประกาศเทศบาลนครเชียงใหม่
-                </a>
-              </p>
-            </div>
-          </section>
-
-          <!-- Speaker Alert -->
-          <section class="alert-bar" style="background: linear-gradient(135deg, #e95e5e, #871919); margin: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-radius: 16px;">
-            <div class="alert-bar-content">
-              <p><strong style="font-size: 16px;"><i class="fas fa-volume-up"></i> การขออนุญาตใช้เครื่องขยายเสียง:</strong></p>
-              <p class="alert-text" style="margin-top: 8px;">
-                ต้องขออนุญาตล่วงหน้าก่อนการโฆษณาไม่น้อยกว่า <u>3 วันทำการ</u>
-              </p>
-            </div>
-          </section>
-
           <!-- Contact Info Box -->
-          <div class="h-box">
+          <div class="h-box" style="height: 100%;">
             <div class="h-box-title">
               <div style="background: #eff6ff; padding: 10px; border-radius: 12px; color: #3b82f6;">
                 <i class="fas fa-headset"></i>
@@ -341,8 +343,8 @@
               </li>
             </ul>
           </div>
-
         </div>
+
       </div>
     </main>
   </body>
