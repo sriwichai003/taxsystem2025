@@ -2,511 +2,341 @@
 <html lang="th">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ระบบข่าวสาร งานจัดเก็บรายได้ศรีวิชัย</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
     <main class="container">
       <style>
-        /* CSS variables for consistent, premium theming */
-        :root {
-          --surface-color: #ffffff;
-          --bg-color: #f8fafc;
-          --primary-gradient: linear-gradient(135deg, #2563eb, #1d4ed8);
-          --success-gradient: linear-gradient(135deg, #10b981, #059669);
-          --warning-gradient: linear-gradient(135deg, #f59e0b, #d97706);
-          --danger-gradient: linear-gradient(135deg, #ef4444, #dc2626);
-          --text-main: #1e293b;
-          --text-muted: #64748b;
-          --border-color: #e2e8f0;
-          --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-          --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-          --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-          --shadow-hover: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
-          --radius-md: 12px;
-          --radius-lg: 20px;
-          --transition-all: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Base animations */
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fade-up {
-          animation: fadeUp 0.6s ease-out forwards;
-        }
-
-        /* Layout Grid */
-        .h-layout {
+        .h-grid {
           display: grid;
           gap: 24px;
-          margin-bottom: 32px;
+          margin-bottom: 24px;
         }
-        .h-layout-top {
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        .h-row-1 {
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         }
-        .h-layout-main {
-          grid-template-columns: 1.2fr 1fr;
+        .h-row-2 {
+          grid-template-columns: 1.5fr 1fr;
         }
-        @media (max-width: 1024px) {
-          .h-layout-main {
+        @media (max-width: 992px) {
+          .h-row-2 {
             grid-template-columns: 1fr;
           }
         }
 
-        /* Premium Quick Cards */
+        /* Quick Link Cards */
         .h-quick-card {
-          background: var(--surface-color);
-          border-radius: var(--radius-lg);
-          padding: 24px;
+          background: white;
+          border-radius: 16px;
+          padding: 20px;
           display: flex;
-          align-items: flex-start;
-          gap: 20px;
-          box-shadow: var(--shadow-md);
-          border: 1px solid rgba(255, 255, 255, 0.7);
-          transition: var(--transition-all);
+          align-items: center;
+          gap: 16px;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+          border: 1px solid #f1f5f9;
+          transition: all 0.3s ease;
           text-decoration: none;
           color: inherit;
-          position: relative;
-          overflow: hidden;
-          z-index: 1;
         }
-        
-        .h-quick-card::before {
-          content: '';
-          position: absolute;
-          top: 0; left: 0; right: 0; height: 4px;
-          background: var(--primary-gradient);
-          opacity: 0;
-          transition: var(--transition-all);
-        }
-        
-        .h-quick-card.qc-success::before { background: var(--success-gradient); }
-        .h-quick-card.qc-warning::before { background: var(--warning-gradient); }
-        
         .h-quick-card:hover {
-          transform: translateY(-5px) scale(1.02);
-          box-shadow: var(--shadow-hover);
-        }
-        .h-quick-card:hover::before {
-          opacity: 1;
-        }
-        
-        .h-quick-icon-wrap {
-          width: 64px;
-          height: 64px;
-          border-radius: 16px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 28px;
-          flex-shrink: 0;
-          box-shadow: inset 0 2px 4px rgba(255,255,255,0.5), var(--shadow-sm);
-        }
-        .qc-success .h-quick-icon-wrap { background: #d1fae5; color: #059669; }
-        .qc-warning .h-quick-icon-wrap { background: #fef3c7; color: #d97706; }
-        
-        .h-quick-content h3 {
-          margin: 0 0 8px 0;
-          font-size: 18px;
-          color: var(--text-main);
-          font-weight: 700;
-        }
-        .h-quick-content p {
-          margin: 0;
-          font-size: 14px;
-          color: var(--text-muted);
-          line-height: 1.5;
-        }
-
-        /* Glass Panel Box */
-        .h-glass-panel {
-          background: var(--surface-color);
-          border-radius: var(--radius-lg);
-          padding: 28px;
-          box-shadow: var(--shadow-lg);
-          border: 1px solid rgba(226, 232, 240, 0.8);
-          backdrop-filter: blur(10px);
-        }
-        .h-panel-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 24px;
-          flex-wrap: wrap;
-          gap: 16px;
-        }
-        .h-panel-title {
-          font-size: 20px;
-          font-weight: 700;
-          color: var(--text-main);
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin: 0;
-        }
-        .h-panel-icon {
-          width: 44px;
-          height: 44px;
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 20px;
-        }
-        .icon-cal { background: #fee2e2; color: #dc2626; }
-        .icon-contact { background: #dbeafe; color: #2563eb; }
-
-        /* Modern Calendar */
-        .cal-wrapper {
-          overflow-x: auto;
-          border-radius: var(--radius-md);
-          border: 1px solid var(--border-color);
-          background: #fff;
-        }
-        .cal-table {
-          width: 100%;
-          border-collapse: separate;
-          border-spacing: 0;
-          min-width: 450px;
-        }
-        .cal-table th {
-          background: #f8fafc;
-          padding: 14px;
-          color: var(--text-muted);
-          font-size: 14px;
-          font-weight: 600;
-          text-align: center;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          border-bottom: 2px solid var(--border-color);
-        }
-        .cal-table td {
-          border-bottom: 1px solid #f1f5f9;
-          border-right: 1px solid #f1f5f9;
-          height: 90px;
-          vertical-align: top;
-          padding: 10px;
-          font-size: 15px;
-          position: relative;
-          transition: var(--transition-all);
-        }
-        .cal-table td:last-child { border-right: none; }
-        .cal-table tr:last-child td { border-bottom: none; }
-        .cal-table td:hover:not(.other-month) { 
-          background: #f8fafc;
-          cursor: pointer;
-        }
-        
-        /* Calendar Dynamic Classes */
-        .date-num { 
-          font-weight: 700; 
-          color: var(--text-main);
-          display: inline-block;
-          margin-bottom: 4px;
-          width: 28px;
-          height: 28px;
-          line-height: 28px;
-          text-align: center;
-          border-radius: 50%;
-        }
-        .is-holiday { 
-          background-color: #fffaf9 !important; 
-        }
-        .is-holiday .date-num {
-          background: #fee2e2;
-          color: #dc2626;
-        }
-        .is-weekend { background-color: #fafafa; }
-        .holiday-text {
-          font-size: 11.5px;
-          color: #ef4444;
-          line-height: 1.3;
-          display: block;
-          font-weight: 500;
-          padding: 2px 4px;
-          background: #fef2f2;
-          border-radius: 4px;
-          border-left: 2px solid #ef4444;
-          margin-top: 4px;
-        }
-        .other-month { 
-          color: #cbd5e1 !important; 
-          background: #fcfcfc;
-        }
-        .other-month .date-num {
-          color: #cbd5e1;
-        }
-
-        /* Calendar Controls */
-        .cal-nav-btn {
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          border: 1px solid var(--border-color);
-          background: #fff;
-          cursor: pointer;
-          transition: var(--transition-all);
-          color: var(--text-muted);
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .cal-nav-btn:hover {
-          background: #f1f5f9;
-          color: var(--text-main);
+          transform: translateY(-4px);
+          box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.08);
           border-color: #cbd5e1;
-          transform: scale(1.05);
         }
-        
-        .cal-legend {
+        .h-quick-icon {
+          width: 56px;
+          height: 56px;
+          border-radius: 14px;
           display: flex;
-          justify-content: space-between;
           align-items: center;
-          margin-top: 16px;
-          font-size: 13px;
-          color: var(--text-muted);
-          padding: 0 8px;
+          justify-content: center;
+          font-size: 24px;
+          flex-shrink: 0;
         }
-
-        /* Alerts Column */
-        .alerts-stack {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-        }
-        .premium-alert {
-          border-radius: var(--radius-md);
-          padding: 20px;
-          color: #fff;
-          box-shadow: var(--shadow-md);
-          position: relative;
-          overflow: hidden;
-          transition: var(--transition-all);
-        }
-        .premium-alert:hover {
-          transform: translateY(-3px);
-          box-shadow: var(--shadow-lg);
-        }
-        .premium-alert::after {
-          content: '';
-          position: absolute;
-          top: -50%; left: -50%;
-          width: 200%; height: 200%;
-          background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
-          opacity: 0;
-          transition: opacity 0.3s;
-          pointer-events: none;
-        }
-        .premium-alert:hover::after { opacity: 1; }
-        
-        .alert-blue { background: var(--primary-gradient); }
-        .alert-orange { background: linear-gradient(135deg, #f97316, #c2410c); }
-        .alert-red { background: var(--danger-gradient); }
-        
-        .alert-title {
+        .h-quick-card h3 {
+          margin: 0 0 4px 0;
           font-size: 16px;
+          color: #1e293b;
           font-weight: 700;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          margin-bottom: 8px;
         }
-        .alert-body {
-          font-size: 14.5px;
-          line-height: 1.6;
-          opacity: 0.95;
+        .h-quick-card p {
+          margin: 0;
+          font-size: 13.5px;
+          color: #64748b;
         }
 
-        /* Contact Info */
-        .contact-list {
+        /* Colors */
+        .qc-primary .h-quick-icon { background: #eff6ff; color: #3b82f6; }
+        .qc-success .h-quick-icon { background: #ecfdf5; color: #10b981; }
+        .qc-warning .h-quick-icon { background: #fffbeb; color: #f59e0b; }
+        .qc-purple .h-quick-icon { background: #faf5ff; color: #a855f7; }
+
+        /* Dashboard Box */
+        .h-box {
+          background: white;
+          border-radius: 16px;
+          padding: 24px;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+          border: 1px solid #f1f5f9;
+          box-sizing: border-box;
+        }
+        .h-box-title {
+          font-size: 18px;
+          font-weight: 700;
+          color: #1e293b;
+          margin-bottom: 20px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        /* Contact List */
+        .h-contact-list {
           list-style: none;
           padding: 0;
           margin: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
         }
-        .contact-item {
+        .h-contact-list li {
           display: flex;
           align-items: flex-start;
           gap: 16px;
-          padding: 12px;
-          border-radius: var(--radius-md);
-          transition: background 0.2s;
-        }
-        .contact-item:hover {
-          background: #f8fafc;
-        }
-        .contact-icon-wrap {
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-          background: #f1f5f9;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: var(--text-muted);
-          font-size: 20px;
-          flex-shrink: 0;
-        }
-        .contact-info {
-          flex: 1;
-        }
-        .contact-info strong {
-          display: block;
-          color: var(--text-main);
-          font-size: 15px;
-          margin-bottom: 4px;
-        }
-        .contact-info span {
-          color: var(--text-muted);
+          padding: 16px 0;
+          border-bottom: 1px solid #f1f5f9;
+          color: #475569;
           font-size: 14px;
           line-height: 1.5;
         }
-        
-        /* Custom Line Button */
-        .btn-line-premium {
-          background: linear-gradient(135deg, #00c300, #009e00);
+        .h-contact-list li:last-child {
+          border-bottom: none;
+          padding-bottom: 0;
+        }
+        .h-contact-list li:first-child {
+          padding-top: 0;
+        }
+        .h-contact-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: #f8fafc;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #64748b;
+          font-size: 18px;
+          flex-shrink: 0;
+        }
+        .btn-line {
+          background: #00B900;
           color: white;
-          padding: 10px 20px;
+          padding: 8px 16px;
           border-radius: 50px;
           text-decoration: none;
-          font-size: 15px;
+          font-size: 14px;
           font-weight: 600;
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          transition: var(--transition-all);
-          box-shadow: 0 4px 10px rgba(0, 195, 0, 0.3);
-          margin-top: 8px;
+          transition: opacity 0.2s;
+          box-shadow: 0 2px 4px rgba(0, 185, 0, 0.3);
         }
-        .btn-line-premium:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 15px rgba(0, 195, 0, 0.4);
+        .btn-line:hover {
+          opacity: 0.9;
           color: white;
         }
+
+        /* Calendar Styles override */
+        .cal-table {
+          width: 100%;
+          border-collapse: collapse;
+          table-layout: fixed;
+          min-width: 300px;
+        }
+        .cal-table th {
+          background: #f8fafc;
+          padding: 12px;
+          border-bottom: 2px solid #e2e8f0;
+          color: #475569;
+          font-size: 14px;
+          text-align: center;
+        }
+        .cal-table td {
+          border: 1px solid #f1f5f9;
+          height: 80px;
+          vertical-align: top;
+          padding: 8px;
+          font-size: 15px;
+          position: relative;
+          transition: background 0.2s;
+        }
+        .cal-table td:hover { background: #f8fafc; }
+        .is-holiday { background-color: #fef2f2 !important; }
+        .is-weekend { background-color: #fafafa; }
+        .date-num { font-weight: 700; color: #1e293b; }
+        .holiday-text {
+          font-size: 11.5px;
+          color: #ef4444;
+          line-height: 1.2;
+          margin-top: 4px;
+          display: block;
+          overflow: hidden;
+        }
+        .other-month { color: #cbd5e1 !important; }
       </style>
 
-      <!-- Row 1: Quick Links -->
-      <div class="h-layout h-layout-top animate-fade-up">
+      <!-- Section 1: Quick Links -->
+      <div class="h-grid h-row-1">
+        <!-- <a href="#resident" class="h-quick-card qc-primary">
+          <div class="h-quick-icon"><i class="fas fa-search-dollar"></i></div>
+          <div>
+            <h3>ตรวจสอบข้อมูลภาษี</h3>
+            <p>เช็คยอดค้างชำระและประวัติ</p>
+          </div>
+        </a> -->
         <a href="#payment" class="h-quick-card qc-success">
-          <div class="h-quick-icon-wrap"><i class="fas fa-qrcode"></i></div>
-          <div class="h-quick-content">
+          <div class="h-quick-icon"><i class="fas fa-qrcode"></i></div>
+          <div>
             <h3>ช่องทางการชำระเงิน</h3>
-            <p>สแกน QR Code หรือโอนเงินผ่านบัญชีธนาคารเพื่อความรวดเร็ว</p>
+            <p>สแกน QR Code / โอนเงิน</p>
           </div>
         </a>
+        <!-- <a href="#download" class="h-quick-card qc-purple">
+          <div class="h-quick-icon"><i class="fas fa-file-download"></i></div>
+          <div>
+            <h3>ดาวน์โหลดแบบฟอร์มต่างๆ</h3>
+            <p>เช่น หนังสือขอผ่อนชำระฯ และอื่นๆ</p>
+          </div>
+        </a> -->
         <a href="#knowledgeLandTax" class="h-quick-card qc-warning">
-          <div class="h-quick-icon-wrap"><i class="fas fa-lightbulb"></i></div>
-          <div class="h-quick-content">
+          <div class="h-quick-icon"><i class="fas fa-lightbulb"></i></div>
+          <div>
             <h3>ความรู้เรื่องภาษี</h3>
-            <p>ศึกษาอัตราภาษีที่ดินและสิ่งปลูกสร้าง ข้อมูลพื้นฐานที่ควรรู้</p>
+            <p>อัตราภาษีที่ดินและสิ่งปลูกสร้าง</p>
           </div>
         </a>
       </div>
 
-      <!-- Row 2: Main Content Split -->
-      <div class="h-layout h-layout-main animate-fade-up" style="animation-delay: 0.1s;">
+      <!-- Section 2: Main Dashboard Split -->
+      <div class="h-grid h-row-2">
         
-        <!-- Left Column: Calendar -->
-        <div class="h-glass-panel">
-          <div class="h-panel-header">
-            <h2 class="h-panel-title">
-              <div class="h-panel-icon icon-cal"><i class="fas fa-calendar-alt"></i></div>
-              <span id="calendar-title">วันหยุดราชการ 2569</span>
-            </h2>
-            <div style="display: flex; gap: 8px;">
-              <button class="cal-nav-btn" onclick="prevMonth()" title="เดือนก่อนหน้า"><i class="fas fa-chevron-left"></i></button>
-              <button class="cal-nav-btn" onclick="nextMonth()" title="เดือนถัดไป"><i class="fas fa-chevron-right"></i></button>
+        <!-- Left Col: Calendar -->
+        <div class="h-box" style="padding: 0; display: flex; flex-direction: column; overflow: hidden;">
+          <div style="padding: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 10px;">
+              <div style="display: flex; align-items: center; gap: 12px; color: #d63031;">
+                <div style="background: #fef2f2; padding: 10px; border-radius: 12px;">
+                  <i class="fas fa-calendar-alt" style="font-size: 20px;"></i>
+                </div>
+                <h2 id="calendar-title" style="margin: 0; font-size: 19px; font-weight: 700; color: #1e293b;">วันหยุดราชการ 2569</h2>
+              </div>
+              <div style="display: flex; gap: 8px">
+                <button onclick="prevMonth()" style="padding: 8px 16px; border-radius: 50px; border: 1px solid #e2e8f0; background: #fff; cursor: pointer; transition: background 0.2s; color: #475569;"><i class="fas fa-chevron-left"></i></button>
+                <button onclick="nextMonth()" style="padding: 8px 16px; border-radius: 50px; border: 1px solid #e2e8f0; background: #fff; cursor: pointer; transition: background 0.2s; color: #475569;"><i class="fas fa-chevron-right"></i></button>
+              </div>
             </div>
-          </div>
 
-          <div class="cal-wrapper">
-            <table class="cal-table">
-              <thead>
-                <tr>
-                  <th style="color: #ef4444;">อา.</th>
-                  <th>จ.</th>
-                  <th>อ.</th>
-                  <th>พ.</th>
-                  <th>พฤ.</th>
-                  <th>ศ.</th>
-                  <th style="color: #ef4444;">ส.</th>
-                </tr>
-              </thead>
-              <tbody id="calendar-body"></tbody>
-            </table>
-          </div>
-
-          <div class="cal-legend">
-            <div style="display: flex; gap: 8px; align-items: center;">
-              <span style="width:12px; height:12px; background:#fee2e2; border-radius:3px; display:inline-block;"></span> 
-              <span>วันหยุดราชการ</span>
+            <div style="overflow-x: auto; border-radius: 12px; border: 1px solid #e2e8f0;">
+              <table class="cal-table">
+                <thead>
+                  <tr>
+                    <th style="color: #ef4444;">อา.</th>
+                    <th>จ.</th>
+                    <th>อ.</th>
+                    <th>พ.</th>
+                    <th>พฤ.</th>
+                    <th>ศ.</th>
+                    <th style="color: #ef4444;">ส.</th>
+                  </tr>
+                </thead>
+                <tbody id="calendar-body"></tbody>
+              </table>
             </div>
-            <span id="current-month-display" style="font-weight: 700; color: #2563eb; font-size: 15px;"></span>
+
+            <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #64748b;">
+              <div style="display: flex; gap: 10px; align-items: center;">
+                <span style="display:flex; align-items:center; gap:6px;"><span style="display:inline-block; width:16px; height:16px; background:#fef2f2; border:1px solid #fecaca; border-radius:4px;"></span> วันหยุดราชการ</span>
+              </div>
+              <span id="current-month-display" style="font-weight: bold; color: #3b82f6; font-size: 15px;"></span>
+            </div>
           </div>
         </div>
 
-        <!-- Right Column: Alerts & Contact -->
-        <div class="alerts-stack">
+        <!-- Right Col: Alerts & Contact -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
           
-          <!-- Land Tax Alert -->
-          <div class="premium-alert alert-blue">
-            <div class="alert-title"><i class="fas fa-home"></i> ภาษีที่ดินและสิ่งปลูกสร้าง</div>
-            <div class="alert-body" id="land-tax-dynamic-alert">
-              กำลังโหลดข้อมูล...
+          <!-- Land Tax Dynamic Alert -->
+          <section class="alert-bar" style="background: linear-gradient(135deg, #0284c7, #0369a1); margin: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-radius: 16px;">
+            <div class="alert-bar-content">
+              <p><strong style="font-size: 16px;"><i class="fas fa-home"></i> ภาษีที่ดินและสิ่งปลูกสร้าง:</strong></p>
+              <!-- Inject script tag logic right here so it works even if router doesn't call it -->
+              <p class="alert-text" id="land-tax-dynamic-alert" style="margin-top: 8px;">
+                กำลังโหลดข้อมูล...
+              </p>
             </div>
-          </div>
+          </section>
 
           <!-- Sign Tax Alert -->
-          <div class="premium-alert alert-orange">
-            <div class="alert-title"><i class="fas fa-bullhorn"></i> แจ้งเตือนภาษีป้าย</div>
-            <div class="alert-body">
-              ยื่นแบบและชำระได้ตั้งแต่ <b>1 ม.ค. - 31 มี.ค. 2569</b>
-              <div style="margin-top: 10px;">
-                <a href="https://drive.google.com/file/d/1ecVNYXbsT0TgIrxN5LvlENHARIHEj-HE/view?usp=sharing" target="_blank" style="color: #fff; text-decoration: underline; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 8px; transition: background 0.2s;">
+          <section class="alert-bar" style="margin: 0; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; background: #fff; color: #334155;">
+            <div class="alert-bar-content">
+              <p><strong style="font-size: 16px; color:#1e293b;"><i class="fas fa-bullhorn" style="color:#f59e0b;"></i> แจ้งเตือนภาษีป้าย:</strong></p>
+              <p class="alert-text" style="color:#475569; margin-top: 8px;">
+                ยื่นแบบและชำระได้ตั้งแต่ <u>1 มกราคม - 31 มีนาคม 2569</u>
+                <br>
+                <a href="https://drive.google.com/file/d/1ecVNYXbsT0TgIrxN5LvlENHARIHEj-HE/view?usp=sharing" target="_blank" style="color: #3b82f6; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 8px;">
                   <i class="fas fa-external-link-alt"></i> ประกาศเทศบาลนครเชียงใหม่
                 </a>
-              </div>
+              </p>
             </div>
-          </div>
+          </section>
 
           <!-- Speaker Alert -->
-          <div class="premium-alert alert-red">
-            <div class="alert-title"><i class="fas fa-volume-up"></i> การขออนุญาตใช้เครื่องขยายเสียง</div>
-            <div class="alert-body">
-              ต้องขออนุญาตล่วงหน้าก่อนการโฆษณาไม่น้อยกว่า <b>3 วันทำการ</b>
+          <section class="alert-bar" style="background: linear-gradient(135deg, #e95e5e, #871919); margin: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-radius: 16px;">
+            <div class="alert-bar-content">
+              <p><strong style="font-size: 16px;"><i class="fas fa-volume-up"></i> การขออนุญาตใช้เครื่องขยายเสียง:</strong></p>
+              <p class="alert-text" style="margin-top: 8px;">
+                ต้องขออนุญาตล่วงหน้าก่อนการโฆษณาไม่น้อยกว่า <u>3 วันทำการ</u>
+              </p>
             </div>
-          </div>
+          </section>
 
-          <!-- Contact Box -->
-          <div class="h-glass-panel" style="padding: 24px; margin-top: auto;">
-            <h2 class="h-panel-title" style="margin-bottom: 20px; font-size: 18px;">
-              <div class="h-panel-icon icon-contact" style="width: 36px; height: 36px; font-size: 16px;"><i class="fas fa-headset"></i></div>
+          <!-- Contact Info Box -->
+          <div class="h-box">
+            <div class="h-box-title">
+              <div style="background: #eff6ff; padding: 10px; border-radius: 12px; color: #3b82f6;">
+                <i class="fas fa-headset"></i>
+              </div>
               ติดต่อสอบถาม
-            </h2>
-            <ul class="contact-list">
-              <li class="contact-item">
-                <div class="contact-icon-wrap"><i class="fas fa-phone-alt"></i></div>
-                <div class="contact-info">
-                  <strong>จัดเก็บรายได้ศรีวิชัย</strong>
-                  <span>065-551-3869 (ชั่วคราว)</span>
+            </div>
+            <ul class="h-contact-list">
+              <li>
+                <div class="h-contact-icon"><i class="fas fa-phone-alt"></i></div>
+                <div>
+                  <strong style="display:block; color:#1e293b; margin-bottom: 4px;">จัดเก็บรายได้ศรีวิชัย</strong>
+                  065-551-3869 (ชั่วคราว)
                 </div>
               </li>
-              <li class="contact-item">
-                <div class="contact-icon-wrap"><i class="far fa-clock"></i></div>
-                <div class="contact-info">
-                  <strong>เวลาทำการ</strong>
-                  <span>จันทร์ - ศุกร์ | 08:30 - 16:30 น.<br>(หยุดวันนักขัตฤกษ์)</span>
+              <li>
+                <div class="h-contact-icon"><i class="far fa-clock"></i></div>
+                <div>
+                  <strong style="display:block; color:#1e293b; margin-bottom: 4px;">เวลาทำการ</strong>
+                  จันทร์ - ศุกร์ | 08:30 - 16:30 น.
+                  <br>(หยุดวันนักขัตฤกษ์)
                 </div>
               </li>
-              <li class="contact-item">
-                <div class="contact-icon-wrap" style="background:#dcfce7; color:#16a34a;"><i class="fab fa-line"></i></div>
-                <div class="contact-info">
-                  <strong>LINE Official</strong>
-                  <a href="#" class="btn-line-premium"><i class="fab fa-line" style="font-size: 18px;"></i> @083yrhbl</a>
+              <li>
+                <div class="h-contact-icon" style="background:#ecfdf5; color:#10b981;"><i class="fab fa-line"></i></div>
+                <div>
+                  <strong style="display:block; color:#1e293b; margin-bottom: 6px;">LINE Official</strong>
+                  <a href="#" class="btn-line"><i class="fab fa-line" style="font-size: 18px;"></i> @083yrhbl</a>
                 </div>
               </li>
             </ul>
