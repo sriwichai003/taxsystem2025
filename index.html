@@ -70,7 +70,7 @@
     <div id="announcementModal" class="modal-overlay">
       <div class="modal-content">
         <button id="closeModalBtn" class="modal-close"><i class="fas fa-times"></i></button>
-        <img src="images/image_cms_fjklmnqrstv2.jpg" alt="ประกาศแจ้งเตือน" />
+        <img id="announcementImg" src="images/image_cms_fjklmnqrstv2.jpg" alt="ประกาศแจ้งเตือน" />
       </div>
     </div>
 
@@ -287,6 +287,13 @@
         // Show announcement modal once per session
         const modal = document.getElementById("announcementModal");
         const closeBtn = document.getElementById("closeModalBtn");
+        const announcementImg = document.getElementById("announcementImg");
+        
+        const announcementImages = [
+          "images/image_cms_fjklmnqrstv2.jpg",
+          "images/image_cms_agijpqw35678.jpg"
+        ];
+        let currentImageIndex = 0;
         
         if (!sessionStorage.getItem("announcementShown")) {
           setTimeout(() => {
@@ -295,14 +302,23 @@
           sessionStorage.setItem("announcementShown", "true");
         }
         
+        function nextAnnouncement() {
+          currentImageIndex++;
+          if (currentImageIndex < announcementImages.length) {
+            announcementImg.src = announcementImages[currentImageIndex];
+          } else {
+            modal.classList.remove("show");
+          }
+        }
+        
         closeBtn.addEventListener("click", () => {
-          modal.classList.remove("show");
+          nextAnnouncement();
         });
         
         // Optional: click outside to close
         modal.addEventListener("click", (e) => {
           if (e.target === modal) {
-            modal.classList.remove("show");
+            nextAnnouncement();
           }
         });
       });
