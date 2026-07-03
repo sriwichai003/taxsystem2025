@@ -12,6 +12,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
@@ -191,44 +192,65 @@
           overflow: hidden;
         }
         .other-month { color: #cbd5e1 !important; }
+
+        /* Swiper custom styles */
+        .swiper-pagination-bullet {
+          background: #cbd5e1;
+          opacity: 1;
+          transition: all 0.3s ease;
+        }
+        .swiper-pagination-bullet-active {
+          background: #4f46e5;
+          width: 20px;
+          border-radius: 4px;
+        }
       </style>
 
       <!-- Section 1: Alerts / Notifications -->
-      <div class="h-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-        <!-- Land Tax Dynamic Alert -->
-        <section class="alert-bar" style="background: linear-gradient(135deg, #0284c7, #0369a1); margin: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-radius: 16px;">
-          <div class="alert-bar-content">
-            <p><strong style="font-size: 16px;"><i class="fas fa-home"></i> ภาษีที่ดินและสิ่งปลูกสร้าง:</strong></p>
-            <!-- Inject script tag logic right here so it works even if router doesn't call it -->
-            <p class="alert-text" id="land-tax-dynamic-alert" style="margin-top: 8px;">
-              กำลังโหลดข้อมูล...
-            </p>
+      <div class="swiper alertSwiper" style="padding-bottom: 36px; margin-bottom: 24px;">
+        <div class="swiper-wrapper">
+          <!-- Land Tax Dynamic Alert -->
+          <div class="swiper-slide" style="height: auto;">
+            <section class="alert-bar" style="background: linear-gradient(135deg, #0284c7, #0369a1); margin: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-radius: 16px; height: 100%; box-sizing: border-box;">
+              <div class="alert-bar-content">
+                <p><strong style="font-size: 16px;"><i class="fas fa-home"></i> ภาษีที่ดินและสิ่งปลูกสร้าง:</strong></p>
+                <!-- Inject script tag logic right here so it works even if router doesn't call it -->
+                <p class="alert-text" id="land-tax-dynamic-alert" style="margin-top: 8px;">
+                  กำลังโหลดข้อมูล...
+                </p>
+              </div>
+            </section>
           </div>
-        </section>
 
-        <!-- Sign Tax Alert -->
-        <section class="alert-bar" style="margin: 0; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; background: #fff; color: #334155;">
-          <div class="alert-bar-content">
-            <p><strong style="font-size: 16px; color:#1e293b;"><i class="fas fa-bullhorn" style="color:#f59e0b;"></i> แจ้งเตือนภาษีป้าย:</strong></p>
-            <p class="alert-text" style="color:#475569; margin-top: 8px;">
-              ยื่นแบบและชำระได้ตั้งแต่ <u>1 มกราคม - 31 มีนาคม 2569</u>
-              <br>
-              <a href="https://drive.google.com/file/d/1ecVNYXbsT0TgIrxN5LvlENHARIHEj-HE/view?usp=sharing" target="_blank" style="color: #3b82f6; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 8px;">
-                <i class="fas fa-external-link-alt"></i> ประกาศเทศบาลนครเชียงใหม่
-              </a>
-            </p>
+          <!-- Sign Tax Alert -->
+          <div class="swiper-slide" style="height: auto;">
+            <section class="alert-bar" style="background: linear-gradient(135deg, #f97316, #ea580c); margin: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-radius: 16px; height: 100%; box-sizing: border-box; color: white;">
+              <div class="alert-bar-content">
+                <p><strong style="font-size: 16px;"><i class="fas fa-bullhorn"></i> แจ้งเตือนภาษีป้าย:</strong></p>
+                <p class="alert-text" style="margin-top: 8px;">
+                  ยื่นแบบและชำระได้ตั้งแต่ <u>1 มกราคม - 31 มีนาคม 2569</u>
+                  <br>
+                  <a href="https://drive.google.com/file/d/1ecVNYXbsT0TgIrxN5LvlENHARIHEj-HE/view?usp=sharing" target="_blank" style="color: white; text-decoration: underline; font-weight: 600; display: inline-block; margin-top: 8px;">
+                    <i class="fas fa-external-link-alt"></i> ประกาศเทศบาลนครเชียงใหม่
+                  </a>
+                </p>
+              </div>
+            </section>
           </div>
-        </section>
 
-        <!-- Speaker Alert -->
-        <section class="alert-bar" style="background: linear-gradient(135deg, #e95e5e, #871919); margin: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-radius: 16px;">
-          <div class="alert-bar-content">
-            <p><strong style="font-size: 16px;"><i class="fas fa-volume-up"></i> การขออนุญาตใช้เครื่องขยายเสียง:</strong></p>
-            <p class="alert-text" style="margin-top: 8px;">
-              ต้องขออนุญาตล่วงหน้าก่อนการโฆษณาไม่น้อยกว่า <u>3 วันทำการ</u>
-            </p>
+          <!-- Speaker Alert -->
+          <div class="swiper-slide" style="height: auto;">
+            <section class="alert-bar" style="background: linear-gradient(135deg, #e95e5e, #871919); margin: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-radius: 16px; height: 100%; box-sizing: border-box;">
+              <div class="alert-bar-content">
+                <p><strong style="font-size: 16px;"><i class="fas fa-volume-up"></i> การขออนุญาตใช้เครื่องขยายเสียง:</strong></p>
+                <p class="alert-text" style="margin-top: 8px;">
+                  ต้องขออนุญาตล่วงหน้าก่อนการโฆษณาไม่น้อยกว่า <u>3 วันทำการ</u>
+                </p>
+              </div>
+            </section>
           </div>
-        </section>
+        </div>
+        <div class="swiper-pagination"></div>
       </div>
 
       <!-- Section 2: Quick Links -->
@@ -347,5 +369,20 @@
 
       </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      var swiper = new Swiper(".alertSwiper", {
+        slidesPerView: 1,
+        spaceBetween: 24,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+      });
+    </script>
   </body>
 </html>
