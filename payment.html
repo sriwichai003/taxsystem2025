@@ -1,8 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>เธเนเธญเธเธ—เธฒเธเธเธฒเธฃเธเธณเธฃเธฐเน€เธเธดเธ - เน€เธ—เธจเธเธฒเธฅเธเธเธฃเน€เธเธตเธขเธเนเธซเธกเน</title>
+  <title>ช่องทางการชำระเงิน - เทศบาลนครเชียงใหม่</title>
 </head>
 <body>
   <main class="container">
@@ -313,25 +313,25 @@
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <i class="fas fa-university" style="display:none; font-size: 32px; color: #0284c7;"></i>
           </div>
-          <h2 class="bank-title">เธเธเธฒเธเธฒเธฃเธเธฃเธธเธเนเธ—เธข</h2>
-          <p class="account-type">เธเธฑเธเธเธตเธเธฃเธฐเนเธชเธฃเธฒเธขเธงเธฑเธ</p>
+          <h2 class="bank-title">ธนาคารกรุงไทย</h2>
+          <p class="account-type">บัญชีกระแสรายวัน</p>
         </div>
 
         <div class="payment-body">
           <div class="info-group">
-            <div class="info-label">เธเธทเนเธญเธเธฑเธเธเธต</div>
-            <div class="account-name">เน€เธ—เธจเธเธฒเธฅเธเธเธฃเน€เธเธตเธขเธเนเธซเธกเน</div>
+            <div class="info-label">ชื่อบัญชี</div>
+            <div class="account-name">เทศบาลนครเชียงใหม่</div>
           </div>
 
           <div class="info-group">
-            <div class="info-label">เน€เธฅเธเธเธฑเธเธเธตเธเธเธฒเธเธฒเธฃ</div>
+            <div class="info-label">เลขบัญชีธนาคาร</div>
             <div class="account-number-box">
               <span class="account-number">520-6-03825-3</span>
               <button class="btn-copy" onclick="
                 const btn = this;
                 navigator.clipboard.writeText('5206038253').then(function() {
                   const originalHTML = btn.innerHTML;
-                  btn.innerHTML = '<i class=\'fas fa-check\'></i> เธเธฑเธ”เธฅเธญเธเนเธฅเนเธง';
+                  btn.innerHTML = '<i class=\'fas fa-check\'></i> คัดลอกแล้ว';
                   btn.style.background = '#10b981';
                   btn.style.color = '#ffffff';
                   setTimeout(function() {
@@ -345,22 +345,22 @@
                     toast.classList.remove('show');
                   }, 3000);
                 }).catch(function(e) {
-                  alert('เนเธกเนเธชเธฒเธกเธฒเธฃเธ–เธเธฑเธ”เธฅเธญเธเนเธ”เน เธเธฃเธธเธ“เธฒเธ—เธณเธฃเธฒเธขเธเธฒเธฃเธ”เนเธงเธขเธ•เธเน€เธญเธ');
+                  alert('ไม่สามารถคัดลอกได้ กรุณาทำรายการด้วยตนเอง');
                 });
               ">
-                <i class="far fa-copy"></i> เธเธฑเธ”เธฅเธญเธ
+                <i class="far fa-copy"></i> คัดลอก
               </button>
             </div>
           </div>
 
-          <div class="divider">เธซเธฃเธทเธญ</div>
+          <div class="divider">หรือ</div>
 
           <div class="qr-wrapper">
             <div class="qr-box">
               <img src="assets/images/5206038253.jpg" alt="QR Code" class="qr-image">
             </div>
             <p class="qr-note">
-              <i class="fas fa-qrcode" style="color: #0ea5e9;"></i> เธชเนเธเธเน€เธเธทเนเธญเธเธณเธฃเธฐเน€เธเธดเธ
+              <i class="fas fa-qrcode" style="color: #0ea5e9;"></i> สแกนเพื่อชำระเงิน
             </p>
           </div>
         </div>
@@ -368,13 +368,13 @@
 
       <div style="text-align: center;">
         <a href="#home" class="k-back-btn">
-          <i class="fas fa-arrow-left"></i> เธขเนเธญเธเธเธฅเธฑเธเนเธเธซเธเนเธฒเธซเธฅเธฑเธ
+          <i class="fas fa-arrow-left"></i> ย้อนกลับไปหน้าหลัก
         </a>
       </div>
 
     </div>
     <div id="toastMessage" class="toast-notification">
-      <i class="fas fa-check-circle"></i> เธเธฑเธ”เธฅเธญเธเน€เธฅเธเธเธฑเธเธเธตเน€เธฃเธตเธขเธเธฃเนเธญเธขเนเธฅเนเธง
+      <i class="fas fa-check-circle"></i> คัดลอกเลขบัญชีเรียบร้อยแล้ว
     </div>
 
   </main>
