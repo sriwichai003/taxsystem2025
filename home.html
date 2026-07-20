@@ -204,6 +204,108 @@
           width: 20px;
           border-radius: 4px;
         }
+
+        /* Flip Clock */
+        .flip-clock {
+          display: flex;
+          gap: 16px;
+          justify-content: center;
+          align-items: center;
+          margin-top: 16px;
+        }
+        .flip-unit {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .flip-card {
+          position: relative;
+          width: 70px;
+          height: 90px;
+          background-color: #f8fafc;
+          border-radius: 8px;
+          font-size: 48px;
+          font-weight: 700;
+          color: #1e293b;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          box-shadow: 0 8px 16px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.5);
+          font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+          overflow: hidden;
+        }
+        .flip-card::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background-color: rgba(0,0,0,0.3);
+          margin-top: -1px;
+          box-shadow: 0 1px 0 rgba(255,255,255,0.5);
+          z-index: 2;
+        }
+        .flip-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 50%;
+          background: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
+          z-index: 1;
+        }
+        .flip-card span {
+          position: relative;
+          z-index: 3;
+          line-height: 1;
+        }
+        .flip-hinge-left {
+          position: absolute;
+          top: 50%;
+          left: -4px;
+          width: 6px;
+          height: 16px;
+          background-color: #cbd5e1;
+          margin-top: -8px;
+          border-radius: 4px;
+          box-shadow: inset 1px 1px 2px rgba(255,255,255,0.5), inset -1px -1px 2px rgba(0,0,0,0.2);
+          z-index: 4;
+        }
+        .flip-hinge-right {
+          position: absolute;
+          top: 50%;
+          right: -4px;
+          width: 6px;
+          height: 16px;
+          background-color: #cbd5e1;
+          margin-top: -8px;
+          border-radius: 4px;
+          box-shadow: inset 1px 1px 2px rgba(255,255,255,0.5), inset -1px -1px 2px rgba(0,0,0,0.2);
+          z-index: 4;
+        }
+        .flip-label {
+          font-size: 14px;
+          color: #475569;
+          margin-top: 8px;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+        }
+        
+        @media (max-width: 480px) {
+          .flip-card {
+            width: 50px;
+            height: 70px;
+            font-size: 32px;
+          }
+          .flip-clock {
+            gap: 10px;
+          }
+          .flip-label {
+            font-size: 12px;
+          }
+        }
       </style>
 
       <!-- Section 1: Alerts / Notifications -->
@@ -251,6 +353,34 @@
           </div>
         </div>
         <div class="swiper-pagination"></div>
+      </div>
+
+      <!-- Countdown Section -->
+      <div style="background: white; border-radius: 16px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); border: 1px solid #f1f5f9; margin-bottom: 24px; text-align: center;">
+        <h2 style="font-size: 20px; font-weight: 700; color: #1e293b; margin-top: 0; margin-bottom: 8px;">
+          <i class="fas fa-clock" style="color: #0284c7;"></i> เหลือเวลาชำระภาษีที่ดินและสิ่งปลูกสร้างอีก
+        </h2>
+        <div class="flip-clock" id="land-tax-countdown">
+          <div class="flip-unit">
+            <div class="flip-card"><span id="cd-days">00</span><div class="flip-hinge-left"></div><div class="flip-hinge-right"></div></div>
+            <div class="flip-label">วัน</div>
+          </div>
+          <div class="flip-unit">
+            <div class="flip-card"><span id="cd-hours">00</span><div class="flip-hinge-left"></div><div class="flip-hinge-right"></div></div>
+            <div class="flip-label">ชั่วโมง</div>
+          </div>
+          <div class="flip-unit">
+            <div class="flip-card"><span id="cd-minutes">00</span><div class="flip-hinge-left"></div><div class="flip-hinge-right"></div></div>
+            <div class="flip-label">นาที</div>
+          </div>
+          <div class="flip-unit">
+            <div class="flip-card"><span id="cd-seconds">00</span><div class="flip-hinge-left"></div><div class="flip-hinge-right"></div></div>
+            <div class="flip-label">วินาที</div>
+          </div>
+        </div>
+        <p style="color: #64748b; font-size: 14px; margin-top: 16px; margin-bottom: 0;">
+          (ครบกำหนดชำระ 31 กรกฎาคม 2569)
+        </p>
       </div>
 
       <!-- Section 2: Quick Links -->
@@ -383,6 +513,37 @@
           disableOnInteraction: false,
         },
       });
+
+      // Countdown Timer Logic
+      function initCountdown() {
+        const deadline = new Date("2026-07-31T23:59:59").getTime();
+        
+        function updateClock() {
+          const now = new Date().getTime();
+          const t = deadline - now;
+          
+          if (t >= 0) {
+            const days = Math.floor(t / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((t % (1000 * 60)) / 1000);
+            
+            document.getElementById('cd-days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('cd-hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('cd-minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('cd-seconds').innerText = seconds.toString().padStart(2, '0');
+          } else {
+            document.getElementById('cd-days').innerText = "00";
+            document.getElementById('cd-hours').innerText = "00";
+            document.getElementById('cd-minutes').innerText = "00";
+            document.getElementById('cd-seconds').innerText = "00";
+          }
+        }
+        
+        updateClock();
+        setInterval(updateClock, 1000);
+      }
+      initCountdown();
     </script>
   </body>
 </html>
