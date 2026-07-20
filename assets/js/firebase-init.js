@@ -39,4 +39,9 @@ onValue(dailyVisitorRef, (snapshot) => {
   }
 });
 
-incrementDailyVisitors();
+// ตรวจสอบว่าเคยนับการเข้าชมของวันนี้ในเครื่องนี้หรือยัง
+const visitedTodayKey = "visited_" + today;
+if (!localStorage.getItem(visitedTodayKey)) {
+  incrementDailyVisitors();
+  localStorage.setItem(visitedTodayKey, "true");
+}
