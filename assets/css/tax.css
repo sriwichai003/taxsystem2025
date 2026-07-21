@@ -4,6 +4,11 @@
    ============================================= */
 
 /* --- Tax Services Shared Styles --- */
+.tax-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
 .lt-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
