@@ -157,6 +157,42 @@ function initCountdown() {
   window.countdownInterval = setInterval(updateClock, 1000);
 }
 
+// --- Greeting Billboard Logic ---
+function initGreetingBillboard() {
+  var thaiDays = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
+  var thaiMonths = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+                    'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+  var now = new Date();
+  var dayName = thaiDays[now.getDay()];
+  var date = now.getDate();
+  var month = thaiMonths[now.getMonth()];
+  var buddhistYear = now.getFullYear() + 543;
+  var hour = now.getHours();
+
+  var greetingText = 'สวัสดี';
+  var iconClass = 'fas fa-sun';
+  if (hour >= 5 && hour < 12) {
+    greetingText = 'สวัสดีตอนเช้า';
+    iconClass = 'fas fa-cloud-sun';
+  } else if (hour >= 12 && hour < 17) {
+    greetingText = 'สวัสดีตอนบ่าย';
+    iconClass = 'fas fa-sun';
+  } else if (hour >= 17 && hour < 20) {
+    greetingText = 'สวัสดีตอนเย็น';
+    iconClass = 'fas fa-cloud-moon';
+  } else {
+    greetingText = 'สวัสดีตอนค่ำ';
+    iconClass = 'fas fa-moon';
+  }
+
+  var el = document.getElementById('greeting-date');
+  var helloEl = document.getElementById('greeting-hello');
+  var iconEl = document.querySelector('.greeting-billboard-icon i');
+  if (el) el.textContent = 'วัน' + dayName + 'ที่ ' + date + ' เดือน' + month + ' พ.ศ.' + buddhistYear;
+  if (helloEl) helloEl.textContent = greetingText;
+  if (iconEl) iconEl.className = iconClass;
+}
+
 // --- Router ---
 async function router() {
   const hash = window.location.hash || "#home";
@@ -181,6 +217,7 @@ async function router() {
 
     // Initialize scripts based on the loaded page
     if (hash === "#home" || hash === "") {
+      initGreetingBillboard();
       renderCalendar(currentMonth);
       updateLandTaxAlert();
       initCountdown(); // Call countdown for home page
