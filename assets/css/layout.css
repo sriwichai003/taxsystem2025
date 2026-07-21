@@ -1,0 +1,155 @@
+/* =============================================
+   LAYOUT - Header, Footer, Navigation, Grid
+   ============================================= */
+
+/* --- Header --- */
+.header {
+    background-color: #fff;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eaeaea;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    /* เงานุ่มขึ้น */
+    position: sticky;
+    /* ตรึงเมนูไว้ด้านบน */
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon-house i {
+    font-size: 32px;
+    color: #0d6efd;
+    /* Blue Bootstrap shade */
+    background: #e7f1ff;
+    padding: 8px;
+    border-radius: 12px;
+}
+
+.logo-area h1 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.logo-area p {
+    font-size: 13px;
+    color: #6c757d;
+    margin: 0;
+}
+
+/* --- Mobile Nav Pills --- */
+.main-nav-mobile ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 0 0;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.main-nav-mobile a {
+    text-decoration: none;
+    color: #555;
+    padding: 8px 16px;
+    display: block;
+    border-radius: 50px;
+    /* ทรงแคปซูล */
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #f1f3f5;
+    transition: all 0.3s ease;
+}
+
+.main-nav-mobile li.active a {
+    background-color: #0d6efd;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(13, 110, 253, 0.2);
+}
+
+.main-nav-mobile a:hover {
+    background-color: #e9ecef;
+}
+
+/* --- Content Wrapper --- */
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* --- Footer Style --- */
+footer {
+    background-color: #ffffff;
+    border-top: 1px solid #eaeaea;
+    padding: 30px 20px;
+    /* margin-top: 50px; */
+    text-align: center;
+    color: #6c757d;
+}
+
+.footer-content {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.visitor-stats {
+    background: #f1f3f5;
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #495057;
+    border: 1px solid #e9ecef;
+}
+
+.visitor-stats i {
+    color: #0d6efd;
+}
+
+.visitor-count {
+    font-family: "Courier New", Courier, monospace;
+    /* ให้ฟีลตัวเลขดิจิทัล */
+    font-weight: 700;
+    color: #212529;
+    letter-spacing: 1px;
+}
+
+.copyright {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+/* --- Desktop Media Queries (Layout) --- */
+@media (min-width: 768px) {
+    .header {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 40px;
+    }
+
+    .main-nav-mobile ul {
+        margin: 0;
+    }
+
+    .content-wrapper {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}

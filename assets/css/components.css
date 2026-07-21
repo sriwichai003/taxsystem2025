@@ -1,0 +1,417 @@
+/* =============================================
+   COMPONENTS - Alerts, Modals, Buttons, News, 
+   Cards, Divider, Toast, Image
+   ============================================= */
+
+/* --- Alert Bar --- */
+.alert-bar {
+    background: linear-gradient(135deg, #20c997, #198754);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 16px rgba(32, 201, 151, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ลวดลายจางๆ ใน Alert Bar */
+.alert-bar::after {
+    content: "\f0f3";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    right: -10px;
+    bottom: -20px;
+    font-size: 100px;
+    color: rgba(255, 255, 255, 0.1);
+    transform: rotate(-20deg);
+    pointer-events: none;
+}
+
+.alert-bar-content {
+    position: relative;
+    z-index: 1;
+}
+
+.alert-bar strong {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.alert-text {
+    font-size: 14px;
+    margin: 0;
+    opacity: 0.95;
+}
+
+/* Alert Bars Customizations */
+.alert-bar.blue-gradient {
+    background: linear-gradient(135deg, #0284c7, #0369a1);
+    border-radius: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.alert-bar.green-gradient {
+    background: linear-gradient(135deg, #059669, #047857);
+    border-radius: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.alert-bar.red-gradient {
+    background: linear-gradient(135deg, #f43f5e, #be123c);
+    border-radius: 16px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+.alert-bar-title {
+    font-size: 17px;
+}
+.alert-bar-title.smaller {
+    font-size: 16px;
+}
+.alert-icon-yellow {
+    color: #fde047;
+}
+.alert-text-styled {
+    margin-top: 8px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+.alert-text-styled.smaller {
+    font-size: 14.5px;
+}
+.alert-link-yellow {
+    color: #fde047;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 6px;
+}
+
+@media (min-width: 768px) {
+    .alert-bar {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+/* --- Featured Announcement (LINE) --- */
+.featured-announcement {
+    background: linear-gradient(135deg,
+            #0061f2,
+            #00c6ff);
+    /* ไล่สีฟ้าให้ดู Modern */
+    color: white;
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 25px rgba(0, 97, 242, 0.3);
+}
+
+.featured-announcement h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+}
+
+.line-details-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.line-details-grid div {
+    background-color: rgba(255, 255, 255, 0.15);
+    /* โปร่งใส */
+    backdrop-filter: blur(5px);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.line-details-grid h3 {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.line-details-grid h3 i {
+    color: #2ecc71;
+    margin-right: 5px;
+}
+
+.line-details-grid ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.line-details-grid li {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.line-qa {
+    margin-top: 15px;
+}
+
+.line-qa p {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    border-left: 4px solid #f1c40f;
+    /* แถบสีเหลืองด้านหน้า */
+}
+
+@media (min-width: 768px) {
+    .line-details-grid {
+        flex-direction: row;
+    }
+
+    .line-details-grid div {
+        flex: 1;
+    }
+}
+
+/* --- News Section --- */
+.news-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f0f0f0;
+}
+
+.news-section h2 {
+    font-size: 18px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.news-section h2 i {
+    color: #0d6efd;
+}
+
+.news-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.news-header {
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    color: #6c757d;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.news-card {
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #f1f1f1;
+    transition: background-color 0.2s;
+    border-radius: 8px;
+    /* มนเล็กน้อยเมื่อ Hover */
+}
+
+.news-card:hover {
+    background-color: #f1f8ff;
+    /* สีฟ้าจางๆ เมื่อเอาเมาส์ชี้ */
+    cursor: default;
+}
+
+.news-card:last-child {
+    border-bottom: none;
+}
+
+.news-title {
+    font-size: 15px;
+    color: #333;
+    font-weight: 500;
+    padding-right: 10px;
+}
+
+/* ปรับ Date เป็น Badge Style */
+.news-date-badge {
+    font-size: 12px;
+    font-weight: 600;
+    color: #d63384;
+    /* สีชมพูเข้ม/แดง */
+    background-color: #fce4ec;
+    /* พื้นหลังจางๆ */
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-align: center;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+/* ถ้าเป็นภาษีที่ดินใช้สีส้ม */
+.latest-news:last-child .news-date-badge {
+    color: #fd7e14;
+    background-color: #ffe8cc;
+}
+
+.news-tag {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .news-section {
+        flex: 1;
+    }
+}
+
+/* --- Announcement Modal --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    position: relative;
+    background: #fff;
+    padding: 10px;
+    border-radius: 12px;
+    max-width: 90%;
+    max-height: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-overlay.show .modal-content {
+    transform: scale(1);
+}
+
+.modal-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.modal-close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s;
+}
+
+.modal-close:hover {
+    background: #c82333;
+}
+
+/* --- Buttons --- */
+.btn-primary-pill {
+    background: #3b82f6;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 14.5px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
+}
+.btn-primary-pill:hover {
+    background: #2563eb;
+    color: #fff;
+}
+.action-buttons {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.helper-text {
+    color: #64748b;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+/* --- Back Buttons --- */
+.k-back-btn, .c-back-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: white; color: #475569; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.2s ease; border: 1px solid #cbd5e1; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.k-back-btn:hover, .c-back-btn:hover { background: #f1f5f9; color: #0f172a; transform: translateY(-2px); box-shadow: 0 6px 10px rgba(0,0,0,0.08); }
+
+/* --- Divider --- */
+.divider { display: flex; align-items: center; text-align: center; color: #94a3b8; font-size: 14px; font-weight: 600; margin: 28px 0; }
+.divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px dashed #cbd5e1; }
+.divider::before { margin-right: 15px; }
+.divider::after { margin-left: 15px; }
+
+/* --- Toast Notification --- */
+.toast-notification { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: #10b981; color: #ffffff; padding: 14px 28px; border-radius: 50px; font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3); opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: 1000; }
+.toast-notification.show { transform: translateX(-50%) translateY(0); opacity: 1; visibility: visible; }
+
+/* --- Image Wrapper --- */
+.image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f1f5f9;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+}
+.zoomable-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+.zoomable-image:hover {
+    transform: scale(1.02);
+}
+
+/* --- Swiper Pagination --- */
+.swiper-pagination-bullet { background: #cbd5e1; opacity: 1; transition: all 0.3s ease; }
+.swiper-pagination-bullet-active { background: #4f46e5; width: 20px; border-radius: 4px; }

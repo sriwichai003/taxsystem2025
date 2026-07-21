@@ -1,0 +1,65 @@
+/* =============================================
+   BASE - Global Settings, Typography, Animations
+   ============================================= */
+
+/* --- Global Settings --- */
+body {
+    font-family: "Sarabun", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    /* สีพื้นหลังสว่างและนุ่มขึ้น */
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    padding: 15px;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0;
+}
+
+/* --- Page Section Show/Hide --- */
+
+/* 1. สั่งให้ทุกหน้าซ่อนไปก่อน */
+.page-section {
+    display: none;
+}
+
+/* 2. หน้าไหนที่มีคลาส active (ที่ถูกใส่โดย Javascript) ให้แสดงออกมา */
+.page-section.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+    /* เพิ่มลูกเล่นตอนเปลี่ยนหน้าให้ดูนุ่มนวล */
+}
+
+/* --- Keyframe Animations --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Utility Classes --- */
+.text-red-500 { color: #ef4444 !important; }
+.c-blue { background: #eff6ff; color: #3b82f6; }
+.c-green { background: #ecfdf5; color: #10b981; }
+
+/* --- Desktop Media Queries (Base) --- */
+@media (min-width: 768px) {
+    .container {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 30px;
+    }
+}
