@@ -30,50 +30,54 @@
       </div>
 
       <!-- Section 1: Alerts / Notifications -->
-      <div class="swiper alertSwiper" style="padding-bottom: 36px; margin-bottom: 24px;">
-        <div class="swiper-wrapper">
+      <div class="notifications-section" style="margin-bottom: 24px;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+          <div style="background: #fee2e2; color: #ef4444; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px;">
+            <i class="fas fa-bell"></i>
+          </div>
+          <h2 style="font-size: 18px; font-weight: 700; color: #1e293b; margin: 0;">ประกาศแจ้งเตือนสำคัญ</h2>
+        </div>
+        
+        <div style="display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
           <!-- Land Tax Dynamic Alert -->
-          <div class="swiper-slide" style="height: auto;">
-            <section class="alert-bar" style="background: linear-gradient(135deg, #0284c7, #0369a1); margin: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-radius: 16px; height: 100%; box-sizing: border-box;">
-              <div class="alert-bar-content">
-                <p><strong style="font-size: 16px;"><i class="fas fa-home"></i> ภาษีที่ดินและสิ่งปลูกสร้าง:</strong></p>
-                <!-- Inject script tag logic right here so it works even if router doesn't call it -->
-                <p class="alert-text" id="land-tax-dynamic-alert" style="margin-top: 8px;">
-                  กำลังโหลดข้อมูล...
-                </p>
-              </div>
-            </section>
+          <div style="background: white; border-radius: 16px; border-left: 5px solid #0284c7; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); display: flex; flex-direction: column; gap: 10px; transition: transform 0.2s; cursor: default;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+            <div style="display: flex; align-items: center; gap: 8px; color: #0284c7; font-weight: 700; font-size: 16px;">
+              <div style="background: #e0f2fe; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-home"></i></div>
+              ภาษีที่ดินและสิ่งปลูกสร้าง
+              <span style="background: #ef4444; color: white; font-size: 11px; padding: 2px 8px; border-radius: 12px; font-weight: bold; margin-left: 4px; box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);">ใหม่</span>
+            </div>
+            <div class="alert-text" id="land-tax-dynamic-alert" style="color: #475569; font-size: 14px; line-height: 1.5; padding-left: 40px;">
+              กำลังโหลดข้อมูล...
+            </div>
           </div>
 
           <!-- Sign Tax Alert -->
-          <div class="swiper-slide" style="height: auto;">
-            <section class="alert-bar" style="background: linear-gradient(135deg, #f97316, #ea580c); margin: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-radius: 16px; height: 100%; box-sizing: border-box; color: white;">
-              <div class="alert-bar-content">
-                <p><strong style="font-size: 16px;"><i class="fas fa-bullhorn"></i> แจ้งเตือนภาษีป้าย:</strong></p>
-                <p class="alert-text" style="margin-top: 8px;">
-                  ยื่นแบบและชำระได้ตั้งแต่ <u>1 มกราคม - 31 มีนาคม 2569</u>
-                  <br>
-                  <a href="https://drive.google.com/file/d/1ecVNYXbsT0TgIrxN5LvlENHARIHEj-HE/view?usp=sharing" target="_blank" style="color: white; text-decoration: underline; font-weight: 600; display: inline-block; margin-top: 8px;">
-                    <i class="fas fa-external-link-alt"></i> ประกาศเทศบาลนครเชียงใหม่
-                  </a>
-                </p>
+          <div style="background: white; border-radius: 16px; border-left: 5px solid #f97316; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); display: flex; flex-direction: column; gap: 10px; transition: transform 0.2s; cursor: default;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+            <div style="display: flex; align-items: center; gap: 8px; color: #f97316; font-weight: 700; font-size: 16px;">
+              <div style="background: #ffedd5; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-bullhorn"></i></div>
+              แจ้งเตือนภาษีป้าย
+            </div>
+            <div class="alert-text" style="color: #475569; font-size: 14px; line-height: 1.5; padding-left: 40px;">
+              ยื่นแบบและชำระได้ตั้งแต่ <u>1 มกราคม - 31 มีนาคม 2569</u>
+              <div style="margin-top: 10px;">
+                <a href="https://drive.google.com/file/d/1ecVNYXbsT0TgIrxN5LvlENHARIHEj-HE/view?usp=sharing" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; background: #fff7ed; color: #ea580c; padding: 6px 12px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 600; border: 1px solid #fed7aa; transition: all 0.2s;" onmouseover="this.style.background='#ffedd5'" onmouseout="this.style.background='#fff7ed'">
+                  <i class="fas fa-external-link-alt"></i> ประกาศเทศบาลฯ
+                </a>
               </div>
-            </section>
+            </div>
           </div>
 
           <!-- Speaker Alert -->
-          <div class="swiper-slide" style="height: auto;">
-            <section class="alert-bar" style="background: linear-gradient(135deg, #e95e5e, #871919); margin: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-radius: 16px; height: 100%; box-sizing: border-box;">
-              <div class="alert-bar-content">
-                <p><strong style="font-size: 16px;"><i class="fas fa-volume-up"></i> การขออนุญาตใช้เครื่องขยายเสียง:</strong></p>
-                <p class="alert-text" style="margin-top: 8px;">
-                  ต้องขออนุญาตล่วงหน้าก่อนการโฆษณาไม่น้อยกว่า <u>3 วันทำการ</u>
-                </p>
-              </div>
-            </section>
+          <div style="background: white; border-radius: 16px; border-left: 5px solid #ef4444; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); display: flex; flex-direction: column; gap: 10px; transition: transform 0.2s; cursor: default;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+            <div style="display: flex; align-items: center; gap: 8px; color: #ef4444; font-weight: 700; font-size: 16px;">
+              <div style="background: #fee2e2; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-volume-up"></i></div>
+              การขออนุญาตใช้เครื่องขยายเสียง
+            </div>
+            <div class="alert-text" style="color: #475569; font-size: 14px; line-height: 1.5; padding-left: 40px;">
+              ต้องขออนุญาตล่วงหน้าก่อนการโฆษณาไม่น้อยกว่า <u>3 วันทำการ</u>
+            </div>
           </div>
         </div>
-        <div class="swiper-pagination"></div>
       </div>
 
       <!-- Countdown Section -->
@@ -211,7 +215,7 @@
                 <div class="h-contact-icon" style="background:#ecfdf5; color:#10b981;"><i class="fab fa-line"></i></div>
                 <div>
                   <strong style="display:block; color:#1e293b; margin-bottom: 6px;">LINE Official</strong>
-                  <a href="#" class="btn-line"><i class="fab fa-line" style="font-size: 18px;"></i> @083yrhbl</a>
+                  <a href="https://line.me/ti/p/@083yrhbl" class="btn-line"><i class="fab fa-line" style="font-size: 18px;"></i> @083yrhbl</a>
                 </div>
               </li>
             </ul>
